@@ -2,57 +2,38 @@
 if(!defined('IN_CRONLITE'))exit();
 ?>
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
-		<meta name="format-detection" content="telephone=no" />
-		<meta name="keywords" content="<?php echo $conf['keywords']?>" />
-		<meta name="description" content="<?php echo $conf['description']?>" />
-		<link rel="stylesheet" href="<?php echo STATIC_ROOT?>css/main.css" />
-		<link rel="stylesheet" href="<?php echo $cdnpublic?>font-awesome/4.7.0/css/font-awesome.min.css" />
-		<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
-		<script src="<?php echo $cdnpublic?>jquery.dropotron/1.4.3/jquery.dropotron.min.js"></script>
-		<!--[if lte IE 8]><script src="<?php echo $cdnpublic?>html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
-		<!--[if lte IE 8]><script src="<?php echo $cdnpublic?>respond.js/1.4.2/respond.min.js"></script><![endif]-->
-		<title><?php echo $conf['title']?></title>
-	</head>
-
-	<body>
-		<section id="page-wrapper">
-			<!-- Header -->
-			<header id="header">
-				<h1><a href="#"><img src="assets/img/logo.png" style="max-height:60px;" ></a></h1>
-				<nav id="nav">
-					<ul>
-						<li>
-							<a href="/">首页</a>
-						</li>
-						<li>
-							<a href="produceIntroduce.html">功能介绍</a>
-						</li>
-						<li>
-							<a href="doc.html">开发文档</a>
-                        </li>
-						<?php if($conf['test_open']==1){?>
-						<li>
-							<a target="_blank" href="/user/test.php">在线测试</a>
-                        </li><?php }?>
-						<?php if(!empty($conf['appurl'])){?>
-						<li>
-							<a href="<?php echo $conf['appurl']?>">APP下载</a>
-						</li><?php }?>
-					</ul>
-				</nav> 				<nav id="navRight">
-					<ul>
-						<li>
-							<a href="/user/" class="button login_btn">商户登录</a>
-
-						</li>
-						<li>
-							<a href="/user/reg.php" class="button register_btn">商户注册</a>
-						</li>
-					</ul>
-				</nav>			</header>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="keywords" content="<?php echo $conf['keywords']?>" />
+	<meta name="description" content="<?php echo $conf['description']?>" />
+	<link rel="stylesheet" href="<?php echo STATIC_ROOT?>../assets/css/miuix.css" />
+	<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+	<title><?php echo $conf['title']?></title>
+</head>
+<body>
+<div class="mx-topbar">
+	<div class="mx-topbar-logo">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+		<?php echo $conf['sitename']?>
+	</div>
+	<button class="mx-topbar-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+	</button>
+	<ul class="mx-topbar-nav">
+		<li><a href="/" class="active">首页</a></li>
+		<li><a href="produceIntroduce.html">功能介绍</a></li>
+		<li><a href="doc.html">开发文档</a></li>
+		<?php if($conf['test_open']==1){?>
+		<li><a target="_blank" href="/user/test.php">在线测试</a></li>
+		<?php }?>
+		<?php if(!empty($conf['appurl'])){?>
+		<li><a href="<?php echo $conf['appurl']?>">APP下载</a></li>
+		<?php }?>
+		<li><a href="/user/" class="mx-topbar-btn">商户登录</a></li>
+	</ul>
+</div>
+<div class="mx-page">

@@ -2,341 +2,207 @@
 if(!defined('IN_CRONLITE'))exit();
 ?>
 <!DOCTYPE html>
-<html>
-	<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo $conf['title']?></title>
-	<meta name="keywords" content="<?php echo $conf['keywords']?>">
-	<meta name="description" content="<?php echo $conf['description']?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/default.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo $cdnpublic?>animate.css/3.7.2/animate.min.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/aos.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/header_common.css"/>
-		<link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/index_main.css"/>
-		<link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/common_contact.css"/>
-		<link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/media.css" />
-		<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
-		<script src="<?php echo STATIC_ROOT?>js/aos.js"></script>
-		<script src="<?php echo STATIC_ROOT?>js/xs.js"></script>
-		<script src="<?php echo STATIC_ROOT?>js/common_js.js"></script>
-		<script src="<?php echo STATIC_ROOT?>js/index_main.js"></script>
-	</head>
-	<body aos-easing="ease-out-back" aos-duration="1000" aos-delay="0">
-		<!--头-->
-     <header class="index_header">
-			<!--顶部-->
-			<div class="navBox">
-				<div class="logo left">
-					<img src="assets/img/logo.png" alt="<?php echo $conf['sitename']?>" draggable="false">
-				</div>
-				<div class="navBox_right right">
-					<ul class="nav left">
-						
-												<li class="left"><a href="/" >网站首页</a></li>
-												<?php if($conf['test_open']){?><li class="left"><a href="/user/test.php" rel="nofollow">DEMO体验</a></li><?php }?>
-												<li class="left"><a href="doc.html" rel="nofollow">API开发文档</a></li>
-												<li class="left"><a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" rel="nofollow">联系我们</a></li>
- 
-											</ul>
-					<a class="btn_common login left active" href="/user/" rel="nofollow">登录</a>
-					<a class="btn_common login left active" href="/user/reg.php" rel="nofollow">注册</a>
-					
- 
-				</div>
-			</div>
-			<div class="center">
-				<div class="banner">
-					<div class="banner_left left">
-						<div class="text1 animated bounceInLeft">全新支付体验</div>
-						<div class="text1_line animated bounceInLeft"></div>
-						<p aos="fade-right" class="banner_p animated bounceInRight aos-init aos-animate">资金记录、订单记录、收益统计、渠道分析...</p>
-						<p aos="fade-right" class="banner_p animated bounceInRight aos-init aos-animate">全响应式界面，简易操作，安全便利快捷，为您稳定服务。</p>
-<!-- 						<a class="banner_btnContact animated wobble xs_li_07" href="javascript:;" style="position: relative;">
-							<span style="position: relative; z-index: 2;">大客户请联系我们</span>
-						<canvas width="208" height="54" style="position: absolute; top: 0px; left: 0px; z-index: 2;"></canvas>
-						<canvas width="208" height="54" style="position:absolute; top:0; left:0; z-index:1;"></canvas></a> -->
-					</div>
-					<div class="banner_right right animated bounceInRight">
-						<img src="<?php echo STATIC_ROOT?>picture/banner_right.png" alt="<?php echo $conf['sitename']?>-一个好用的免签约支付接口" draggable="false">
-					</div>
-				</div>
-			</div>
-		</header>
-		<!--支付方式-->
-		<div class="center">
-			<div aos="zoom-in" class="payment_box animated zoomIn">
-				<ul class="payment_ul">
-					<li class="left payment_item1">
-						<a href="javascript:;">
-							<img class="img1" src="<?php echo STATIC_ROOT?>picture/payment_1.png" alt="<?php echo $conf['sitename']?>-免签约支付宝扫码H5支付" draggable="false" />
-						</a>
-					</li>
-					<li class="left payment_item2">
-						<a href="javascript:;">
-							<img class="img1" src="<?php echo STATIC_ROOT?>picture/payment_2.png" alt="<?php echo $conf['sitename']?>-免签约微信扫码公众号H5支付" draggable="false" />
-						</a>
-					</li>
-					<li class="left payment_item3">
-						<a href="javascript:;">
-							<img class="img1" src="<?php echo STATIC_ROOT?>picture/payment_3.png" alt="<?php echo $conf['sitename']?>-银联在线快捷支付" draggable="false" />
-						</a>
-					</li>
-					<li class="left payment_item4">
-						<a href="javascript:;">
-							<img class="img3" src="<?php echo STATIC_ROOT?>picture/payment_4.png" alt="<?php echo $conf['sitename']?>-QQ钱包免签约扫码H5支付" draggable="false" />
-						</a>
-					</li>
-					<li class="left payment_item5">
-						<a href="javascript:;">
-							<img class="img3" src="<?php echo STATIC_ROOT?>picture/payment_5.png" alt="<?php echo $conf['sitename']?>-免签约京东支付" draggable="false" />
-						</a>
-					</li>
-					<li class="left payment_item6">
-						<a href="javascript:;">
-							<img class="img3" src="<?php echo STATIC_ROOT?>picture/payment_6.png" alt="<?php echo $conf['sitename']?>-免签约百度钱包支付" draggable="false" />
-						</a>
-					</li>
-					<li class="left payment_item7">
-						<a href="javascript:;">
-							<img class="img2" src="<?php echo STATIC_ROOT?>picture/payment_7.png" alt="<?php echo $conf['sitename']?>-免签约财付通支付" draggable="false" />
-						</a>
-					</li>
-					<li class="left payment_item8">
-						<a href="javascript:;">
-							正在接入...
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<!--HHYPAY简介-->
-		<div class="about">
-			<div class="center">
-				<div aos="zoom-in" class="about_main aos-init aos-animate">
-					<span class="title_common about_title pingFang"><?php echo $conf['sitename']?>简介</span>
-					<span class="about_line right"></span>
-					<div class="about_txt">
-						<p class="pingFang"><?php echo $conf['orgname']?>成立于2018年，<?php echo $conf['sitename']?>（<?php echo $_SERVER['HTTP_HOST']?>）。</p>
-						<p class="pingFang"><?php echo $conf['sitename']?>平台主要服务于互联网和移动互联网领域，为网页游戏、手机游戏、阅读、音乐、交友、教育等移动应用提供综合计费营销服务，创新、诚信、灵和活多元,创新是企业发展的灵魂。</p>
-						<p class="pingFang">我们打破了传统聚合支付网站几年来一成不变的局面，建立了新一代聚合支付的行业方向，我们将引领聚合支付交易过程的个性化、自动化、工具化等。作为业内最善于创新的网站，力争成为行业的佼佼者。</p>
-					</div>
-					<!--<div class="about_more pingFang">更多</div>-->
-					<!--a href="/Home_Index_userLogin.html" target="_blank" class="about_more pingFang">更多</a-->
-				</div>
-			</div>
-			<div class="about_right">
-				<div class="about_rightMain">
-					<img aos="fade-up-right" class="about_rightImg1 aos-init aos-animate" src="<?php echo STATIC_ROOT?>picture/about_rightimg1.png" alt="" draggable="false" />
-					<div class="about_rightCenter">
-					</div>
-					<img aos="fade-up-left" class="about_rightImg2 aos-init aos-animate" src="<?php echo STATIC_ROOT?>picture/about_rightimg2.png" alt="" draggable="false" />
-				</div>
-			</div>
-		</div>
-		<!--商户流程-流程-->
-		<div aos="zoom-in" class="process aos-init aos-animate">
-			<div class="center">
-				<div class="process_main">
-					<span class="title_common process_title pingFang animated slideInUp">成为<?php echo $conf['sitename']?>商户仅需六步</span>
-					<span class="process_line animated zoomIn"></span>
-					<span class="process_h4 pingFang animated slideInDown"><?php echo $conf['sitename']?>让你轻松做生意</span>
-					<ul class="process_ul">
-						<li class="left animated bounceInLeft">
-							<img src="<?php echo STATIC_ROOT?>picture/process_1.png" alt="<?php echo $conf['sitename']?>-注册商户-在线自助注册" draggable="false" />
-							<span class="process_txt1 pingFang">注册商户</span>
-							<span class="process_txt2 pingFang">在线自助注册</span>
-						</li>
-						<li class="left animated bounceInLeft">
-							<img src="<?php echo STATIC_ROOT?>picture/process_2.png" alt="<?php echo $conf['sitename']?>-绑定银行-轻松设置商户信息" draggable="false" />
-							<span class="process_txt1 pingFang">绑定银行</span>
-							<span class="process_txt2 pingFang">轻松设置商户信息</span>
-						</li>
-						<li class="left animated bounceInLeft">
-							<img src="<?php echo STATIC_ROOT?>picture/process_3.png" alt="<?php echo $conf['sitename']?>-接口对接-全平台SDK支持" draggable="false" />
-							<span class="process_txt1 pingFang">接口对接</span>
-							<span class="process_txt2 pingFang">全平台SDK支持</span>
-						</li>
-						<li class="left animated bounceInRight">
-							<img src="<?php echo STATIC_ROOT?>picture/process_4.png" alt="<?php echo $conf['sitename']?>-自助下单-会员支付一键直达" draggable="false" />
-							<span class="process_txt1 pingFang">自助下单</span>
-							<span class="process_txt2 pingFang">会员支付一键直达</span>
-						</li>
-						<li class="left animated bounceInRight">
-							<img src="<?php echo STATIC_ROOT?>picture/process_5.png" alt="<?php echo $conf['sitename']?>-全天客服-7*24小时专业服务" draggable="false" />
-							<span class="process_txt1 pingFang">全天客服</span>
-							<span class="process_txt2 pingFang">7*24小时专业服务</span>
-						</li>
-						<li class="left animated bounceInRight">
-							<img src="<?php echo STATIC_ROOT?>picture/process_6.png" alt="<?php echo $conf['sitename']?>-自动结算-信誉无忧充分保障" draggable="false" />
-							<span class="process_txt1 pingFang">自动结算</span>
-							<span class="process_txt2 pingFang">信誉无忧充分保障</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!--品牌优势-->
-		<div class="advantage" id="advantage">
-			<div class="advantage_topBox">
-				<div aos="fade-up-right" class="leftImg_common1 rightImg_common2 advantage_topL aos-init aos-animate"></div>
-				<div class="center centerRe">
-					<div aos="flip-left" class="advantage_topMain aos-init aos-animate">
-						<span class="advantage_common advantage_title pingFang">品牌优势</span>
-						<span class="advantage_line"></span>
-						<span class="advantage_common advantage_txt pingFang">全年365天持续运行,每天正常下款<br>根据行业的不同和交易量<br>实行T0/T1,D0/D1结算,请联系客服</span>
-					</div>
-				</div>
-				<div aos="fade-up-left" class="rightImg_common1 leftImg_common2 advantage_topR aos-init aos-animate"></div>
-			</div>
-			<div class="center">
-				<ul class="advantage_botMain">
-					<li class="left">
-						<img aos="zoom-in-up" class="aos-init aos-animate" src="<?php echo STATIC_ROOT?>picture/advantage_1.png" alt="<?php echo $conf['sitename']?>-服务器安全、速度、稳定" draggable="false" />
-						<span aos="flip-up" class="advantage_botTxt pingFang aos-init aos-animate">服务器安全</span>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">采用群集服务器,防御高,</p>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">故障率低,无论用户身在何方,</p>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">均能获得流畅安全可靠的体验</p>
-					</li>
-					<li class="left li_margin">
-						<img aos="zoom-in-up" class="aos-init aos-animate" src="<?php echo STATIC_ROOT?>picture/advantage_2.png" alt="<?php echo $conf['sitename']?>-资金安全有保障" draggable="false" />
-						<span aos="flip-up" class="advantage_botTxt pingFang aos-init aos-animate">资金保障</span>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">结算及时，资金秒到</p>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">资金平均停留的时间不超过12小时,</p>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">您的资金安全将得到充分的保障.</p>
-					</li>
-					<li class="left li_margin">
-						<img aos="zoom-in-up" class="aos-init aos-animate" src="<?php echo STATIC_ROOT?>picture/advantage_3.png" alt="<?php echo $conf['sitename']?>-持续更新用的安心" draggable="false" />
-						<span aos="flip-up" class="advantage_botTxt pingFang aos-init aos-animate">持续更新</span>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">系统持续更新,功能持续完善,</p>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">让商户以及客户的体验不断接近</p>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">完美是我们一直不变的追求.</p>
-					</li>
-					<li class="left">
-						<img aos="zoom-in-up" class="aos-init aos-animate" src="<?php echo STATIC_ROOT?>picture/advantage_4.png" alt="<?php echo $conf['sitename']?>-界面简约，操作简单" draggable="false" />
-						<span aos="flip-up" class="advantage_botTxt pingFang aos-init aos-animate">界面简约</span>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">简约的UI交互体验可以</p>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">给您一个体验度极高的商户后台,</p>
-						<p aos="flip-up" class="advantage_botP pingFang aos-init aos-animate">更好的使用体验.</p>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<!--联系我们-->
-		<div class="contact_comBox contact_box" id="contact_box">
-			<div class="contactUs_index contactUs">
-				<div class="center">
-					<p aos="zoom-out-down" class="contactUs_indexTitle contactUs_title pingFang aos-init aos-animate">联系我们</p>
-					<p aos="zoom-out-down" class="contactUs_line aos-init aos-animate"></p>
-					<ul aos="zoom-in-up" class="contactUs_main aos-init aos-animate">
-						<li class="left contactUs_liMargin1">
-							<span class="contactUs_icon contactUs_icon1"></span>
-							<span class="contactUs_mainTit pingFang_bold">公司地址</span>
-							<span class="contactUs_mainLine"></span>
-							<span class="contactUs_mainTxt pingFang">xxxxxx</span>
-							<span class="contactUs_mainBot"></span>
-						</li>
-						<li class="left contactUs_liMargin2">
-							<span class="contactUs_icon contactUs_icon2"></span>
-							<span class="contactUs_mainTit pingFang_bold">联系方式</span>
-							<span class="contactUs_mainLine"></span>
-							
-								<a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" rel="nofollow"target="_blank" class="contactUs_mainTxt pingFang">商务QQ：<?php echo $conf['kfqq']?></a>
-							<span class="contactUs_mainBot"></span>
-						</li>
-						<li class="left contactUs_liMargin1">
-							<span class="contactUs_icon contactUs_icon3"></span>
-							<span class="contactUs_mainTit pingFang_bold">电子邮箱</span>
-							<span class="contactUs_mainLine"></span>
-							<span class="contactUs_mainTxt pingFang"><?php echo $conf['email']?></span>
-							<span class="contactUs_mainBot"></span>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="contact_bot">
-				<div aos="fade-up-right" class="leftImg_common1 leftImg_common2 contact_botL aos-init aos-animate"></div>
-				<div class="center centerRe">
-					<div aos="fade-left" class="contact_botMain pingFang aos-init aos-animate">
-						<div class="contact_botMainTxt">马上开启全新商户体验</div>
-						<a href="/user/" rel="nofollow"class="contact_botMainBtn" style="float: left;">商户登录</a>
-					</div>
-				</div>
-				<div aos="fade-up-left" class="rightImg_common1 rightImg_common2 contact_botR aos-init aos-animate"></div>
-			</div>
-		</div>
-		<!--底-->
-				<!--底-->
-		<footer>
-			<div class="footer_top">
-				<ul class="footer_topLeft left">
-					<li class="left">
-						<div class="footer_topLeftTit footer_icon1 pingFang">用户协议</div>
-						<div class="footer_topLeftCon pingFang">
-							<a href="#">禁售商品</a>
-							<a href="#">隐私协议</a>
-							<a href="agreement.html">注册协议</a>
-						</div>
-					</li>
-					<li class="left">
-						<div class="footer_topLeftTit footer_icon2 pingFang">关于我们</div>
-						<div class="footer_topLeftCon pingFang">
-							<a href="/user/test.php" rel="nofollow">DEMO体验</a>
-							<a href="doc.html" rel="nofollow">API开发文档</a>
-							<a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" rel="nofollow">联系我们</a>
-						</div>
-					</li>
-				</ul>
-				<div class="footer_topRight right">
-
-					<div class="footer_detail left pingFang">
-					 
-						<p class="footer_pCom footer_tellTime">全年无休 7x24小时</p>
-						<p class="footer_pCom footer_email"><?php echo $conf['email']?></p>
-						<p class="footer_pCom footer_qq"> <a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes"rel="nofollow" target="_blank" style="color: #666666;"><?php echo $conf['kfqq']?></a></p>
-					</div>
-					<div></div>
-				</div>
-			</div>
-			<div class="footer_bottom pingFang"> Copyright © <?php echo date("Y")?> <?php echo $conf['sitename']?> All rights reserved. 版权所有
-			<p><?php echo $conf['footer']?></p>
-<!-- wpa start -->  
-
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<meta name="keywords" content="<?php echo $conf['keywords']?>">
+<meta name="description" content="<?php echo $conf['description']?>">
+<link rel="stylesheet" href="<?php echo STATIC_ROOT?>../assets/css/miuix.css" />
+<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+<title><?php echo $conf['title']?></title>
+</head>
+<body>
+<!-- Topbar -->
+<div class="mx-topbar">
+	<div class="mx-topbar-logo">
+		<img src="assets/img/logo.png" style="max-height:36px;" alt="<?php echo $conf['sitename']?>"/>
+	</div>
+	<button class="mx-topbar-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+	</button>
+	<ul class="mx-topbar-nav">
+		<li><a href="/" class="active">网站首页</a></li>
+		<?php if($conf['test_open']){?><li><a href="/user/test.php">DEMO体验</a></li><?php }?>
+		<li><a href="doc.html">API开发文档</a></li>
+		<li><a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes">联系我们</a></li>
+		<li><a href="/user/" class="mx-topbar-btn">登录</a></li>
+		<li><a href="/user/reg.php" class="mx-topbar-btn mx-btn-outline" style="border:1.5px solid var(--mx-accent);color:var(--mx-accent);background:transparent;">注册</a></li>
+	</ul>
 </div>
-		</footer>
-		<!--右侧社交固定-->
-		<div class="right_fixed">
-		<div class="right_common right_conBox">
-				<div class="right_qqShow rightShow_common">
-					<div class="rightImg_comm right_qqImg left"></div>
-					<div class="rightNum_comm right_tellNum left"><?php echo $conf['kfqq']?></div>-
-					<a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" rel="nofollow"target="_blank" class="rightNum_comm right_tellNum left"><?php echo $conf['kfqq']?></a>
-				</div>
-				<div class="right_qqPhoto rightPhoto_common right"></div>
-			</div>
-			<div class="right_common right_scrollTop">
-				<div class="right_scrollTopPhoto right">顶部</div>
+<div class="mx-page">
+<!-- Hero -->
+<section class="mx-hero" style="background:var(--mx-accent-light);padding:120px 0 60px;">
+	<div class="mx-container" style="display:flex;align-items:center;gap:48px;flex-wrap:wrap;">
+		<div style="flex:1;min-width:300px;">
+			<h1 style="font-size:clamp(24px,3vw,34px);font-weight:700;line-height:1.3;margin-bottom:16px;">全新支付体验</h1>
+			<p style="font-size:15px;color:var(--mx-text-secondary);line-height:1.8;margin-bottom:24px;">资金记录、订单记录、收益统计、渠道分析...<br>全响应式界面，简易操作，安全便利快捷，为您稳定服务。</p>
+		</div>
+		<div style="flex:1;min-width:280px;text-align:center;">
+			<svg width="200" height="160" viewBox="0 0 200 160" fill="none" style="max-width:100%;">
+				<rect x="20" y="10" width="160" height="140" rx="16" fill="var(--mx-bg-card)" stroke="var(--mx-accent)" stroke-width="2"/>
+				<rect x="40" y="40" width="120" height="10" rx="5" fill="var(--mx-accent-light)"/>
+				<rect x="40" y="60" width="80" height="10" rx="5" fill="var(--mx-bg-tertiary)"/>
+				<rect x="40" y="80" width="100" height="10" rx="5" fill="var(--mx-bg-tertiary)"/>
+				<rect x="40" y="100" width="60" height="10" rx="5" fill="var(--mx-accent-light)"/>
+				<rect x="40" y="120" width="50" height="20" rx="10" fill="var(--mx-accent)"/>
+			</svg>
+		</div>
+	</div>
+</section>
+
+<!-- Payment Methods -->
+<section class="mx-section">
+	<div class="mx-container" style="text-align:center;">
+		<div class="mx-partners">
+			<div class="mx-partner-badge">支付宝</div>
+			<div class="mx-partner-badge">微信支付</div>
+			<div class="mx-partner-badge">银联</div>
+			<div class="mx-partner-badge">QQ钱包</div>
+			<div class="mx-partner-badge">京东支付</div>
+			<div class="mx-partner-badge">百度钱包</div>
+			<div class="mx-partner-badge">财付通</div>
+			<div class="mx-partner-badge" style="color:var(--mx-text-tertiary);">正在接入...</div>
+		</div>
+	</div>
+</section>
+
+<!-- About -->
+<section class="mx-section" style="background:var(--mx-bg-secondary);">
+	<div class="mx-container" style="text-align:center;">
+		<h2 style="font-size:22px;font-weight:700;margin-bottom:12px;"><?php echo $conf['sitename']?>简介</h2>
+		<div class="mx-card" style="max-width:700px;margin:0 auto;text-align:left;">
+			<div class="mx-card-body">
+				<p style="font-size:14px;color:var(--mx-text-secondary);line-height:1.8;margin-bottom:12px;"><?php echo $conf['orgname']?>成立于2018年，<?php echo $conf['sitename']?>（<?php echo $_SERVER['HTTP_HOST']?>）。</p>
+				<p style="font-size:14px;color:var(--mx-text-secondary);line-height:1.8;margin-bottom:12px;"><?php echo $conf['sitename']?>平台主要服务于互联网和移动互联网领域，为网页游戏、手机游戏、阅读、音乐、交友、教育等移动应用提供综合计费营销服务，创新、诚信、灵活多元。</p>
+				<p style="font-size:14px;color:var(--mx-text-secondary);line-height:1.8;">我们打破了传统聚合支付网站几年来一成不变的局面，建立了新一代聚合支付的行业方向，我们将引领聚合支付交易过程的个性化、自动化、工具化等。</p>
 			</div>
 		</div>
-		<script>
-			AOS.init({
-				easing: 'ease-out-back',
-				duration: 1000
-			});
-//			hljs.initHighlightingOnLoad();
-	
-			$('.hero__scroll').on('click', function(e) {
-				$('html, body').animate({
-					scrollTop: $(window).height()
-				}, 1200);
-			});
-		</script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$(".xs_li_07").xs999(7);
-			$(".xs_li_11").xs999(11);
-        });
-	</script>
-	</body>
+	</div>
+</section>
+
+<!-- Process -->
+<section class="mx-section">
+	<div class="mx-container" style="text-align:center;">
+		<h2 style="font-size:22px;font-weight:700;margin-bottom:8px;">成为<?php echo $conf['sitename']?>商户仅需六步</h2>
+		<p style="font-size:14px;color:var(--mx-text-secondary);margin-bottom:32px;"><?php echo $conf['sitename']?>让你轻松做生意</p>
+		<div class="mx-features" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
+			<?php
+			$steps = [
+				['注册商户','在线自助注册'],
+				['绑定银行','轻松设置商户信息'],
+				['接口对接','全平台SDK支持'],
+				['自助下单','会员支付一键直达'],
+				['全天客服','7*24小时专业服务'],
+				['自动结算','信誉无忧充分保障'],
+			];
+			foreach($steps as $i=>$s):?>
+			<div class="mx-feature-card" style="text-align:center;padding:20px;">
+				<div style="width:36px;height:36px;border-radius:50%;background:var(--mx-accent);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:14px;font-weight:600;"><?php echo $i+1?></div>
+				<div class="mx-feature-title" style="font-size:14px;"><?php echo $s[0]?></div>
+				<div class="mx-feature-desc" style="font-size:12px;"><?php echo $s[1]?></div>
+			</div>
+			<?php endforeach;?>
+		</div>
+	</div>
+</section>
+
+<!-- Advantages -->
+<section class="mx-section" style="background:var(--mx-bg-secondary);">
+	<div class="mx-container" style="text-align:center;">
+		<h2 style="font-size:22px;font-weight:700;margin-bottom:32px;">品牌优势</h2>
+		<div class="mx-features" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+				<div class="mx-feature-title">服务器安全</div>
+				<div class="mx-feature-desc">采用群集服务器，防御高，故障率低，无论用户身在何方，均能获得流畅安全可靠的体验。</div>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;background:var(--mx-success-light);color:var(--mx-success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+				<div class="mx-feature-title">资金保障</div>
+				<div class="mx-feature-desc">结算及时，资金秒到，资金平均停留的时间不超过12小时，您的资金安全将得到充分的保障。</div>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;background:var(--mx-warning-light);color:var(--mx-warning);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+				<div class="mx-feature-title">持续更新</div>
+				<div class="mx-feature-desc">系统持续更新，功能持续完善，让商户以及客户的体验不断接近完美。</div>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;background:var(--mx-danger-light);color:var(--mx-danger);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+				<div class="mx-feature-title">界面简约</div>
+				<div class="mx-feature-desc">简约的UI交互体验可以给您一个体验度极高的商户后台。</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Contact -->
+<section class="mx-section" style="background:var(--mx-bg-secondary);">
+	<div class="mx-container" style="text-align:center;">
+		<h2 style="font-size:22px;font-weight:700;margin-bottom:32px;">联系我们</h2>
+		<div class="mx-stats-grid" style="grid-template-columns:repeat(3,1fr);">
+			<div class="mx-card" style="padding:24px;text-align:center;">
+				<div style="width:48px;height:48px;border-radius:50%;background:var(--mx-accent-light);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--mx-accent)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+				</div>
+				<div style="font-size:14px;font-weight:600;margin-bottom:4px;color:var(--mx-text-primary);">公司地址</div>
+				<div style="font-size:13px;color:var(--mx-text-secondary);">xxxxxx</div>
+			</div>
+			<div class="mx-card" style="padding:24px;text-align:center;">
+				<div style="width:48px;height:48px;border-radius:50%;background:var(--mx-success-light);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--mx-success)" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+				</div>
+				<div style="font-size:14px;font-weight:600;margin-bottom:4px;color:var(--mx-text-primary);">联系方式</div>
+				<div style="font-size:13px;color:var(--mx-text-secondary);">商务QQ：<a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" target="_blank"><?php echo $conf['kfqq']?></a></div>
+			</div>
+			<div class="mx-card" style="padding:24px;text-align:center;">
+				<div style="width:48px;height:48px;border-radius:50%;background:var(--mx-warning-light);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--mx-warning)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+				</div>
+				<div style="font-size:14px;font-weight:600;margin-bottom:4px;color:var(--mx-text-primary);">电子邮箱</div>
+				<div style="font-size:13px;color:var(--mx-text-secondary);"><?php echo $conf['email']?></div>
+			</div>
+		</div>
+		<div style="margin-top:32px;">
+			<a href="/user/" class="mx-btn mx-btn-primary mx-btn-lg">商户登录</a>
+		</div>
+	</div>
+</section>
+</div><!-- /mx-page -->
+
+<!-- Footer -->
+<footer class="mx-footer">
+	<div class="mx-container">
+		<div class="mx-features" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));padding:0 0 16px;text-align:left;">
+			<div>
+				<h4 style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--mx-text-primary);">用户协议</h4>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;"><a href="#">禁售商品</a></p>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;"><a href="#">隐私协议</a></p>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;"><a href="agreement.html">注册协议</a></p>
+			</div>
+			<div>
+				<h4 style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--mx-text-primary);">关于我们</h4>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;"><a href="/user/test.php">DEMO体验</a></p>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;"><a href="doc.html">API开发文档</a></p>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;"><a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" target="_blank">联系我们</a></p>
+			</div>
+			<div>
+				<h4 style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--mx-text-primary);">联系方式</h4>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;">全年无休 7x24小时</p>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;"><?php echo $conf['email']?></p>
+				<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:4px;"><a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" target="_blank"><?php echo $conf['kfqq']?></a></p>
+			</div>
+		</div>
+		<div class="mx-divider"></div>
+		<p style="font-size:13px;color:var(--mx-text-tertiary);text-align:center;padding-top:12px;">Copyright &copy; <?php echo date("Y")?> <?php echo $conf['sitename']?> All rights reserved. 版权所有</p>
+		<p style="font-size:13px;color:var(--mx-text-tertiary);text-align:center;margin-top:4px;"><?php echo $conf['footer']?></p>
+	</div>
+</footer>
+<!-- Scroll to top -->
+<div style="position:fixed;bottom:24px;right:24px;z-index:999;">
+	<button onclick="window.scrollTo({top:0,behavior:'smooth'})" style="width:44px;height:44px;border-radius:50%;background:var(--mx-accent);color:#fff;border:none;cursor:pointer;box-shadow:var(--mx-shadow-md);display:flex;align-items:center;justify-content:center;">
+		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+	</button>
+</div>
+</body>
 </html>

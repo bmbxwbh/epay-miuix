@@ -2,286 +2,137 @@
 if(!defined('IN_CRONLITE'))exit();
 ?>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="zh" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="zh">
-<!--<![endif]-->
+<html lang="zh-CN">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-	<title><?php echo $conf['title']?></title>
-  	<meta name="keywords" content="<?php echo $conf['keywords']?>">
-	<meta name="description" content="<?php echo $conf['description']?>">	
-	<!-- ================== BEGIN BASE CSS STYLE ================== -->
-	<link href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="<?php echo $cdnpublic?>font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-	<link href="<?php echo $cdnpublic?>animate.css/3.7.2/animate.min.css" rel="stylesheet" />
-	<link href="<?php echo STATIC_ROOT?>css/style.min.css" rel="stylesheet" />
-	<link href="<?php echo STATIC_ROOT?>css/style-responsive.min.css" rel="stylesheet" />
-	<link href="<?php echo STATIC_ROOT?>css/theme/blue.css" id="theme" rel="stylesheet" />
-	<!-- ================== END BASE CSS STYLE ================== -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<meta name="keywords" content="<?php echo $conf['keywords']?>">
+<meta name="description" content="<?php echo $conf['description']?>">
+<link rel="stylesheet" href="<?php echo STATIC_ROOT?>../assets/css/miuix.css" />
+<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+<title><?php echo $conf['title']?></title>
 </head>
-<body data-spy="scroll" data-target="#header-navbar" data-offset="51">
-    <!-- begin #page-container -->
-    <div id="page-container" class="fade">
-        <!-- begin #header -->
-        <div id="header" class="header navbar navbar-transparent navbar-fixed-top">
-            <!-- begin container -->
-            <div class="container">
-                <!-- begin navbar-header -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="index.html" class="navbar-brand">
-                        <span class="brand-logo"></span>
-                        <span class="brand-text">
-                            <span class="text-theme"><?php echo $conf['sitename']?></span>
-                        </span>
-                    </a>
-                </div>
-                <!-- end navbar-header -->
-                <!-- begin navbar-collapse -->
-                <div class="collapse navbar-collapse" id="header-navbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#home" data-click="scroll-to-target">首页</a> </li>
-                      	<li><a href="#service" data-click="scroll-to-target">优势</a></li>
-                        <li><a href="#team" data-click="scroll-to-target">团队</a></li>
-                        <?php if($conf['test_open']){?><li><a href="/user/test.php">在线测试</a></li><?php }?>
-                        <li><a href="/doc.html">开发文档</a></li>
-                      	<li><a href="/user/reg.php">接入申请</a></li>
-                        <li><a href="/user/">商户登录</a></li>
-                    </ul>
-                </div>
-                <!-- end navbar-collapse -->
-            </div>
-            <!-- end container -->
-        </div>
-        <!-- end #header -->
-        
-        <!-- begin #home -->
-        <div id="home" class="content has-bg home">
-            <!-- begin content-bg -->
-            <div class="content-bg">
-                <img src="<?php echo STATIC_ROOT?>img/home-bg.jpg" alt="Home" />
-            </div>
-            <!-- end content-bg -->
-            <!-- begin container -->
-            <div class="container home-content">
-                <h1>欢迎来到 <a href="JavaScript:;"><?php echo $conf['sitename']?></a></h1>
-                <h3>免签约支付平台 结算费率低至<?php echo $conf['settle_rate']; ?>%！</h3>
-                <h4>
-                    支持多种支付方式：支付宝、QQ钱包、微信、财付通支付，可根据开发文档快速接入自己网站！<br />
-                    <a href="JavaScript:;">稳定、安全、值得信赖</a>
-                </h4>
-                <a href="./user/reg.php" class="btn btn-theme">申请接入</a> <a href="./user/" class="btn btn-outline">商户登录</a><br />
-            </div>
-            <!-- end container -->
-        </div>
-        <!-- end #home -->
-    	
-      	<!-- beign #service -->
-        <div id="service" class="content" data-scrollview="true">
-            <!-- begin container -->
-            <div class="container">
-                <h2 class="content-title">为什么选择我们？</h2>
-                <p class="content-desc">
-                    <?php echo $conf['sitename']?>免去个人站长无法签约支付接口以及企业申请签约支付接口麻烦的问题，免签约也能享受及时到账的乐趣，系统优势如下：
-                </p>
-                <!-- begin row -->
-                <div class="row">
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-cog"></i></div>
-                            <div class="info">
-                                <h4 class="title">方便接入</h4>
-                                <p class="desc">根据我们提供的开发文档，可快速接入你的网站，让你的网站支持在线支付功能，享受免签约支付的乐趣。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-paint-brush"></i></div>
-                            <div class="info">
-                                <h4 class="title">低手续费</h4>
-                                <p class="desc">结算费率低至<?php echo $conf['settle_rate']*100; ?>%，每日满<?php echo $conf['settle_money']; ?>元自动结算，上不封顶，提现手续费最低<?php echo $conf['settle_fee_min']; ?>元，最高<?php echo $conf['settle_fee_max']; ?>元。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-file"></i></div>
-                            <div class="info">
-                                <h4 class="title">智能提醒</h4>
-                                <p class="desc"><?php echo $conf['sitename']?>提供商户APP、QQ机器人、邮箱等多种提醒方式可选，让您随时获知自己的收入动态。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                </div>
-                <!-- end row -->
-                <!-- begin row -->
-                <div class="row">
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-code"></i></div>
-                            <div class="info">
-                                <h4 class="title">安全放心</h4>
-                                <p class="desc">我们用的支付接口全为自己申请，不存在二次对接的情况，彻底避免对接方跑路导致无法结算的情况！</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-shopping-cart"></i></div>
-                            <div class="info">
-                                <h4 class="title">自动结算</h4>
-                                <p class="desc">采取T+1结算方式，交易金额满<?php echo $conf['settle_money']; ?>元，系统会于次日零点开始自动结算，不满10元亦可申请手动结算。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4">
-                        <div class="service">
-                            <div class="icon bg-theme" data-animation="true" data-animation-type="bounceIn"><i class="fa fa-heart"></i></div>
-                            <div class="info">
-                                <h4 class="title">插件拓展</h4>
-                                <p class="desc">提供SDK测试包，方便快速开发和接入，后续会逐渐提供discuz、WordPress等平台的支付相关插件。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </div>
-        <!-- end #service -->
-      
-        <!-- begin #milestone -->
-        <div id="milestone" class="content bg-black-darker has-bg" data-scrollview="true">
-            <!-- begin content-bg -->
-            <div class="content-bg">
-                <img src="<?php echo STATIC_ROOT?>img/milestone-bg.jpg" alt="Milestone" />
-            </div>
-            <!-- end content-bg -->
-            <!-- begin container -->
-            <div class="container">
-                <!-- begin row -->
-                <div class="row">
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4 milestone-col">
-                        <div class="milestone">
-                            <div class="number" data-animation="true" data-animation-type="number" data-final-number="1292">1,292</div>
-                            <div class="title">接入商户</div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4 milestone-col">
-                        <div class="milestone">
-                            <div class="number" data-animation="true" data-animation-type="number" data-final-number="9039">9,039</div>
-                            <div class="title">接入网站</div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4 milestone-col">
-                        <div class="milestone">
-                            <div class="number" data-animation="true" data-animation-type="number" data-final-number="129">129</div>
-                            <div class="title">合作伙伴</div>
-                        </div>
-                    </div>
-                    <!-- end col-3 -->
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </div>
-        <!-- end #milestone -->
-        
-        <!-- begin #team -->
-        <div id="team" class="content" data-scrollview="true">
-            <!-- begin container -->
-            <div class="container">
-                <h2 class="content-title">我们的团队</h2>
-                <p class="content-desc">
-                    
-                </p>
-                <!-- begin row -->
-                <div class="row">
-                    <!-- begin col-3 -->
-                    <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
-                        <!-- begin team -->
-                        <div class="team">             
-                            <div class="image" data-animation="true" data-animation-type="flipInX">
-                                <img src="//q1.qlogo.cn/g?b=qq&nk=<?php echo $conf['kfqq']?>&s=640" alt="Mia Donovan" />
-                            </div>
-                            <div class="info">
-                                <h3 class="name">客服</h3>
-                                <div class="title text-theme">客服</div>
-                                <p>业务售后综合客服 </p>
-                                <div class="social">
-                                    <a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" title="点击联系客服QQ" target="_blank"><i class="fa fa-qq fa-lg fa-fw"></i></a>
-                                    <a href="JavaScript:;"><i class="fa fa-weibo fa-lg fa-fw"></i></a>
-                                    <a href="JavaScript:;"><i class="fa fa-home fa-lg fa-fw"></i></a>
-                                </div>
-                            </div>                     
-                        </div>
-                        <!-- end team -->
-                    </div>
-                    <!-- end col-3 -->
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </div>
-        <!-- end #team -->
-      
-        <!-- begin #footer -->
-        <div id="footer" class="footer">
-            <div class="container">
-                <div class="footer-brand">
-                    <div class="footer-brand-logo"></div>
-                    <?php echo $conf['sitename']?>
-                </div>
-                <p>
-                    Copyright&nbsp;&nbsp;&copy;&nbsp;<?php echo date("Y")?>&nbsp;All Rights Reserved.<br/><?php echo $conf['footer']?>
-                </p>
-            </div>
-        </div>
-        <!-- end #footer -->
-    </div>
-    <!-- end #page-container -->
-	
-	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
-	<script src="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<!--[if lt IE 9]>
-		<script src="<?php echo $cdnpublic?>html5shiv/3.7.3/html5shiv.min.js"></script>
-		<script src="<?php echo $cdnpublic?>respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-	<script src="<?php echo STATIC_ROOT?>js/apps.min.js"></script>
-	<!-- ================== END BASE JS ================== -->
-	
-	<script>
-	var staticroot = '<?php echo STATIC_ROOT?>';
-	    $(document).ready(function() {
-	        App.init();
-	    });
-	</script>
+<body data-spy="scroll">
+<!-- Topbar -->
+<div class="mx-topbar">
+	<div class="mx-topbar-logo">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+		<?php echo $conf['sitename']?>
+	</div>
+	<button class="mx-topbar-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+	</button>
+	<ul class="mx-topbar-nav">
+		<li><a href="#home" class="active">首页</a></li>
+		<li><a href="#service">优势</a></li>
+		<li><a href="#team">团队</a></li>
+		<?php if($conf['test_open']){?><li><a href="/user/test.php">在线测试</a></li><?php }?>
+		<li><a href="/doc.html">开发文档</a></li>
+		<li><a href="/user/reg.php">接入申请</a></li>
+		<li><a href="/user/" class="mx-topbar-btn">商户登录</a></li>
+	</ul>
+</div>
+<div class="mx-page">
+<!-- Hero -->
+<section id="home" class="mx-hero" style="background:var(--mx-accent);padding:120px 0 80px;">
+	<div class="mx-container" style="text-align:center;">
+		<h1 style="font-size:clamp(28px,5vw,44px);font-weight:700;line-height:1.2;margin-bottom:16px;color:#fff;">欢迎来到 <?php echo $conf['sitename']?></h1>
+		<p style="font-size:18px;color:rgba(255,255,255,0.85);margin-bottom:8px;">免签约支付平台 结算费率低至<?php echo $conf['settle_rate']?>%！</p>
+		<p style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:32px;">支持多种支付方式：支付宝、QQ钱包、微信、财付通支付，可根据开发文档快速接入！</p>
+		<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+			<a href="./user/reg.php" class="mx-btn" style="background:#fff;color:var(--mx-accent);">申请接入</a>
+			<a href="./user/" class="mx-btn mx-btn-outline" style="border-color:#fff;color:#fff;">商户登录</a>
+		</div>
+	</div>
+</section>
 
+<!-- Services -->
+<section id="service" class="mx-section">
+	<div class="mx-container" style="text-align:center;">
+		<h2 style="font-size:22px;font-weight:700;margin-bottom:12px;">为什么选择我们？</h2>
+		<p style="font-size:15px;color:var(--mx-text-secondary);max-width:640px;margin:0 auto 40px;"><?php echo $conf['sitename']?>免去个人站长无法签约支付接口以及企业申请签约支付接口麻烦的问题，免签约也能享受及时到账的乐趣。</p>
+		<div class="mx-features" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+				<div class="mx-feature-title">方便接入</div>
+				<div class="mx-feature-desc">根据开发文档可快速接入你的网站，让你的网站支持在线支付功能。</div>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;background:var(--mx-success-light);color:var(--mx-success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+				<div class="mx-feature-title">低手续费</div>
+				<div class="mx-feature-desc">结算费率低至<?php echo $conf['settle_rate']*100?>%，每日满<?php echo $conf['settle_money']?>元自动结算。</div>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;background:var(--mx-warning-light);color:var(--mx-warning);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+				<div class="mx-feature-title">智能提醒</div>
+				<div class="mx-feature-desc">提供商户APP、QQ机器人、邮箱等多种提醒方式可选。</div>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;background:var(--mx-danger-light);color:var(--mx-danger);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+				<div class="mx-feature-title">安全放心</div>
+				<div class="mx-feature-desc">支付接口全为自己申请，不存在二次对接，彻底避免对接方跑路。</div>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+				<div class="mx-feature-title">自动结算</div>
+				<div class="mx-feature-desc">采取T+1结算方式，交易金额满<?php echo $conf['settle_money']?>元系统自动结算。</div>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 16px;background:var(--mx-success-light);color:var(--mx-success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+				<div class="mx-feature-title">插件拓展</div>
+				<div class="mx-feature-desc">提供SDK测试包，方便快速开发和接入。</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Milestones -->
+<section id="milestone" class="mx-section" style="background:var(--mx-accent);padding:60px 0;">
+	<div class="mx-container">
+		<div class="mx-stats-grid" style="grid-template-columns:repeat(3,1fr);">
+			<div style="text-align:center;">
+				<div style="font-size:36px;font-weight:700;color:#fff;">1,292</div>
+				<div style="font-size:14px;color:rgba(255,255,255,0.8);">接入商户</div>
+			</div>
+			<div style="text-align:center;">
+				<div style="font-size:36px;font-weight:700;color:#fff;">9,039</div>
+				<div style="font-size:14px;color:rgba(255,255,255,0.8);">接入网站</div>
+			</div>
+			<div style="text-align:center;">
+				<div style="font-size:36px;font-weight:700;color:#fff;">129</div>
+				<div style="font-size:14px;color:rgba(255,255,255,0.8);">合作伙伴</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Team -->
+<section id="team" class="mx-section">
+	<div class="mx-container" style="text-align:center;">
+		<h2 style="font-size:22px;font-weight:700;margin-bottom:32px;">我们的团队</h2>
+		<div class="mx-card" style="max-width:360px;margin:0 auto;padding:28px;text-align:center;">
+			<div class="mx-avatar mx-avatar-lg" style="margin:0 auto 16px;background:var(--mx-accent-light);color:var(--mx-accent);">
+				<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+			</div>
+			<h3 style="font-size:16px;font-weight:600;margin-bottom:4px;">客服</h3>
+			<p style="font-size:13px;color:var(--mx-text-secondary);margin-bottom:12px;">业务售后综合客服</p>
+			<div style="display:flex;gap:12px;justify-content:center;">
+				<a href="https://wpa.qq.com/msgrd?v=3&uin=<?php echo $conf['kfqq']?>&site=pay&menu=yes" target="_blank" style="color:var(--mx-accent);">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+</div><!-- /mx-page -->
+
+<!-- Footer -->
+<footer class="mx-footer">
+	<div class="mx-container" style="text-align:center;">
+		<p style="font-size:14px;font-weight:600;margin-bottom:8px;"><?php echo $conf['sitename']?></p>
+		<p style="font-size:13px;color:var(--mx-text-tertiary);">Copyright&nbsp;&nbsp;&copy;&nbsp;<?php echo date("Y")?>&nbsp;All Rights Reserved.</p>
+		<p style="font-size:13px;color:var(--mx-text-tertiary);margin-top:4px;"><?php echo $conf['footer']?></p>
+	</div>
+</footer>
 </body>
 </html>

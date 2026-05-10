@@ -1,148 +1,91 @@
-﻿<?php
+<?php
 if(!defined('IN_CRONLITE'))exit();
 ?>
 <!DOCTYPE html>
-<!--[if IE 9]>
-<html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="zh-cn">
-<!--<![endif]-->
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title><?php echo $conf['title']?></title>
-	<meta name="keywords" content="<?php echo $conf['keywords']?>">
-	<meta name="description" content="<?php echo $conf['description']?>">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <link rel="stylesheet" type="text/css" href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $cdnpublic?>OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/animations.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo STATIC_ROOT?>css/responsive.css">
-    <!--[if lt IE 9]>
-	  <script src="<?php echo $cdnpublic?>html5shiv/3.7.3/html5shiv.min.js"></script>
-	  <script src="<?php echo $cdnpublic?>respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-	<style>.section {padding: 25px 0;color: #666666;}</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<meta name="keywords" content="<?php echo $conf['keywords']?>">
+<meta name="description" content="<?php echo $conf['description']?>">
+<link rel="stylesheet" href="<?php echo STATIC_ROOT?>../assets/css/miuix.css" />
+<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+<title><?php echo $conf['title']?></title>
 </head>
 <body>
-<div class="wrapper">
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="logo"><a href=""><img src="assets/img/logo.png" alt=""></a></div>
-                </div>
-                <div class="col-md-7">
-                    <ul class="menu">
-                        <li><a href="/">网站首页</a></li>
-                        <li><a href="/user/test.php" target="_blank">demo测试</a></li>
-						<li><a href="/doc.html" target="_blank">开发文档</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <div class="button-header">
-                        <a href="/user/" class="custom-btn login">商户登录</a>
-                        <a href="/user/reg.php" class="custom-btn">注册商户</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mobile-block">
-            <div class="logo-mobile"><a href=""><img src="assets/img/logo.png" alt=""></a></div>
-            <a href="#" class="mobile-menu-btn"><span></span></a>
-            <div class="mobile-menu">
-                <div class="inside">
-                    <div class="logo">
-                        <a href=""><img src="assets/img/logo.png" alt="""></a>
-                    </div>
-                    <ul class="menu panel-group" id="accordion" aria-multiselectable="true">
-                        <li><a href="/">网站首页</a></li>
-                        <li><a href="/user/test.php">demo测试</a></li>
-						<li><a href="/doc.html">开发文档</a></li>
-                    </ul>
-                    <div class="button-header">
-                        <a href="/user/" class="custom-btn login">商户登录</a>
-                        <a href="/user/reg.php" class="custom-btn">注册商户</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="base-slider owl-carousel owl-theme bg-gray">
-        <div class="item">
-            <img src="<?php echo STATIC_ROOT?>picture/bg-test.png" alt=""">
-            <div class="inside">
-                <h2><?php echo $conf['sitename']?> - 为创业者而生</h2>
-                <p>专注于提供安全、高效、严谨、便捷的订单数据服务！</p>
-                <a href="/user/login.php" class="custom-btn">立即登录</a>
-            </div>
-        </div>
-    </div>
-    <section class="bg-gray">
-        <div class="container">
-            <div class="why-choose animatedParent">
-                <h2 class="title-head">全天候无人值守 7X24小时高效运转</h2>
-                <div class="row">
-                    <div class="col-md-4 col-xs-12 animated bounceInUp delay-250 go">
-                        <div class="inside">
-                            <img src="<?php echo STATIC_ROOT?>picture/optimised.svg" alt=""">
-                            <a href="">极速响应</a>
-                            <p>付款后立即回调,无等待,流程超顺畅</p>
-                            <a href="/user/reg.php" class="read-more">加入我们<img src="<?php echo STATIC_ROOT?>picture/right.png" alt="""></a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-12 animated bounceInUp delay-500 go">
-                        <div class="inside">
-                            <img src="<?php echo STATIC_ROOT?>picture/powerfull.svg" alt=""">
-                            <a href="">资金直达</a>
-                            <p>系统收到交易消息后自动将余额提现</p>
-                            <a href="/user/reg.php" class="read-more">加入我们<img src="<?php echo STATIC_ROOT?>picture/right.png" alt="""></a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-12 animated bounceInUp delay-750 go">
-                        <div class="inside">
-                            <img src="<?php echo STATIC_ROOT?>picture/website.svg" alt=""">
-                            <a href="">账户安全</a>
-                            <p>绑定后无法更改,防止他人修改结算账户</p>
-                            <a href="/user/reg.php" class="read-more">加入我们<img src="<?php echo STATIC_ROOT?>picture/right.png" alt="""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-	<div class="section section-pricing">
-<div class="title-block">
-<div style="text-align:center;">
-平台合作伙伴
+<!-- Topbar -->
+<div class="mx-topbar">
+	<div class="mx-topbar-logo">
+		<img src="assets/img/logo.png" style="max-height:36px;" alt="<?php echo $conf['sitename']?>"/>
+	</div>
+	<button class="mx-topbar-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+	</button>
+	<ul class="mx-topbar-nav">
+		<li><a href="/" class="active">网站首页</a></li>
+		<li><a href="/user/test.php" target="_blank">demo测试</a></li>
+		<li><a href="/doc.html" target="_blank">开发文档</a></li>
+		<li><a href="/user/" class="mx-topbar-btn">商户登录</a></li>
+		<li><a href="/user/reg.php" class="mx-topbar-btn mx-btn-outline" style="border:1.5px solid var(--mx-accent);color:var(--mx-accent);background:transparent;">注册商户</a></li>
+	</ul>
 </div>
-<center>
-<img style="FILTER: gray()" src="<?php echo STATIC_ROOT?>picture/aliyun.png" width="85">
-<img style="FILTER: gray()" src="<?php echo STATIC_ROOT?>picture/qqpay.png" width="85">
-<img style="FILTER: gray()" src="<?php echo STATIC_ROOT?>picture/wxpay.png" width="85">
-<img style="FILTER: gray()" src="<?php echo STATIC_ROOT?>picture/tenpay.png" width="85">
-</center>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-    <footer>
-        <div class="container">
-            <div class="copyright text-center">
-			<p style="font-style:oblique;font-size:14px;color:#FFF"><?php echo $conf['sitename']?>&nbsp;&nbsp;&copy;&nbsp;<?php echo date("Y")?>&nbsp;All Rights Reserved.<br/><?php echo $conf['footer']?></p>
-            </div>
-        </div>
-    </footer>
-</div>
-<script type="text/javascript" src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
-<script src="<?php echo $cdnpublic?>OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script src="<?php echo STATIC_ROOT?>js/main.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $("header").addClass('transparent');
-    });
-</script>
+<div class="mx-page">
+<!-- Hero -->
+<section class="mx-hero" style="background:var(--mx-accent-light);padding:120px 0 60px;">
+	<div class="mx-container" style="text-align:center;">
+		<h1 style="font-size:clamp(26px,4vw,36px);font-weight:700;line-height:1.3;margin-bottom:16px;"><?php echo $conf['sitename']?> - 为创业者而生</h1>
+		<p style="font-size:16px;color:var(--mx-text-secondary);margin-bottom:24px;">专注于提供安全、高效、严谨、便捷的订单数据服务！</p>
+		<a href="/user/login.php" class="mx-btn mx-btn-primary mx-btn-lg">立即登录</a>
+	</div>
+</section>
+
+<!-- Features -->
+<section class="mx-section">
+	<div class="mx-container" style="text-align:center;">
+		<h2 style="font-size:22px;font-weight:700;margin-bottom:32px;">全天候无人值守 7X24小时高效运转</h2>
+		<div class="mx-features" style="grid-template-columns:repeat(3,1fr);">
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+				<div class="mx-feature-title">极速响应</div>
+				<div class="mx-feature-desc">付款后立即回调，无等待，流程超顺畅</div>
+				<a href="/user/reg.php" class="mx-btn mx-btn-primary mx-btn-sm" style="margin-top:12px;">加入我们</a>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 12px;background:var(--mx-success-light);color:var(--mx-success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+				<div class="mx-feature-title">资金直达</div>
+				<div class="mx-feature-desc">系统收到交易消息后自动将余额提现</div>
+				<a href="/user/reg.php" class="mx-btn mx-btn-primary mx-btn-sm" style="margin-top:12px;">加入我们</a>
+			</div>
+			<div class="mx-feature-card" style="text-align:center;">
+				<div class="mx-feature-icon" style="margin:0 auto 12px;background:var(--mx-warning-light);color:var(--mx-warning);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+				<div class="mx-feature-title">账户安全</div>
+				<div class="mx-feature-desc">绑定后无法更改，防止他人修改结算账户</div>
+				<a href="/user/reg.php" class="mx-btn mx-btn-primary mx-btn-sm" style="margin-top:12px;">加入我们</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Partners -->
+<section class="mx-section" style="background:var(--mx-bg-secondary);text-align:center;">
+	<div class="mx-container">
+		<h3 style="font-size:16px;font-weight:600;margin-bottom:24px;color:var(--mx-text-secondary);">平台合作伙伴</h3>
+		<div class="mx-partners">
+			<div class="mx-partner-badge">阿里云</div>
+			<div class="mx-partner-badge">QQ钱包</div>
+			<div class="mx-partner-badge">微信支付</div>
+			<div class="mx-partner-badge">财付通</div>
+		</div>
+	</div>
+</section>
+</div><!-- /mx-page -->
+
+<!-- Footer -->
+<footer class="mx-footer">
+	<div class="mx-container" style="text-align:center;">
+		<p style="font-size:13px;color:var(--mx-text-tertiary);"><?php echo $conf['sitename']?>&nbsp;&nbsp;&copy;&nbsp;<?php echo date("Y")?>&nbsp;All Rights Reserved.</p>
+		<p style="font-size:13px;color:var(--mx-text-tertiary);margin-top:4px;"><?php echo $conf['footer']?></p>
+	</div>
+</footer>
 </body>
 </html>
