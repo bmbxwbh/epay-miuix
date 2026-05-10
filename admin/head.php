@@ -52,9 +52,9 @@ $is_active = function($pages) use ($current_page) {
     <a href="../" >前台首页</a>
     <div style="display:flex;align-items:center;gap:8px;margin-left:8px;">
       <div class="mx-avatar" style="width:32px;height:32px;font-size:13px;background:var(--mx-accent-light);color:var(--mx-accent);">
-        <?php echo strtoupper(substr($conf['admin_user']??'A',0,1))?>
+        <?php echo strtoupper(substr(htmlspecialchars($conf['admin_user'] ?? 'A', ENT_QUOTES, 'UTF-8'),0,1))?>
       </div>
-      <span class="mx-text-sm mx-font-bold"><?php echo $conf['admin_user']??'管理员'?></span>
+      <span class="mx-text-sm mx-font-bold"><?php echo htmlspecialchars($conf['admin_user'] ?? '管理员', ENT_QUOTES, 'UTF-8')?></span>
     </div>
     <a href="login.php?logout" class="mx-btn mx-btn-ghost mx-btn-sm" onclick="return confirm('是否确定退出登录？')">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>

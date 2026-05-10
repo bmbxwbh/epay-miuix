@@ -365,9 +365,9 @@ body { background: var(--mx-bg); }
 <div class="pay-layout">
   <!-- Merchant Info -->
   <div class="pay-merchant">
-    <div class="pay-merchant-avatar"><?php echo strtoupper(substr($codename,0,1))?></div>
+    <div class="pay-merchant-avatar"><?php echo strtoupper(substr(htmlspecialchars($codename, ENT_QUOTES, 'UTF-8'),0,1))?></div>
     <div>
-      <div class="pay-merchant-name"><?php echo $codename?></div>
+      <div class="pay-merchant-name"><?php echo htmlspecialchars($codename, ENT_QUOTES, 'UTF-8')?></div>
       <div class="mx-text-xs" style="color:var(--mx-text-tertiary)">向该商户付款</div>
     </div>
   </div>

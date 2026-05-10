@@ -32,22 +32,22 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
         <div class="mx-result-body">
             <div class="mx-result-icon success"><?php echo MxIcons::SUCCESS ?></div>
             <div class="mx-result-title" style="margin-top:16px">你已收款，资金已存入零钱</div>
-            <div class="mx-result-amount"><?php echo $money?></div>
+            <div class="mx-result-amount"><?php echo htmlspecialchars($money, ENT_QUOTES, 'UTF-8')?></div>
         </div>
         <div class="mx-result-info">
             <div class="mx-result-row">
                 <span class="label">转账时间</span>
-                <span class="value"><?php echo $addtime?></span>
+                <span class="value"><?php echo htmlspecialchars($addtime, ENT_QUOTES, 'UTF-8')?></span>
             </div>
             <div class="mx-result-row">
                 <span class="label">收款时间</span>
-                <span class="value"><?php echo $paytime?></span>
+                <span class="value"><?php echo htmlspecialchars($paytime, ENT_QUOTES, 'UTF-8')?></span>
             </div>
         </div>
         <div class="mx-result-actions">
             <button class="mx-btn mx-btn-secondary mx-btn-block mx-btn-lg" id="Close">关闭</button>
         </div>
-        <div class="mx-result-footer">Copyright © <?php echo date("Y")?> <?php echo $conf['sitename']?></div>
+        <div class="mx-result-footer">Copyright © <?php echo date("Y")?> <?php echo htmlspecialchars($conf['sitename'], ENT_QUOTES, 'UTF-8')?></div>
     </div>
     <script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
     <script>

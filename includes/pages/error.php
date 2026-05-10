@@ -26,10 +26,21 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
             <div class="mx-result-title" style="margin-top:20px">错误提示</div>
             <div class="mx-result-desc">支付失败或支付超时，请返回重新发起支付</div>
         </div>
+        <div class="mx-result-actions">
+            <button class="mx-btn mx-btn-secondary mx-btn-block mx-btn-lg" id="Close">关闭</button>
+        </div>
         <div class="mx-result-footer">Copyright © <?php echo date("Y")?></div>
     </div>
+    <script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
     <script>
     document.body.addEventListener('touchmove',function(e){e.preventDefault()},{passive:false});
+    if(navigator.userAgent.indexOf("AlipayClient")>-1){
+        function Alipayready(cb){if(window.AlipayJSBridge){cb();}else{document.addEventListener('AlipayJSBridgeReady',cb,false);}}
+        Alipayready(function(){$('#Close').click(function(){AlipayJSBridge.call('popWindow');});});
+    }else if(navigator.userAgent.indexOf("MicroMessenger")>-1){
+        if(typeof WeixinJSBridge=="undefined"){if(document.addEventListener){document.addEventListener('WeixinJSBridgeReady',jsApiCall,false);}else if(document.attachEvent){document.attachEvent('WeixinJSBridgeReady',jsApiCall);document.attachEvent('onWeixinJSBridgeReady',jsApiCall);}}else{jsApiCall();}
+        function jsApiCall(){$('#Close').click(function(){WeixinJSBridge.call('closeWindow');});}
+    }else{$('#Close').click(function(){window.opener=null;window.close();});}
     </script>
 </body>
 </html>

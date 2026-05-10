@@ -18,7 +18,7 @@ $is_active = function($pages) use ($current_page) {
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
-<title><?php echo $title?> | <?php echo $conf['sitename']?></title>
+<title><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8')?> | <?php echo htmlspecialchars($conf['sitename'], ENT_QUOTES, 'UTF-8')?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <link rel="stylesheet" href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
@@ -41,9 +41,9 @@ $is_active = function($pages) use ($current_page) {
     <a href="/?mod=doc">文档</a>
     <div style="display:flex;align-items:center;gap:8px;margin-left:8px;">
       <div class="mx-avatar" style="width:32px;height:32px;font-size:13px;background:var(--mx-accent-light);color:var(--mx-accent);">
-        <?php echo strtoupper(substr($userrow['username'],0,1))?>
+        <?php echo strtoupper(substr(htmlspecialchars($userrow['username'], ENT_QUOTES, 'UTF-8'),0,1))?>
       </div>
-      <span class="mx-text-sm mx-font-bold"><?php echo $userrow['username']?></span>
+      <span class="mx-text-sm mx-font-bold"><?php echo htmlspecialchars($userrow['username'], ENT_QUOTES, 'UTF-8')?></span>
     </div>
     <a href="login.php?logout" class="mx-btn mx-btn-ghost mx-btn-sm">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>

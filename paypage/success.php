@@ -67,20 +67,20 @@ body { background: var(--mx-bg); display: flex; align-items: center; justify-con
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
   <div class="success-title">支付成功</div>
-  <div class="success-amount"><?php echo $row['money']?></div>
+  <div class="success-amount"><?php echo htmlspecialchars($row['money'], ENT_QUOTES, 'UTF-8')?></div>
   <div class="mx-divider" style="margin:20px 0;"></div>
   <div class="success-info">
     <div class="success-row">
       <span class="success-row-label">收款方</span>
-      <span class="success-row-value"><?php echo $codename?></span>
+      <span class="success-row-value"><?php echo htmlspecialchars($codename, ENT_QUOTES, 'UTF-8')?></span>
     </div>
     <div class="success-row">
       <span class="success-row-label">完成时间</span>
-      <span class="success-row-value"><?php echo $row['endtime']?></span>
+      <span class="success-row-value"><?php echo htmlspecialchars($row['endtime'], ENT_QUOTES, 'UTF-8')?></span>
     </div>
     <div class="success-row">
       <span class="success-row-label">订单号</span>
-      <span class="success-row-value" style="font-size:13px;"><?php echo $trade_no?></span>
+      <span class="success-row-value" style="font-size:13px;"><?php echo htmlspecialchars($trade_no, ENT_QUOTES, 'UTF-8')?></span>
     </div>
   </div>
   <button class="mx-btn mx-btn-secondary mx-btn-block" style="margin-top:24px;" id="closeBtn">关闭</button>

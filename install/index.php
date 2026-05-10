@@ -187,7 +187,7 @@ if($step==3){
 
         <?php elseif($step==3): ?>
             <?php if(!empty($errorMsg)): ?>
-                <div class="mx-alert mx-alert-danger"><?php echo $errorMsg?></div>
+                <div class="mx-alert mx-alert-danger"><?php echo htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8')?></div>
                 <a href="javascript:history.back(-1)" class="mx-btn mx-btn-secondary mx-btn-block" style="margin-top:16px">返回上一页</a>
             <?php else: ?>
                 <div class="mx-alert mx-alert-success">数据库配置文件保存成功！</div>
@@ -203,7 +203,7 @@ if($step==3){
             <?php endif; ?>
 
         <?php elseif($step==4): ?>
-            <div class="mx-alert mx-alert-danger"><?php echo $errorMsg?></div>
+            <div class="mx-alert mx-alert-danger"><?php echo nl2br(htmlspecialchars($errorMsg ?? '', ENT_QUOTES, 'UTF-8'))?></div>
             <div style="display:flex;gap:12px;margin-top:16px">
                 <a href="javascript:history.back(-1)" class="mx-btn mx-btn-secondary" style="flex:1">返回上一页</a>
                 <a href="?step=4" class="mx-btn mx-btn-primary" style="flex:1">重试</a>

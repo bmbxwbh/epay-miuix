@@ -6,9 +6,9 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
 ?>
 <?php
 if($conf['admin_pwd']==='123456'){
-	$msg[]='<div class="mx-alert mx-alert-warning"><i class="fa fa-exclamation-triangle"></i> 及时修改网站默认管理员密码！</div>';
+	$msg[]='<div class="mx-alert mx-alert-warning"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> 及时修改网站默认管理员密码！</div>';
 }elseif(strlen($conf['admin_pwd'])<6 || is_numeric($conf['admin_pwd']) && strlen($conf['admin_pwd'])<=10 || $conf['admin_pwd']===$conf['kfqq'] || $conf['admin_user']===$conf['admin_pwd']){
-	$msg[]='<div class="mx-alert mx-alert-danger"><i class="fa fa-exclamation-triangle"></i> 网站管理员密码过于简单，请及时修改密码！</div>';
+	$msg[]='<div class="mx-alert mx-alert-danger"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> 网站管理员密码过于简单，请及时修改密码！</div>';
 }
 ?>
 
@@ -91,7 +91,7 @@ if($conf['admin_pwd']==='123456'){
   </div>
   <div class="mx-card" style="padding:20px;text-align:center;">
     <img src="<?php echo ($conf['kfqq'])?'//q2.qlogo.cn/headimg_dl?bs=qq&dst_uin='.$conf['kfqq'].'&src_uin='.$conf['kfqq'].'&fid='.$conf['kfqq'].'&spec=100&url_enc=0&referer=bu_interface&term_type=PC':'../assets/img/user.png'?>" alt="avatar" style="width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:12px;border:2px solid var(--mx-border);">
-    <div class="mx-font-bold" style="margin-bottom:4px;"><?php echo $conf['admin_user']?></div>
+    <div class="mx-font-bold" style="margin-bottom:4px;"><?php echo htmlspecialchars($conf['admin_user'] ?? '管理员', ENT_QUOTES, 'UTF-8')?></div>
     <div class="mx-text-xs" style="color:var(--mx-accent);margin-bottom:12px;">管理员</div>
     <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
       <a href="../" class="mx-btn mx-btn-ghost mx-btn-sm">返回首页</a>
@@ -105,7 +105,7 @@ if($conf['admin_pwd']==='123456'){
 <div class="mx-card" style="margin-bottom:16px;">
   <div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--mx-border);">
     <div class="mx-font-bold">支付方式收入统计 <span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">（1小时更新一次）</span></div>
-    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> 刷新</button>
   </div>
   <div class="table-responsive" style="padding:0;">
     <table class="table table-bordered table-striped" style="margin:0;">
@@ -119,7 +119,7 @@ if($conf['admin_pwd']==='123456'){
 <div class="mx-card" style="margin-bottom:16px;">
   <div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--mx-border);">
     <div class="mx-font-bold">支付通道收入统计 <span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">（1小时更新一次）</span></div>
-    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> 刷新</button>
   </div>
   <div class="table-responsive" style="padding:0;">
     <table class="table table-bordered table-striped" style="margin:0;">
@@ -133,7 +133,7 @@ if($conf['admin_pwd']==='123456'){
 <div class="mx-card" style="margin-bottom:16px;">
   <div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--mx-border);">
     <div class="mx-font-bold">支付方式手续费利润 <span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">（已扣除通道成本，1小时更新一次）</span></div>
-    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> 刷新</button>
   </div>
   <div class="table-responsive" style="padding:0;">
     <table class="table table-bordered table-striped" style="margin:0;">

@@ -38,19 +38,19 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
         <div class="mx-result-body">
             <div class="mx-result-icon pending"><?php echo MxIcons::CLOCK ?></div>
             <div class="mx-result-title" style="margin-top:16px">待你收款</div>
-            <div class="mx-result-amount"><?php echo $trans['money']?></div>
+            <div class="mx-result-amount"><?php echo htmlspecialchars($trans['money'], ENT_QUOTES, 'UTF-8')?></div>
         </div>
         <div class="mx-result-info">
             <div class="mx-result-row">
                 <span class="label">创建时间</span>
-                <span class="value"><?php echo $trans['addtime']?></span>
+                <span class="value"><?php echo htmlspecialchars($trans['addtime'], ENT_QUOTES, 'UTF-8')?></span>
             </div>
         </div>
         <div class="mx-result-actions">
             <button class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg" id="Confirm">收款</button>
         </div>
         <div class="mx-result-tips">请在24小时内确认</div>
-        <div class="mx-result-footer">Copyright © <?php echo date("Y")?> <?php echo $conf['sitename']?></div>
+        <div class="mx-result-footer">Copyright © <?php echo date("Y")?> <?php echo htmlspecialchars($conf['sitename'], ENT_QUOTES, 'UTF-8')?></div>
     </div>
 
     <div class="mx-loading-overlay" id="loadingOverlay">
@@ -82,7 +82,7 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
             $('#loadingOverlay').addClass('show');
             $.ajax({
                 type: 'POST', url: './red_ajax.php',
-                data: {n:"<?php echo $biz_no?>", t:"<?php echo $time?>", s:"<?php echo $sign?>", openid:"<?php echo $openid?>"},
+                data: {n:"<?php echo htmlspecialchars($biz_no, ENT_QUOTES, 'UTF-8')?>", t:"<?php echo htmlspecialchars($time, ENT_QUOTES, 'UTF-8')?>", s:"<?php echo htmlspecialchars($sign, ENT_QUOTES, 'UTF-8')?>", openid:"<?php echo htmlspecialchars($openid, ENT_QUOTES, 'UTF-8')?>"},
                 dataType: 'json',
                 success: function(r){
                     $('#loadingOverlay').removeClass('show');

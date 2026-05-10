@@ -30,7 +30,7 @@ if(checkwechat()){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>收银台 | <?php echo $sitename?$sitename:$conf['sitename']?></title>
+<title>收银台 | <?php echo htmlspecialchars($sitename?$sitename:$conf['sitename'], ENT_QUOTES, 'UTF-8')?></title>
 <link rel="stylesheet" href="/assets/css/miuix.css">
 <style>
 body { background: var(--mx-bg); }
@@ -100,7 +100,7 @@ body { background: var(--mx-bg); }
 <div class="cashier-container">
   <div class="cashier-header">
     <div class="cashier-header-title">收银台</div>
-    <div class="cashier-header-logo"><?php echo $sitename?$sitename:$conf['sitename']?></div>
+    <div class="cashier-header-logo"><?php echo htmlspecialchars($sitename?$sitename:$conf['sitename'], ENT_QUOTES, 'UTF-8')?></div>
   </div>
 
   <?php if($other){?>
@@ -119,15 +119,15 @@ body { background: var(--mx-bg); }
   <div class="cashier-order-info">
     <div class="cashier-info-row">
       <span class="cashier-info-label">商品名称</span>
-      <span class="cashier-info-value"><?php echo $row['name']?></span>
+      <span class="cashier-info-value"><?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8')?></span>
     </div>
     <div class="cashier-info-row">
       <span class="cashier-info-label">订单号</span>
-      <span class="cashier-info-value" style="font-size:13px;"><?php echo $trade_no?></span>
+      <span class="cashier-info-value" style="font-size:13px;"><?php echo htmlspecialchars($trade_no, ENT_QUOTES, 'UTF-8')?></span>
     </div>
     <div class="cashier-info-row">
       <span class="cashier-info-label">创建时间</span>
-      <span class="cashier-info-value"><?php echo $row['addtime']?></span>
+      <span class="cashier-info-value"><?php echo htmlspecialchars($row['addtime'], ENT_QUOTES, 'UTF-8')?></span>
     </div>
     <?php if($row['realmoney'] && $row['realmoney']!=$row['money']){?>
     <div class="cashier-info-row">
@@ -153,7 +153,7 @@ body { background: var(--mx-bg); }
       <div class="cashier-method-icon">
         <?php echo isset($method_icons[$rows['name']])?$method_icons[$rows['name']]:$method_icons['wxpay'];?>
       </div>
-      <span class="cashier-method-name"><?php echo $rows['showname']?></span>
+      <span class="cashier-method-name"><?php echo htmlspecialchars($rows['showname'], ENT_QUOTES, 'UTF-8')?></span>
     </div>
     <?php }?>
   </div>
@@ -165,7 +165,7 @@ body { background: var(--mx-bg); }
     </button>
   </div>
 
-  <div class="cashier-footer"><?php echo $sitename?$sitename:$conf['sitename']?></div>
+  <div class="cashier-footer"><?php echo htmlspecialchars($sitename?$sitename:$conf['sitename'], ENT_QUOTES, 'UTF-8')?></div>
 </div>
 
 <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
@@ -177,7 +177,7 @@ $(document).ready(function(){
   });
   $('#payBtn').click(function(){
     var value = $('.cashier-method.active').attr('value');
-    var trade_no = '<?php echo $trade_no?>';
+    var trade_no = '<?php echo htmlspecialchars($trade_no, ENT_QUOTES, 'UTF-8')?>';
     if(!value) { alert('请选择支付方式'); return; }
     window.location.href = './submit2.php?typeid=' + value + '&trade_no=' + trade_no;
   });
