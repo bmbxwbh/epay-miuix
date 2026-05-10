@@ -7,7 +7,10 @@ if(!function_exists("imagecreate") || !file_exists('code.php'))$verifycode=0;
 include("../includes/common.php");
 
 if(isset($_GET['act']) && $_GET['act']=='login'){
-  if(!checkRefererHost())exit('{"code":403}');
+  if(!checkRefererHost()){
+    error_log('[ADMIN_LOGIN_DEBUG] REFERER_FAIL referer='.( $_SERVER['HTTP_REFERER'] ?? 'NONE').' host='.$_SERVER['HTTP_HOST']);
+    exit('{"code":403}');
+  }
   $username = trim($_POST['username']);
   $password = trim($_POST['password']);
   $code = trim($_POST['code']);
@@ -41,7 +44,9 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
     $session=md5($username.$password.$password_hash);
     $expiretime=time() + 2592000;
     $token=authcode("{$username}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
-    setcookie("admin_token", $token, $expiretime, '/');
+    $cookie_result = setcookie("admin_token", $token, $expiretime, '/');
+    // DEBUG: 临时调试
+    error_log('[ADMIN_LOGIN_DEBUG] user='.$username.' token_len='.strlen($token).' cookie_ok='.($cookie_result?'YES':'NO').' syskey='.substr(SYS_KEY,0,8).'...');
     unset($_SESSION['vc_code']);
     exit(json_encode(['code'=>0]));
   }else{
