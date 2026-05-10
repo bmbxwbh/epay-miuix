@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <meta name="theme-color" content="#f5f5f5"/>
 <link rel="stylesheet" href="<?php echo $cdnpublic?>font-awesome/4.7.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="<?php echo STATIC_ROOT?>css/miuix.css"/>
+<link rel="stylesheet" href="/assets/css/miuix.css"/>
 <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>

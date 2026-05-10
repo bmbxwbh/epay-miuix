@@ -8,7 +8,7 @@ if(!defined('IN_CRONLITE'))exit();
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 <meta name="keywords" content="<?php echo $conf['keywords']?>">
 <meta name="description" content="<?php echo $conf['description']?>">
-<link rel="stylesheet" href="<?php echo STATIC_ROOT?>../assets/css/miuix.css" />
+<link rel="stylesheet" href="/assets/css/miuix.css" />
 <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
 <title><?php echo $conf['title']?></title>
 </head>
