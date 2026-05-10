@@ -28,7 +28,7 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
     </style>
 </head>
 <body>
-    <div class="mx-result-card mx-animate">
+    <div class="mx-result-card mx-animate-scaleIn">
         <div class="mx-result-body">
             <div class="mx-result-icon success"><?php echo MxIcons::SUCCESS ?></div>
             <div class="mx-result-title" style="margin-top:16px">你已收款，资金已存入零钱</div>

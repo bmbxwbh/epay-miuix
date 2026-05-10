@@ -10,17 +10,22 @@
 </footer>
 <?php }?>
 
+<!-- Sidebar overlay for mobile -->
+<div class="mx-sidebar-overlay" id="sidebarOverlay" onclick="document.getElementById('sidebar').classList.remove('open');this.classList.remove('open');"></div>
+
 <script src="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="../assets/js/mx-icons.js"></script>
 <script>
 // Mobile sidebar toggle
 $('.mx-topbar-toggle').on('click', function(){
   $('#sidebar').toggleClass('open');
+  $('#sidebarOverlay').toggleClass('open');
 });
 // Close sidebar on outside click (mobile)
 $(document).on('click', function(e){
   if($(window).width() <= 768 && !$(e.target).closest('.mx-sidebar, .mx-topbar-toggle').length){
     $('#sidebar').removeClass('open');
+    $('#sidebarOverlay').removeClass('open');
   }
 });
 </script>

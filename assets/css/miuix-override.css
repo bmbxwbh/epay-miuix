@@ -333,3 +333,109 @@ select.form-control {
 .text-success { color: var(--mx-success) !important; }
 .text-danger { color: var(--mx-danger) !important; }
 .text-warning { color: var(--mx-warning) !important; }
+
+/* ---- Dark mode fixes ---- */
+.dark-mode .panel,
+.dark-mode .modal-content {
+  background: var(--mx-bg-card);
+  color: var(--mx-text-primary);
+}
+
+.dark-mode .table > thead > tr > th {
+  background: var(--mx-bg-tertiary);
+  color: var(--mx-text-tertiary);
+  border-color: var(--mx-border);
+}
+
+.dark-mode .table > tbody > tr > td {
+  border-color: var(--mx-border);
+  color: var(--mx-text-primary);
+}
+
+.dark-mode .table > tbody > tr:hover > td {
+  background: var(--mx-bg-tertiary);
+}
+
+.dark-mode .form-control {
+  background: var(--mx-bg-secondary);
+  color: var(--mx-text-primary);
+  border-color: transparent;
+}
+
+.dark-mode .form-control:focus {
+  background: var(--mx-bg-card);
+  border-color: var(--mx-accent);
+}
+
+.dark-mode .input-group-addon {
+  background: var(--mx-bg-tertiary);
+  color: var(--mx-text-secondary);
+  border-color: transparent;
+}
+
+.dark-mode .well {
+  background: var(--mx-bg-secondary);
+  border-color: var(--mx-border);
+}
+
+.dark-mode .dropdown-menu {
+  background: var(--mx-bg-card);
+  border-color: var(--mx-border);
+}
+
+.dark-mode .dropdown-menu > li > a {
+  color: var(--mx-text-primary);
+}
+
+.dark-mode .dropdown-menu > li > a:hover {
+  background: var(--mx-bg-secondary);
+}
+
+.dark-mode .breadcrumb {
+  background: transparent;
+}
+
+.dark-mode .breadcrumb > li + i::before {
+  color: var(--mx-text-tertiary);
+}
+
+.dark-mode .navbar {
+  background: rgba(28, 28, 30, 0.72);
+  border-color: var(--mx-border);
+}
+
+.dark-mode .navbar-toggle .icon-bar {
+  background: var(--mx-text-primary);
+}
+
+.dark-mode label,
+.dark-mode .checkbox label,
+.dark-mode .radio label {
+  color: var(--mx-text-primary);
+}
+
+/* ---- Responsive table for admin ---- */
+@media (max-width: 768px) {
+  .table-responsive {
+    margin: 0;
+    border: none;
+  }
+  .panel-body {
+    padding: 16px;
+  }
+  .panel-heading {
+    padding: 12px 16px;
+  }
+  .modal-content {
+    margin: 16px;
+  }
+  .navbar-nav {
+    margin: 0;
+  }
+}
+
+/* ---- Print overrides ---- */
+@media print {
+  .panel { box-shadow: none; border: 1px solid #ddd; }
+  .btn { display: none; }
+}

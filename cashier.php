@@ -97,7 +97,7 @@ body { background: var(--mx-bg); }
 </style>
 </head>
 <body>
-<div class="cashier-container">
+<div class="cashier-container mx-animate-slideUp">
   <div class="cashier-header">
     <div class="cashier-header-title">收银台</div>
     <div class="cashier-header-logo"><?php echo htmlspecialchars($sitename?$sitename:$conf['sitename'], ENT_QUOTES, 'UTF-8')?></div>

@@ -1013,14 +1013,95 @@ a:hover { color: var(--mx-accent-hover); }
 .mx-pay-method-name { font-size: 14px; font-weight: 500; }
 
 /* ============================================
-   Animation
+   Animation — Page Transitions & Stagger
    ============================================ */
+
+/* Page-level entrance */
+@keyframes mx-pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes mx-fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.mx-animate { animation: mx-fadeIn 0.3s ease; }
+@keyframes mx-slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mx-scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Global page entrance */
+body {
+  animation: mx-pageIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Reusable animation classes */
+.mx-animate {
+  animation: mx-fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.mx-animate-slideUp {
+  animation: mx-slideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.mx-animate-scaleIn {
+  animation: mx-scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Stagger animations for children */
+.mx-stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.mx-stagger > *:nth-child(2) { animation-delay: 0.08s; }
+.mx-stagger > *:nth-child(3) { animation-delay: 0.12s; }
+.mx-stagger > *:nth-child(4) { animation-delay: 0.16s; }
+.mx-stagger > *:nth-child(5) { animation-delay: 0.20s; }
+.mx-stagger > *:nth-child(6) { animation-delay: 0.24s; }
+.mx-stagger > *:nth-child(7) { animation-delay: 0.28s; }
+.mx-stagger > *:nth-child(8) { animation-delay: 0.32s; }
+.mx-stagger > *:nth-child(n+9) { animation-delay: 0.36s; }
+
+/* Auto-animate common components on page load */
+.mx-card,
+.mx-stat-card,
+.mx-feature-card,
+.mx-list,
+.mx-table-wrap,
+.mx-alert,
+.mx-chart {
+  animation: mx-fadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.mx-card:nth-child(2),
+.mx-stat-card:nth-child(2),
+.mx-feature-card:nth-child(2) { animation-delay: 0.06s; }
+.mx-card:nth-child(3),
+.mx-stat-card:nth-child(3),
+.mx-feature-card:nth-child(3) { animation-delay: 0.12s; }
+.mx-card:nth-child(4),
+.mx-stat-card:nth-child(4),
+.mx-feature-card:nth-child(4) { animation-delay: 0.18s; }
+.mx-card:nth-child(5),
+.mx-stat-card:nth-child(5),
+.mx-feature-card:nth-child(5) { animation-delay: 0.24s; }
+.mx-card:nth-child(6),
+.mx-stat-card:nth-child(6),
+.mx-feature-card:nth-child(6) { animation-delay: 0.30s; }
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  body { animation: none; }
+}
 
 /* ============================================
    Scrollbar
@@ -1029,3 +1110,297 @@ a:hover { color: var(--mx-accent-hover); }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--mx-bg-tertiary); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--mx-text-tertiary); }
+
+/* ============================================
+   Tab Pane (content switching)
+   ============================================ */
+.mx-tab-pane { display: none; }
+.mx-tab-pane.active { display: block; animation: mx-fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* ============================================
+   Sidebar Mobile Overlay Backdrop
+   ============================================ */
+.mx-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 190;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.mx-sidebar-overlay.open {
+  display: block;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .mx-sidebar.open ~ .mx-sidebar-overlay,
+  .mx-sidebar.open + .mx-sidebar-overlay {
+    display: block;
+  }
+}
+
+/* ============================================
+   Footer Responsive Fix
+   ============================================ */
+.mx-footer {
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+  .mx-footer {
+    margin-left: 0 !important;
+  }
+}
+
+/* ============================================
+   Grid Utility (responsive)
+   ============================================ */
+.mx-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.mx-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.mx-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .mx-grid-2,
+  .mx-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   Form Enhancements
+   ============================================ */
+.mx-input:hover, .mx-select:hover, .mx-textarea:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.dark-mode .mx-input:hover,
+.dark-mode .mx-select:hover,
+.dark-mode .mx-textarea:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.mx-input:disabled, .mx-select:disabled, .mx-textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mx-input-group .mx-input:focus ~ .mx-input-hint,
+.mx-input-group .mx-select:focus ~ .mx-input-hint {
+  color: var(--mx-accent);
+}
+
+.mx-input-hint {
+  font-size: 12px;
+  color: var(--mx-text-tertiary);
+  margin-top: 4px;
+  transition: color var(--mx-transition);
+}
+
+/* ============================================
+   Button Press Feedback Enhancement
+   ============================================ */
+.mx-btn:active {
+  transform: scale(0.96);
+  transition-duration: 0.08s;
+}
+
+.mx-btn:focus-visible {
+  outline: 2px solid var(--mx-accent);
+  outline-offset: 2px;
+}
+
+.mx-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ============================================
+   Card Interaction States
+   ============================================ */
+.mx-card-interactive {
+  cursor: pointer;
+}
+
+.mx-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mx-shadow-md);
+}
+
+.mx-card-interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--mx-shadow);
+}
+
+/* ============================================
+   Loading Spinner
+   ============================================ */
+@keyframes mx-spin {
+  to { transform: rotate(360deg); }
+}
+
+.mx-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid var(--mx-bg-tertiary);
+  border-top-color: var(--mx-accent);
+  border-radius: 50%;
+  animation: mx-spin 0.7s linear infinite;
+}
+
+.mx-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
+.mx-spinner-lg { width: 36px; height: 36px; border-width: 3px; }
+
+/* ============================================
+   Responsive Table Wrapper
+   ============================================ */
+.mx-table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+   Skeleton Loading
+   ============================================ */
+@keyframes mx-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.mx-skeleton {
+  background: linear-gradient(90deg, var(--mx-bg-secondary) 25%, var(--mx-bg-tertiary) 50%, var(--mx-bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: mx-shimmer 1.5s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+/* ============================================
+   Toast / Snackbar
+   ============================================ */
+.mx-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--mx-text-primary);
+  color: var(--mx-bg);
+  padding: 12px 24px;
+  border-radius: var(--mx-radius-full);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--mx-shadow-lg);
+  z-index: 3000;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.mx-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   Chip / Tag Input
+   ============================================ */
+.mx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--mx-bg-secondary);
+  border-radius: var(--mx-radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mx-text-primary);
+  transition: all var(--mx-transition);
+}
+
+.mx-chip:hover {
+  background: var(--mx-bg-tertiary);
+}
+
+/* ============================================
+   Responsive Grid for Admin/User Dashboard
+   ============================================ */
+@media (max-width: 992px) {
+  .mx-dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mx-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mx-main {
+    padding: 16px;
+  }
+  .mx-card-body {
+    padding: 16px;
+  }
+  .mx-pay-container {
+    margin: 16px auto;
+  }
+  .mx-pay-methods {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .mx-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .mx-hero {
+    padding: 60px 0 40px;
+  }
+  .mx-hero-title {
+    font-size: 24px;
+  }
+  .mx-hero-subtitle {
+    font-size: 15px;
+  }
+  .mx-topbar {
+    padding: 0 16px;
+  }
+  .mx-container {
+    padding: 0 16px;
+  }
+  .mx-pay-amount {
+    font-size: 32px;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+  .mx-topbar,
+  .mx-sidebar,
+  .mx-sidebar-overlay,
+  .mx-topbar-toggle {
+    display: none !important;
+  }
+  .mx-main {
+    margin-left: 0 !important;
+  }
+  .mx-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    break-inside: avoid;
+  }
+  body {
+    animation: none;
+  }
+}

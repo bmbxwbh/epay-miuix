@@ -64,7 +64,7 @@ if(empty($userrow['pwd'])){
 ?>
 
 <!-- Stats Cards -->
-<div class="mx-stats-grid">
+<div class="mx-stats-grid mx-stagger">
   <div class="mx-stat-card">
     <div class="mx-stat-icon blue">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
@@ -104,7 +104,7 @@ if(empty($userrow['pwd'])){
 </div>
 
 <!-- Main Content Grid -->
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+<div class="mx-dashboard-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
   <!-- Left: User Profile + Income Stats -->
   <div class="mx-flex-col mx-gap-16" style="display:flex;">
     <!-- Profile Card -->

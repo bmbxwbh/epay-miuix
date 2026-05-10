@@ -18,7 +18,7 @@ require INDEX_ROOT.'head.php';
 <!-- Features -->
 <section class="mx-section">
 	<div class="mx-container">
-		<div class="mx-features" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+		<div class="mx-features mx-stagger" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
 			<div class="mx-feature-card">
 				<div class="mx-feature-icon">
 					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>

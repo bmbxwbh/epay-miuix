@@ -101,7 +101,7 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0px 1000px white inset;-webkit-tex
 			</div>
 		</div>
 
-<div class="login-card">
+<div class="login-card mx-animate-scaleIn">
   <div class="login-logo">
     <div class="login-logo-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>

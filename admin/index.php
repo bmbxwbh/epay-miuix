@@ -13,7 +13,7 @@ if($conf['admin_pwd']==='123456'){
 ?>
 
 <!-- Stats Cards -->
-<div class="mx-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:24px;">
+<div class="mx-stats-grid mx-stagger" style="margin-bottom:24px;">
   <div class="mx-card" style="padding:20px;">
     <div style="display:flex;align-items:center;gap:12px;">
       <div style="width:44px;height:44px;border-radius:var(--mx-radius);background:var(--mx-accent-light);color:var(--mx-accent);display:flex;align-items:center;justify-content:center;">
@@ -85,7 +85,7 @@ if($conf['admin_pwd']==='123456'){
 <?php if($msg){foreach($msg as $x){echo $x;}}?>
 
 <!-- Admin Info + Browser Notice -->
-<div style="display:grid;grid-template-columns:1fr 300px;gap:16px;margin-bottom:24px;">
+<div class="mx-dashboard-grid" style="display:grid;grid-template-columns:1fr 300px;gap:16px;margin-bottom:24px;">
   <div>
     <div id="browser-notice"></div>
   </div>

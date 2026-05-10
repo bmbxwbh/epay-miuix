@@ -33,7 +33,7 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
     </style>
 </head>
 <body>
-    <div class="mx-result-card mx-animate">
+    <div class="mx-result-card mx-animate-scaleIn">
         <div class="mx-result-body">
             <div class="mx-result-icon pending"><?php echo MxIcons::CLOCK ?></div>
             <div class="mx-result-title" style="margin-top:16px">待你收款</div>
