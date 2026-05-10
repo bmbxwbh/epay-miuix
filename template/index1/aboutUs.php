@@ -4,7 +4,7 @@ require INDEX_ROOT.'head.php';
 ?>
 <div class="about_banner">
 	<div class="about_img">
-		<img src="<?php echo STATIC_ROOT?>picture/about_us.jpg" />
+		<img src="<?php echo STATIC_ROOT?>picture/about_us.jpg" alt="" />
 	</div>
 </div>
 <div class="block_text history">
@@ -134,7 +134,7 @@ require INDEX_ROOT.'head.php';
 	<div class="row">
 		<div class="4u 12u(mobile)">
 			<div class="contact_block">
-				<img src="<?php echo STATIC_ROOT?>picture/icon_adress.png" />‍
+				<img src="<?php echo STATIC_ROOT?>picture/icon_adress.png" alt="" />‍
 				<div class="contact_text">
 					<h3>
 						公司地址
@@ -152,7 +152,7 @@ require INDEX_ROOT.'head.php';
 		</div>
 		<div class="4u 12u(mobile)">
 			<div class="contact_block">
-				<img src="<?php echo STATIC_ROOT?>picture/icon_qq.png" />‍
+				<img src="<?php echo STATIC_ROOT?>picture/icon_qq.png" alt="" />‍
 				<div class="contact_text">
 					<h3>
 						联系方式
@@ -170,13 +170,13 @@ require INDEX_ROOT.'head.php';
 		</div>
 		<div class="4u 12u(mobile)">
 			<div class="contact_block">
-				<img src="<?php echo STATIC_ROOT?>picture/icon_weixin.png" />‍
+				<img src="<?php echo STATIC_ROOT?>picture/icon_weixin.png" alt="" />‍
 				<div class="contact_text">
 					<h3>
 						关注我们
 					</h3>
 					<div class="weixin_box">
-						<img src="assets/img/weixin.jpg" />
+						<img src="assets/img/weixin.jpg" alt="" />
 					</div>
 				</div>
 			</div>

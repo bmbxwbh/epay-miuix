@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>提示</title>
-<link rel="stylesheet" href="../assets/css/miuix.css">
+<link rel="stylesheet" href="/assets/css/miuix.css">
 <style>
 body { background: var(--mx-bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; }
 .error-card {

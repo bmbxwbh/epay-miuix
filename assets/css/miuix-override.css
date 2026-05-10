@@ -439,3 +439,46 @@ select.form-control {
   .panel { box-shadow: none; border: 1px solid #ddd; }
   .btn { display: none; }
 }
+
+/* ---- Bootstrap Table Miuix Override ---- */
+.fixed-table-container {
+  border: none !important;
+  border-radius: var(--mx-radius) !important;
+}
+.fixed-table-toolbar {
+  padding: 12px 16px !important;
+}
+.fixed-table-toolbar .search input {
+  border: 1.5px solid var(--mx-border) !important;
+  border-radius: var(--mx-radius-sm) !important;
+  padding: 6px 12px !important;
+  font-size: 14px !important;
+  background: var(--mx-bg-secondary) !important;
+  color: var(--mx-text-primary) !important;
+}
+.fixed-table-toolbar .search input:focus {
+  border-color: var(--mx-accent) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--mx-accent-light) !important;
+}
+.fixed-table-pagination .pagination {
+  margin: 12px 0 !important;
+}
+.fixed-table-pagination .pagination li a {
+  border-radius: var(--mx-radius-sm) !important;
+  margin: 0 2px !important;
+  color: var(--mx-text-secondary) !important;
+  border: 1px solid var(--mx-border) !important;
+}
+.fixed-table-pagination .pagination li.active a {
+  background: var(--mx-accent) !important;
+  border-color: var(--mx-accent) !important;
+  color: #fff !important;
+}
+
+/* ---- Admin Dashboard Responsive ---- */
+@media (max-width: 768px) {
+  .mx-dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

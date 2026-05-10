@@ -41,28 +41,28 @@ require INDEX_ROOT.'head.php';
 			<h3>
 				支付渠道
 			</h3>
-			<img style="width:430px;height:430px" src="<?php echo STATIC_ROOT?>picture/yuke01.png" />
+			<img style="width:430px;height:430px" src="<?php echo STATIC_ROOT?>picture/yuke01.png" alt="" />
 			<h4>
 				PC网页支付
 			</h4>
 			<p>
 				<?php echo $conf['sitename']?>,PC网页支付支持支付宝网页支付、支付宝扫码支付、 微信扫码支付、银联网页支付、百度钱包等。
 			</p>
-			<img src="<?php echo STATIC_ROOT?>picture/yuke02.png" />
+			<img src="<?php echo STATIC_ROOT?>picture/yuke02.png" alt="" />
 			<h4>
 				扫码支付
 			</h4>
 			<p>
 				<?php echo $conf['sitename']?>,支持统一扫码支付,渠道扫码支付,包括支付宝扫码支付、 微信扫码支付等。
 			</p>
-			<img src="<?php echo STATIC_ROOT?>picture/yuke04.png" />
+			<img src="<?php echo STATIC_ROOT?>picture/yuke04.png" alt="" />
 			<h4>
 				微信公众号支付
 			</h4>
 			<p>
 				<?php echo $conf['sitename']?>,为微信公众号提供全套支付解决方案： 用户可在你的微信服务号内进行微信 支付，简单便捷！
 			</p>
-			<img src="<?php echo STATIC_ROOT?>picture/yuke03.png" />
+			<img src="<?php echo STATIC_ROOT?>picture/yuke03.png" alt="" />
 			<h4>
 				手机APP支付
 			</h4>
@@ -114,7 +114,7 @@ require INDEX_ROOT.'head.php';
 			<div class="row">
 				<div class="4u 4u(mobile)">
 					<div class="fund_text align-center">
-						<img src="<?php echo STATIC_ROOT?>picture/kf02.png" />
+						<img src="<?php echo STATIC_ROOT?>picture/kf02.png" alt="" />
 						<div class="content">
 							<h4>
 								开发人员
@@ -124,7 +124,7 @@ require INDEX_ROOT.'head.php';
 				</div>
 				<div class="4u 4u(mobile)">
 					<div class="fund_text align-center">
-						<img src="<?php echo STATIC_ROOT?>picture/kf01.png" />
+						<img src="<?php echo STATIC_ROOT?>picture/kf01.png" alt="" />
 						<div class="content">
 							<h4>
 								运营人员
@@ -134,7 +134,7 @@ require INDEX_ROOT.'head.php';
 				</div>
 				<div class="4u 4u(mobile)">
 					<div class="fund_text align-center">
-						<img src="<?php echo STATIC_ROOT?>picture/kf03.png" />
+						<img src="<?php echo STATIC_ROOT?>picture/kf03.png" alt="" />
 						<div class="content">
 							<h4>
 								财务人员

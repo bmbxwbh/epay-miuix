@@ -9,7 +9,7 @@ if(!defined('IN_CRONLITE'))exit();
     <!-- MiUI Design System -->
     <link rel="stylesheet" href="/assets/css/miuix.css">
     <!-- jQuery -->
-    <script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
     <!-- layui (functional dependency for tabs/panels) -->
     <link rel="stylesheet" href="<?php echo $cdnpublic?>layui/2.6.13/css/layui.css" />
     <script src="<?php echo $cdnpublic?>layui/2.6.13/layui.js"></script>

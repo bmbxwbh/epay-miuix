@@ -8,8 +8,9 @@ if(!defined('IN_CRONLITE'))exit();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>开发文档 - <?php echo $conf['sitename']?></title>
     <!-- jQuery-->
-    <script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
     <!-- layui -->
+    <link rel="stylesheet" href="/assets/css/miuix.css">
     <link rel="stylesheet" href="<?php echo $cdnpublic?>layui/2.6.13/css/layui.css" />
     <script src="<?php echo $cdnpublic?>layui/2.6.13/layui.js"></script>
     <!-- zTree -->
@@ -37,7 +38,7 @@ if(!defined('IN_CRONLITE'))exit();
                 </div>
             </ul>
             <div class="nav-menu">
-                <a href="" class="logo"><img src="/assets/img/logo.png"/></a>
+                <a href="/" class="logo"><img src="/assets/img/logo.png" alt="logo"/></a>
                 <a href="javascript:;" id="navMenuLeft"><i class="layui-icon layui-icon-spread-left"></i></a>
                 <a href="javascript:;" id="navMenuRight"><i class="layui-icon">&#xe61a;</i></a>
             </div>

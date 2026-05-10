@@ -31,7 +31,7 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
         </div>
         <div class="mx-result-footer">Copyright © <?php echo date("Y")?></div>
     </div>
-    <script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
     <script src="/paypage/js/close.js"></script>
     <script>document.body.addEventListener('touchmove',function(e){e.preventDefault()},{passive:false});</script>
 </body>

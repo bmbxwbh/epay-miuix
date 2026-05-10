@@ -159,7 +159,7 @@ $_SESSION['paypage_token'] = $csrf_token;
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <title>向商户付款</title>
-<link rel="stylesheet" href="../assets/css/miuix.css">
+<link rel="stylesheet" href="/assets/css/miuix.css">
 <style>
 body { background: var(--mx-bg); }
 .pay-layout {

@@ -11,7 +11,7 @@ if(!defined('IN_CRONLITE'))exit();
 	<meta name="keywords" content="<?php echo $conf['keywords']?>" />
 	<meta name="description" content="<?php echo $conf['description']?>" />
 	<link rel="stylesheet" href="/assets/css/miuix.css" />
-	<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+	<script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
 	<title><?php echo $conf['title']?></title>
 </head>
 <body>
