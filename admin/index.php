@@ -6,86 +6,155 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
 ?>
 <?php
 if($conf['admin_pwd']==='123456'){
-	$msg[]='<li class="list-group-item list-group-item-danger"><span class="btn-sm btn-danger"><i class="fa fa-info-circle"></i> 提示</span>&nbsp;请及时修改网站默认管理员密码！</li>';
+	$msg[]='<div class="mx-alert mx-alert-warning"><i class="fa fa-exclamation-triangle"></i> 及时修改网站默认管理员密码！</div>';
 }elseif(strlen($conf['admin_pwd'])<6 || is_numeric($conf['admin_pwd']) && strlen($conf['admin_pwd'])<=10 || $conf['admin_pwd']===$conf['kfqq'] || $conf['admin_user']===$conf['admin_pwd']){
-	$msg[]='<li class="list-group-item list-group-item-danger"><span class="btn-sm btn-danger"><i class="fa fa-info-circle"></i> 提示</span>&nbsp;网站管理员密码过于简单，请及时修改密码！</li>';
+	$msg[]='<div class="mx-alert mx-alert-danger"><i class="fa fa-exclamation-triangle"></i> 网站管理员密码过于简单，请及时修改密码！</div>';
 }
 ?>
-<div class="container" style="padding-top:70px;">
-<div class="col-xs-12 col-lg-9 center-block" style="float: none;">
-<div id="browser-notice"></div>
 
-<div class="row">
-    <div class="col-xs-12 col-lg-8">
-      <div class="panel panel-info">
-        <div class="panel-heading"><h3 class="panel-title" id="title">后台管理首页</h3></div>
-          <ul class="list-group">
-			<?php if($msg){foreach($msg as $x){echo $x;}}?>
-            <li class="list-group-item"><span class="glyphicon glyphicon-stats"></span> <b>订单总数：</b><a id="count1" href="./order.php"></a></li>
-			<li class="list-group-item"><span class="glyphicon glyphicon-tint"></span> <b>商户数量：</b><a id="count2" href="./ulist.php"></a></li>
-			<li class="list-group-item"><span class="glyphicon glyphicon-tint"></span> <b>总计余额：</b><span id="usermoney"></span> 元（1小时更新一次）</li>
-			<li class="list-group-item"><span class="glyphicon glyphicon-tint"></span> <b>结算总额：</b><span id="settlemoney"></span> 元（1小时更新一次）</li>
-			<li class="list-group-item"><span class="glyphicon glyphicon-stats"></span> <b>今日订单成功率：</b><span id="success_rate"></span> %</li>
-            <li class="list-group-item"><span class="glyphicon glyphicon-time"></span> <b>现在时间：</b> <?=$date?></li>
-			</li>
-          </ul>
+<!-- Stats Cards -->
+<div class="mx-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:24px;">
+  <div class="mx-card" style="padding:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:var(--mx-radius);background:var(--mx-accent-light);color:var(--mx-accent);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
       </div>
-	</div>
-	<div class="col-xs-12 col-lg-4">
-      <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title" id="title">管理员信息</h3></div>
-          <ul class="list-group text-center">
-            <li class="list-group-item">
-			<img src="<?php echo ($conf['kfqq'])?'//q2.qlogo.cn/headimg_dl?bs=qq&dst_uin='.$conf['kfqq'].'&src_uin='.$conf['kfqq'].'&fid='.$conf['kfqq'].'&spec=100&url_enc=0&referer=bu_interface&term_type=PC':'../assets/img/user.png'?>" alt="avatar" class="img-circle img-thumbnail"></br>
-			<span class="text-muted"><strong>用户名：</strong><font color="blue"><?php echo $conf['admin_user']?></font></span><br/><span class="text-muted"><strong>用户权限：</strong><font color="orange">管理员</font></span></li>
-			<li class="list-group-item"><a href="../" class="btn btn-xs btn-default">返回首页</a>&nbsp;<a href="./set.php?mod=account" class="btn btn-xs btn-info">修改密码</a>&nbsp;<a href="./login.php?logout" class="btn btn-xs btn-danger">退出登录</a>
-			</li>
-          </ul>
-      </div>
-	</div>
-</div>
-	  <div class="panel panel-success">
-	    <div class="panel-heading"><h3 class="panel-title">支付方式收入统计（1小时更新一次）<span class="pull-right"><a href="javascript:getData(true)" class="btn btn-default btn-xs"><i class="fa fa-refresh"></i></a></span></h3></div>
-          <table class="table table-bordered table-striped">
-		    <thead><tr id="paytype_head"><th>日期</th></thead>
-            <tbody id="paytype_list">
-			</tbody>
-          </table>
-      </div>
-	  <div class="panel panel-warning">
-	    <div class="panel-heading"><h3 class="panel-title">支付通道收入统计（1小时更新一次）<span class="pull-right"><a href="javascript:getData(true)" class="btn btn-default btn-xs"><i class="fa fa-refresh"></i></a></span></h3></div>
-		<div class="table-responsive">
-          <table class="table table-bordered table-striped">
-		    <thead><tr id="channel_head"><th>日期</th></thead>
-            <tbody id="channel_list">
-			</tbody>
-          </table>
-		</div>
-      </div>
-	  <div class="panel panel-warning">
-	    <div class="panel-heading" style="background-color: #c09853;"><h3 class="panel-title">支付方式手续费利润（已扣除通道成本，1小时更新一次）<span class="pull-right"><a href="javascript:getData(true)" class="btn btn-default btn-xs"><i class="fa fa-refresh"></i></a></span></h3></div>
-          <table class="table table-bordered table-striped">
-		    <thead><tr id="profit_paytype_head"><th>日期</th></thead>
-            <tbody id="profit_paytype_list">
-			</tbody>
-          </table>
+      <div>
+        <div class="mx-text-xs" style="color:var(--mx-text-tertiary)">订单总数</div>
+        <div class="mx-font-bold" style="font-size:22px;" id="count1">-</div>
       </div>
     </div>
   </div>
+  <div class="mx-card" style="padding:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:var(--mx-radius);background:#e8f5e9;color:#43a047;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div>
+        <div class="mx-text-xs" style="color:var(--mx-text-tertiary)">商户数量</div>
+        <div class="mx-font-bold" style="font-size:22px;" id="count2">-</div>
+      </div>
+    </div>
+  </div>
+  <div class="mx-card" style="padding:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:var(--mx-radius);background:#fff3e0;color:#ef6c00;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <div>
+        <div class="mx-text-xs" style="color:var(--mx-text-tertiary)">总计余额</div>
+        <div class="mx-font-bold" style="font-size:22px;"><span id="usermoney">-</span> <span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">元</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="mx-card" style="padding:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:var(--mx-radius);background:#e3f2fd;color:#1e88e5;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <div class="mx-text-xs" style="color:var(--mx-text-tertiary)">结算总额</div>
+        <div class="mx-font-bold" style="font-size:22px;"><span id="settlemoney">-</span> <span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">元</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="mx-card" style="padding:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:var(--mx-radius);background:#fce4ec;color:#e53935;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div>
+        <div class="mx-text-xs" style="color:var(--mx-text-tertiary)">今日成功率</div>
+        <div class="mx-font-bold" style="font-size:22px;"><span id="success_rate">-</span><span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="mx-card" style="padding:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:var(--mx-radius);background:#f3e5f5;color:#8e24aa;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div class="mx-text-xs" style="color:var(--mx-text-tertiary)">当前时间</div>
+        <div class="mx-font-bold" style="font-size:15px;"><?=$date?></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php if($msg){foreach($msg as $x){echo $x;}}?>
+
+<!-- Admin Info + Browser Notice -->
+<div style="display:grid;grid-template-columns:1fr 300px;gap:16px;margin-bottom:24px;">
+  <div>
+    <div id="browser-notice"></div>
+  </div>
+  <div class="mx-card" style="padding:20px;text-align:center;">
+    <img src="<?php echo ($conf['kfqq'])?'//q2.qlogo.cn/headimg_dl?bs=qq&dst_uin='.$conf['kfqq'].'&src_uin='.$conf['kfqq'].'&fid='.$conf['kfqq'].'&spec=100&url_enc=0&referer=bu_interface&term_type=PC':'../assets/img/user.png'?>" alt="avatar" style="width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:12px;border:2px solid var(--mx-border);">
+    <div class="mx-font-bold" style="margin-bottom:4px;"><?php echo $conf['admin_user']?></div>
+    <div class="mx-text-xs" style="color:var(--mx-accent);margin-bottom:12px;">管理员</div>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+      <a href="../" class="mx-btn mx-btn-ghost mx-btn-sm">返回首页</a>
+      <a href="./set.php?mod=account" class="mx-btn mx-btn-secondary mx-btn-sm">修改密码</a>
+      <a href="./login.php?logout" class="mx-btn mx-btn-ghost mx-btn-sm" style="color:var(--mx-danger)">退出登录</a>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Type Stats -->
+<div class="mx-card" style="margin-bottom:16px;">
+  <div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--mx-border);">
+    <div class="mx-font-bold">支付方式收入统计 <span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">（1小时更新一次）</span></div>
+    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+  </div>
+  <div class="table-responsive" style="padding:0;">
+    <table class="table table-bordered table-striped" style="margin:0;">
+      <thead><tr id="paytype_head"><th>日期</th></tr></thead>
+      <tbody id="paytype_list"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Channel Stats -->
+<div class="mx-card" style="margin-bottom:16px;">
+  <div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--mx-border);">
+    <div class="mx-font-bold">支付通道收入统计 <span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">（1小时更新一次）</span></div>
+    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+  </div>
+  <div class="table-responsive" style="padding:0;">
+    <table class="table table-bordered table-striped" style="margin:0;">
+      <thead><tr id="channel_head"><th>日期</th></tr></thead>
+      <tbody id="channel_list"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Profit Stats -->
+<div class="mx-card" style="margin-bottom:16px;">
+  <div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--mx-border);">
+    <div class="mx-font-bold">支付方式手续费利润 <span class="mx-text-xs" style="color:var(--mx-text-tertiary);font-weight:400;">（已扣除通道成本，1小时更新一次）</span></div>
+    <button onclick="getData(true)" class="mx-btn mx-btn-ghost mx-btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+  </div>
+  <div class="table-responsive" style="padding:0;">
+    <table class="table table-bordered table-striped" style="margin:0;">
+      <thead><tr id="profit_paytype_head"><th>日期</th></tr></thead>
+      <tbody id="profit_paytype_list"></tbody>
+    </table>
+  </div>
+</div>
+
 <script>
 $(document).ready(function(){
 	getData();
 });
 function getData(getnew){
 	getnew = getnew || false;
-	$('#title').html('正在加载数据中...');
 	$.ajax({
 		type : "GET",
 		url : "ajax.php?act=getcount"+(getnew?'&getnew=1':''),
 		dataType : 'json',
 		async: true,
 		success : function(data) {
-			$('#title').html('后台管理首页');
 			$('#count1').html(data.count1);
 			$('#count2').html(data.count2);
 			$('#usermoney').html(data.usermoney);
@@ -168,9 +237,11 @@ function getData(getnew){
 function speedModeNotice(){
 	var ua = window.navigator.userAgent;
 	if(ua.indexOf('Windows NT')>-1 && ua.indexOf('Trident/')>-1){
-		var html = "<div class=\"panel panel-default\"><div class=\"panel-body\">当前浏览器是兼容模式，为确保后台功能正常使用，请切换到<b style='color:#51b72f'>极速模式</b>！<br>操作方法：点击浏览器地址栏右侧的IE符号<b style='color:#51b72f;'><i class='fa fa-internet-explorer fa-fw'></i></b>→选择“<b style='color:#51b72f;'><i class='fa fa-flash fa-fw'></i></b><b style='color:#51b72f;'>极速模式</b>”</div></div>";
+		var html = "<div class=\"mx-alert mx-alert-warning\">当前浏览器是兼容模式，为确保后台功能正常使用，请切换到<b style='color:#51b72f'>极速模式</b>！<br>操作方法：点击浏览器地址栏右侧的IE符号→选择\"极速模式\"</div>";
 		$("#browser-notice").html(html)
 	}
 }
 speedModeNotice();
 </script>
+
+<?php include './foot.php';?>

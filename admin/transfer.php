@@ -12,7 +12,7 @@ tbody tr>td:nth-child(5){max-width:300px;word-break: break-all;}
 .dates{max-width: 120px;}
 </style>
 <link href="../assets/css/datepicker.css" rel="stylesheet">
-  <div class="container-fluid" style="padding-top:70px;">
+  <div class="container-fluid" style="">
     <div class="col-md-12 center-block" style="float: none;">
 <form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
   <div class="form-group">
@@ -518,3 +518,4 @@ $(document).ready(function(){
     });
 })
 </script>
+<?php include './foot.php';?>

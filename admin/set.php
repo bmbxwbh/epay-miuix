@@ -7,7 +7,7 @@ $title='系统设置';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
 <?php
 $mod=isset($_GET['mod'])?$_GET['mod']:null;
@@ -2068,3 +2068,4 @@ function testproxy(){
 	});
 }
 </script>
+<?php include './foot.php';?>

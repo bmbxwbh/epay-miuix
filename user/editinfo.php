@@ -28,7 +28,7 @@ if(strlen($userrow['phone'])==11){
 <div class="list-group-item">密保手机：<?php echo $userrow['phone']?></div>
 <div class="list-group-item">
 <div class="input-group">
-<input type="text" name="code" placeholder="输入短信验证码" class="form-control" required>
+<input type="text" name="code" placeholder="输入短信验证码" class="mx-input" required>
 <a class="input-group-addon" id="sendcode">获取验证码</a>
 </div>
 </div>
@@ -36,7 +36,7 @@ if(strlen($userrow['phone'])==11){
 <div class="list-group-item">密保邮箱：<?php echo $userrow['email']?></div>
 <div class="list-group-item">
 <div class="input-group">
-<input type="text" name="code" placeholder="输入验证码" class="form-control" required>
+<input type="text" name="code" placeholder="输入验证码" class="mx-input" required>
 <a class="input-group-addon" id="sendcode">获取验证码</a>
 </div>
 </div>
@@ -61,21 +61,21 @@ if(strlen($userrow['phone'])==11){
 					<div class="modal-body">
 <?php if($conf['verifytype']==1){?>
 <div class="list-group-item">
-<input type="text" name="phone_n" placeholder="输入新的手机号码" class="form-control" required>
+<input type="text" name="phone_n" placeholder="输入新的手机号码" class="mx-input" required>
 </div>
 <div class="list-group-item">
 <div class="input-group">
-<input type="text" name="code_n" placeholder="输入短信验证码" class="form-control" required>
+<input type="text" name="code_n" placeholder="输入短信验证码" class="mx-input" required>
 <a class="input-group-addon" id="sendcode2">获取验证码</a>
 </div>
 </div>
 <?php }else{?>
 <div class="list-group-item">
-<input type="email" name="email_n" placeholder="输入新的邮箱" class="form-control" required>
+<input type="email" name="email_n" placeholder="输入新的邮箱" class="mx-input" required>
 </div>
 <div class="list-group-item">
 <div class="input-group">
-<input type="text" name="code_n" placeholder="输入验证码" class="form-control" required>
+<input type="text" name="code_n" placeholder="输入验证码" class="mx-input" required>
 <a class="input-group-addon" id="sendcode2">获取验证码</a>
 </div>
 </div>
@@ -99,11 +99,11 @@ if(strlen($userrow['phone'])==11){
 					</div>
 					<div class="modal-body">
 <div class="list-group-item">
-<input type="text" name="phone_s" placeholder="输入新的手机号码" class="form-control" required>
+<input type="text" name="phone_s" placeholder="输入新的手机号码" class="mx-input" required>
 </div>
 <div class="list-group-item">
 <div class="input-group">
-<input type="text" name="code_s" placeholder="输入短信验证码" class="form-control" required>
+<input type="text" name="code_s" placeholder="输入短信验证码" class="mx-input" required>
 <a class="input-group-addon" id="sendcode3">获取验证码</a>
 </div>
 </div>
@@ -116,8 +116,9 @@ if(strlen($userrow['phone'])==11){
 				</div>
 			</div>
 		</div>
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">个人资料</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">个人资料</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">管理您的账户信息和设置</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>
@@ -149,7 +150,7 @@ if(strlen($userrow['phone'])==11){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">结算方式</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="stype" default="<?php echo $userrow['settle_id']?>">
+						<select class="mx-select" name="stype" default="<?php echo $userrow['settle_id']?>">
 						<?php if($conf['settle_alipay']){?><option value="1" input="支付宝账号">支付宝结算</option>
 						<?php }if($conf['settle_wxpay']){?><option value="2" input="<?php echo $conf['transfer_wxpay']?'微信OpenId':'微信号';?>">微信结算</option>
 						<?php }if($conf['settle_qqpay']){?><option value="3" input="ＱＱ号码">QQ钱包结算</option>
@@ -160,7 +161,7 @@ if(strlen($userrow['phone'])==11){
 				<div class="form-group">
 					<label class="col-sm-2 control-label" id="typename">收款账号</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="account" value="<?php echo $userrow['account']?>">
+						<input class="mx-input" type="text" name="account" value="<?php echo $userrow['account']?>">
 					</div>
 				</div>
 				<?php if($conf['transfer_wxpay']){?>
@@ -173,11 +174,11 @@ if(strlen($userrow['phone'])==11){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">真实姓名</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="username" value="<?php echo $userrow['username']?>">
+						<input class="mx-input" type="text" name="username" value="<?php echo $userrow['username']?>">
 					</div>
 				</div>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editSettle" value="确定修改" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editSettle" value="确定修改" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 
@@ -187,23 +188,23 @@ if(strlen($userrow['phone'])==11){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">设备端上报API接口</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="voice_gateway" value="<?php echo $siteurl?>gateway.php" readonly><font color="green">在ini写码配置文件中添加，然后通过写码工具配置到设备中</font>
+						<input class="mx-input" type="text" name="voice_gateway" value="<?php echo $siteurl?>gateway.php" readonly><font color="green">在ini写码配置文件中添加，然后通过写码工具配置到设备中</font>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">设备序列号SN</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="voice_devid" value="<?php echo $userrow['voice_devid']?>">
+						<input class="mx-input" type="text" name="voice_devid" value="<?php echo $userrow['voice_devid']?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">订单语音播报</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="voice_order" default="<?php echo $userrow['voice_order']?>"><option value="0">关闭</option><option value="1">开启</option></select><font color="green">通过聚合收款码收款时的语音播报开关</font>
+						<select class="mx-select" name="voice_order" default="<?php echo $userrow['voice_order']?>"><option value="0">关闭</option><option value="1">开启</option></select><font color="green">通过聚合收款码收款时的语音播报开关</font>
 					</div>
 				</div>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editVoice" value="确定修改" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editVoice" value="确定修改" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div><?php }?>
 
@@ -214,29 +215,29 @@ if(strlen($userrow['phone'])==11){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">打印机序列号</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="print_devid" value="<?php echo $print_config['devid']?>">
+						<input class="mx-input" type="text" name="print_devid" value="<?php echo $print_config['devid']?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">小票自动打印开关</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="print_order" default="<?php echo $userrow['print_order']?>"><option value="0">关闭</option><option value="1">开启-仅聚合收款码</option><option value="2">开启-所有订单</option></select>
+						<select class="mx-select" name="print_order" default="<?php echo $userrow['print_order']?>"><option value="0">关闭</option><option value="1">开启-仅聚合收款码</option><option value="2">开启-所有订单</option></select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">打印小票张数</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="number" name="print_count" value="<?php echo $print_config['count']?>" min="1" max="5" placeholder="默认1张，范围：1-5">
+						<input class="mx-input" type="number" name="print_count" value="<?php echo $print_config['count']?>" min="1" max="5" placeholder="默认1张，范围：1-5">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">打印时自动播报语音</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="print_voice" default="<?php echo $print_config['voice']?>"><option value="0">否</option><option value="1">是</option></select>
+						<select class="mx-select" name="print_voice" default="<?php echo $print_config['voice']?>"><option value="0">否</option><option value="1">是</option></select>
 					</div>
 				</div>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editPrint" value="确定修改" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editPrint" value="确定修改" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div><?php }?>
 
@@ -247,7 +248,7 @@ if(strlen($userrow['phone'])==11){
 					<label class="col-sm-2 control-label">手机号码</label>
 					<div class="col-sm-9">
 						<div class="input-group">
-						<input class="form-control" type="text" name="phone" value="<?php echo $userrow['phone']?>" disabled>
+						<input class="mx-input" type="text" name="phone" value="<?php echo $userrow['phone']?>" disabled>
 						<a class="input-group-addon" id="checkbind">修改绑定</a>
 						</div>
 					</div>
@@ -255,7 +256,7 @@ if(strlen($userrow['phone'])==11){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">邮箱</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="email" value="<?php echo $userrow['email']?>">
+						<input class="mx-input" type="text" name="email" value="<?php echo $userrow['email']?>">
 					</div>
 				</div>
 				<?php }else{?>
@@ -263,7 +264,7 @@ if(strlen($userrow['phone'])==11){
 					<label class="col-sm-2 control-label">邮箱</label>
 					<div class="col-sm-9">
 						<div class="input-group">
-						<input class="form-control" type="text" name="email" value="<?php echo $userrow['email']?>" disabled>
+						<input class="mx-input" type="text" name="email" value="<?php echo $userrow['email']?>" disabled>
 						<a class="input-group-addon" id="checkbind">修改绑定</a>
 						</div>
 					</div>
@@ -272,7 +273,7 @@ if(strlen($userrow['phone'])==11){
 					<label class="col-sm-2 control-label">手机号码</label>
 					<div class="col-sm-9">
 						<div class="input-group">
-						<input class="form-control" type="text" name="phone" value="<?php echo $userrow['phone']?>" disabled>
+						<input class="mx-input" type="text" name="phone" value="<?php echo $userrow['phone']?>" disabled>
 						<a class="input-group-addon" id="bindphone">修改绑定</a>
 						</div>
 					</div>
@@ -281,57 +282,57 @@ if(strlen($userrow['phone'])==11){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">ＱＱ</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="qq" value="<?php echo $userrow['qq']?>">
+						<input class="mx-input" type="text" name="qq" value="<?php echo $userrow['qq']?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">网站域名</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="url" value="<?php echo $userrow['url']?>">
+						<input class="mx-input" type="text" name="url" value="<?php echo $userrow['url']?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">开启密钥登录</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="keylogin" default="<?php echo $userrow['keylogin']?>"><option value="0">关闭</option><option value="1">开启</option></select>
+						<select class="mx-select" name="keylogin" default="<?php echo $userrow['keylogin']?>"><option value="0">关闭</option><option value="1">开启</option></select>
 					</div>
 				</div>
 				<?php if($conf['user_refund']==1){?>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">订单退款API接口</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="refund" default="<?php echo $userrow['refund']?>"><option value="0">关闭</option><option value="1">开启</option></select>
+						<select class="mx-select" name="refund" default="<?php echo $userrow['refund']?>"><option value="0">关闭</option><option value="1">开启</option></select>
 					</div>
 				</div><?php }?>
 				<?php if($conf['user_transfer']==1){?>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">代付API接口</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="transfer" default="<?php echo $userrow['transfer']?>"><option value="0">关闭</option><option value="1">开启</option></select>
+						<select class="mx-select" name="transfer" default="<?php echo $userrow['transfer']?>"><option value="0">关闭</option><option value="1">开启</option></select>
 					</div>
 				</div><?php }?>
 				<?php if($conf['settle_open']==1 || $conf['settle_open']==3){?>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">预留余额</label>
 					<div class="col-sm-9">
-						<div class="input-group"><input class="form-control" type="text" name="remain_money" value="<?php echo $userrow['remain_money']?>" placeholder="可设置预留部分商户余额不参与每日自动结算，数字后加%即为百分比"><span class="input-group-addon">元</span></div>
+						<div class="input-group"><input class="mx-input" type="text" name="remain_money" value="<?php echo $userrow['remain_money']?>" placeholder="可设置预留部分商户余额不参与每日自动结算，数字后加%即为百分比"><span class="input-group-addon">元</span></div>
 					</div>
 				</div><?php }?>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">最大支付金额限制</label>
 					<div class="col-sm-9">
-						<div class="input-group"><input class="form-control" type="text" name="pay_maxmoney" value="<?php echo $userrow['pay_maxmoney']?>" placeholder="留空则不限制最大支付金额"><span class="input-group-addon">元</span></div>
+						<div class="input-group"><input class="mx-input" type="text" name="pay_maxmoney" value="<?php echo $userrow['pay_maxmoney']?>" placeholder="留空则不限制最大支付金额"><span class="input-group-addon">元</span></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">最小支付金额限制</label>
 					<div class="col-sm-9">
-						<div class="input-group"><input class="form-control" type="text" name="pay_minmoney" value="<?php echo $userrow['pay_minmoney']?>" placeholder="留空则不限制最小支付金额"><span class="input-group-addon">元</span></div>
+						<div class="input-group"><input class="mx-input" type="text" name="pay_minmoney" value="<?php echo $userrow['pay_minmoney']?>" placeholder="留空则不限制最小支付金额"><span class="input-group-addon">元</span></div>
 					</div>
 				</div>
 				
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editInfo" value="确定修改" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editInfo" value="确定修改" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 
@@ -343,59 +344,59 @@ if(strlen($userrow['phone'])==11){
 				<?php if($conf['wxnotice_tpl_order'] || $conf['msgconfig_order']){?><div class="form-group">
 					<label class="col-sm-2 control-label">新订单通知</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="notice_order" default="<?php echo $userrow['msgconfig']['order']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_order']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
+						<select class="mx-select" name="notice_order" default="<?php echo $userrow['msgconfig']['order']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_order']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">通知订单金额大于</label>
 					<div class="col-sm-9">
-					<div class="input-group"><input class="form-control" type="text" name="notice_order_money" value="<?php echo $userrow['msgconfig']['order_money']?>"><span class="input-group-addon">元</span></div>
+					<div class="input-group"><input class="mx-input" type="text" name="notice_order_money" value="<?php echo $userrow['msgconfig']['order_money']?>"><span class="input-group-addon">元</span></div>
 					</div>
 				</div><?php }?>
 				<?php if($conf['wxnotice_tpl_settle'] || $conf['msgconfig_settle']){?><div class="form-group">
 					<label class="col-sm-2 control-label">结算通知</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="notice_settle" default="<?php echo $userrow['msgconfig']['settle']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_settle']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
+						<select class="mx-select" name="notice_settle" default="<?php echo $userrow['msgconfig']['settle']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_settle']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
 					</div>
 				</div><?php }?>
 				<?php if($conf['wxnotice_tpl_login']){?><div class="form-group">
 					<label class="col-sm-2 control-label">登录通知</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="notice_login" default="<?php echo $userrow['msgconfig']['login']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_login']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
+						<select class="mx-select" name="notice_login" default="<?php echo $userrow['msgconfig']['login']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_login']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
 					</div>
 				</div><?php }?>
 				<?php if($conf['wxnotice_tpl_complain'] || $conf['msgconfig_complain'] || $conf['sms_tpl_complain']){?><div class="form-group">
 					<label class="col-sm-2 control-label">交易投诉通知</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="notice_complain" default="<?php echo $userrow['msgconfig']['complain']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_complain']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['sms_tpl_complain']){?><option value="3">开启 - 短信</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
+						<select class="mx-select" name="notice_complain" default="<?php echo $userrow['msgconfig']['complain']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_complain']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['sms_tpl_complain']){?><option value="3">开启 - 短信</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
 					</div>
 				</div><?php }?>
 				<?php if($conf['msgconfig_mchrisk']){?><div class="form-group">
 					<label class="col-sm-2 control-label">渠道商户违规通知</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="notice_mchrisk" default="<?php echo $userrow['msgconfig']['mchrisk']?>"><option value="0">关闭</option><?php if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php }  if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
+						<select class="mx-select" name="notice_mchrisk" default="<?php echo $userrow['msgconfig']['mchrisk']?>"><option value="0">关闭</option><?php if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php }  if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
 					</div>
 				</div><?php }?>
 				<?php if($conf['wxnotice_tpl_balance'] || $conf['msgconfig_balance'] || $conf['sms_tpl_balance']){?><div class="form-group">
 					<label class="col-sm-2 control-label">余额不足提醒</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="notice_balance" default="<?php echo $userrow['msgconfig']['balance']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_balance']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['sms_tpl_balance']){?><option value="3">开启 - 短信</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
+						<select class="mx-select" name="notice_balance" default="<?php echo $userrow['msgconfig']['balance']?>"><option value="0">关闭</option><?php if($conf['wxnotice_tpl_balance']){?><option value="1">开启 - 微信公众号</option><?php } if($conf['mailnotice']){?><option value="2">开启 - 邮件</option><?php } if($conf['sms_tpl_balance']){?><option value="3">开启 - 短信</option><?php } if($conf['robotnotice']){?><option value="4">开启 - 群机器人</option><?php }?></select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">余额小于多少时</label>
 					<div class="col-sm-9">
-					<div class="input-group"><input class="form-control" type="text" name="notice_balance_money" value="<?php echo $userrow['msgconfig']['balance_money']?>" placeholder="如开启余额提醒则必填"><span class="input-group-addon">元</span></div>
+					<div class="input-group"><input class="mx-input" type="text" name="notice_balance_money" value="<?php echo $userrow['msgconfig']['balance_money']?>" placeholder="如开启余额提醒则必填"><span class="input-group-addon">元</span></div>
 					</div>
 				</div><?php }?>
 				<?php if($conf['robotnotice']){?><div class="form-group">
 					<label class="col-sm-2 control-label">群机器人Webhook地址</label>
 					<div class="col-sm-9">
-					<input class="form-control" type="text" name="notice_msgrobot_url" value="<?php echo $userrow['msgconfig']['msgrobot_url']?>" placeholder="仅支持填写企业微信、钉钉、飞书群机器人的Webhook地址">
+					<input class="mx-input" type="text" name="notice_msgrobot_url" value="<?php echo $userrow['msgconfig']['msgrobot_url']?>" placeholder="仅支持填写企业微信、钉钉、飞书群机器人的Webhook地址">
 					</div>
 				</div><?php }?>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editMsgConfig" value="确定修改" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editMsgConfig" value="确定修改" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 <?php }?>
@@ -414,11 +415,11 @@ if($group_settings){
 	$arr = explode(':', $row);
 	echo '<div class="form-group">
 <label class="col-sm-2 control-label">'.$arr[1].'</label>
-<div class="col-sm-9"><input type="text" class="form-control" name="setting['.$arr[0].']" value="'.$channelinfo[$arr[0]].'" required></div>
+<div class="col-sm-9"><input type="text" class="mx-input" name="setting['.$arr[0].']" value="'.$channelinfo[$arr[0]].'" required></div>
 </div>';
 }?>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editChannelInfo" value="确定修改" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editChannelInfo" value="确定修改" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 <?php }}?>
@@ -429,14 +430,14 @@ if($group_settings){
 					<div class="alert alert-success">
 					1、余额扣费 (经典模式，默认)：例如费率1%，客户购买100元商品，客户需支付100元，卖家到账99元，手续费1元由卖家支付<br>            2、订单加费 (奸商模式)：例如费率1%，客户购买100元商品，客户需支付101元，卖家到账100元，手续费1元由买家支付
 					  </div>
-						<select class="form-control" name="mode" default="<?php echo $userrow['mode']?>">
+						<select class="mx-select" name="mode" default="<?php echo $userrow['mode']?>">
 								<option value="0">余额扣费</option>
 								<option value="1">订单加费</option>
 							  </select>
 					</div>
 				</div>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editMode" value="确定修改" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editMode" value="确定修改" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 

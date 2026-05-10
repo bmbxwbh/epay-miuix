@@ -4,7 +4,7 @@ $title='获取用户标识';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
 <?php
 $app = isset($_GET['app'])?$_GET['app']:'wechat';
@@ -235,3 +235,4 @@ function generate_wxa_link(){
 	});
 }
 </script>
+<?php include './foot.php';?>

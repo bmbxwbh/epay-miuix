@@ -12,7 +12,7 @@ foreach($rs as $row){
 unset($rs);
 ?>
 <link href="../assets/css/datepicker.css" rel="stylesheet">
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
 <div class="panel panel-primary">
 <div class="panel-heading"><h3 class="panel-title">导出订单</h3></div>
@@ -72,3 +72,4 @@ $(document).ready(function(){
     });
 })
 </script>
+<?php include './foot.php';?>

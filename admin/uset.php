@@ -7,7 +7,7 @@ $title='商户信息';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
 <?php
 $usergroup = [];
 $select = '';
@@ -874,3 +874,4 @@ function testpay(subid, id) {
 	});
 }
 </script>
+<?php include './foot.php';?>

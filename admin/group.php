@@ -9,7 +9,7 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
 ?>
 <style>
 .table>tbody>tr>td{vertical-align: middle;}</style>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-sm-12 col-md-10 col-lg-9 center-block" style="float: none;">
 <?php
 
@@ -132,3 +132,4 @@ $(function () {
   $('[data-toggle="popover"]').popover()
 })
 </script>
+<?php include './foot.php';?>

@@ -25,7 +25,7 @@ $title=$typename.'批量转账';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-12 center-block" style="float: none;">
 <div class="panel panel-default">
 	<div class="panel-heading" style="text-align:center">
@@ -244,3 +244,5 @@ $(function(){
 </div>
     </div>
   </div>
+
+<?php include './foot.php';?>

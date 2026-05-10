@@ -7,7 +7,7 @@ $title='支付插件';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-12 col-lg-10 center-block" style="float: none;">
 <?php
 $my=isset($_GET['my'])?$_GET['my']:null;
@@ -41,3 +41,4 @@ echo '<tr><td><b>'.$res['name'].'</b></td><td>'.$res['showname'].'</td><td>'.($r
 <?php }?>
     </div>
   </div>
+<?php include './foot.php';?>

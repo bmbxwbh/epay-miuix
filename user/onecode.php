@@ -21,8 +21,9 @@ $code_url = $siteurl.'paypage/?merchant='.urlencode($merchant);
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">聚合收款</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">聚合收款</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">使用一个二维码接收多种支付方式</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>

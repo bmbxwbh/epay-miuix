@@ -7,7 +7,7 @@ $title='授权支付域名';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-12 center-block" style="float: none;">
 <form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
   <div class="form-group">
@@ -227,3 +227,4 @@ function operation(status){
 	return false;
 }
 </script>
+<?php include './foot.php';?>

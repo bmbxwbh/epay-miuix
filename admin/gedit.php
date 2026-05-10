@@ -32,7 +32,7 @@ if($act == 'edit'){
 <style>
 .table>tbody>tr>td{vertical-align: middle;}
 </style>
-<div class="container" style="padding-top:70px;">
+<div class="container" style="">
 <div class="col-sm-12 col-md-10 center-block" style="float: none;">
 <div class="panel panel-primary">
 <div class="panel-heading"><h3 class="panel-title"><?php echo $title?></h3></div>
@@ -473,3 +473,4 @@ function save(form){
 	return false;
 }
 </script>
+<?php include './foot.php';?>

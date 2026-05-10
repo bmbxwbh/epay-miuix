@@ -26,7 +26,7 @@ if(!$conf['apiurl'])$conf['apiurl'] = $siteurl;
 						<div class="form-group"><font color="red"><i class="fa fa-info-circle"></i> 请及时复制保存商户私钥！当前窗口关闭后，无法再次查询商户私钥，本站也不会保存。如遗失商户私钥，可重新生成进行替换。</font></div>
 						<div class="form-group">
 							<label>商户私钥</label>
-							<textarea class="form-control" name="merchant_private_key" rows="5" readonly></textarea>
+							<textarea class="mx-input" name="merchant_private_key" rows="5" readonly></textarea>
 							<center><a href="javascript:;" class="btn btn-default" data-clipboard-text="" title="点击复制" id="merchant_private_key_copy"><i class="fa fa-copy"></i> 复制</a></center>
 						</div>
 					</div>
@@ -38,8 +38,9 @@ if(!$conf['apiurl'])$conf['apiurl'] = $siteurl;
 		</div>
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">个人资料</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">个人资料</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">管理您的账户信息和设置</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>
@@ -71,13 +72,13 @@ if(!$conf['apiurl'])$conf['apiurl'] = $siteurl;
 				<div class="form-group">
 					<label class="col-sm-2 control-label">接口地址</label>
 					<div class="col-sm-9">
-						<div class="input-group"><input class="form-control" type="text" value="<?php echo $conf['apiurl']?>" readonly><div class="input-group-addon"><a href="javascript:;" class="copy-btn" data-clipboard-text="<?php echo $conf['apiurl']?>" title="点击复制"><i class="fa fa-copy"></i></a></div></div>
+						<div class="input-group"><input class="mx-input" type="text" value="<?php echo $conf['apiurl']?>" readonly><div class="input-group-addon"><a href="javascript:;" class="copy-btn" data-clipboard-text="<?php echo $conf['apiurl']?>" title="点击复制"><i class="fa fa-copy"></i></a></div></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">商户ID</label>
 					<div class="col-sm-9">
-						<div class="input-group"><input class="form-control" type="text" value="<?php echo $uid?>" readonly><div class="input-group-addon"><a href="javascript:;" class="copy-btn" data-clipboard-text="<?php echo $uid?>" title="点击复制"><i class="fa fa-copy"></i></a></div></div>
+						<div class="input-group"><input class="mx-input" type="text" value="<?php echo $uid?>" readonly><div class="input-group-addon"><a href="javascript:;" class="copy-btn" data-clipboard-text="<?php echo $uid?>" title="点击复制"><i class="fa fa-copy"></i></a></div></div>
 					</div>
 				</div>
 				<div class="line line-dashed b-b line-lg pull-in"></div>
@@ -85,7 +86,7 @@ if(!$conf['apiurl'])$conf['apiurl'] = $siteurl;
 				<div class="form-group">
 					<label class="col-sm-2 control-label">商户MD5密钥</label>
 					<div class="col-sm-9">
-						<div class="input-group"><input class="form-control" type="text" value="<?php echo $userrow['key']?>" readonly><div class="input-group-addon"><a href="javascript:;" class="copy-btn" data-clipboard-text="<?php echo $userrow['key']?>" title="点击复制"><i class="fa fa-copy"></i></a></div></div>
+						<div class="input-group"><input class="mx-input" type="text" value="<?php echo $userrow['key']?>" readonly><div class="input-group-addon"><a href="javascript:;" class="copy-btn" data-clipboard-text="<?php echo $userrow['key']?>" title="点击复制"><i class="fa fa-copy"></i></a></div></div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -97,13 +98,13 @@ if(!$conf['apiurl'])$conf['apiurl'] = $siteurl;
 				<div class="form-group">
 					<label class="col-sm-2 control-label">平台公钥</label>
 					<div class="col-sm-9">
-						<div class="input-group"><textarea class="form-control" name="platform_public_key" rows="3" readonly><?php echo $conf['public_key']?></textarea><div class="input-group-addon"><a href="javascript:;" class="copy-btn" data-clipboard-text="<?php echo $conf['public_key']?>" title="点击复制"><i class="fa fa-copy"></i></a></div></div>
+						<div class="input-group"><textarea class="mx-input" name="platform_public_key" rows="3" readonly><?php echo $conf['public_key']?></textarea><div class="input-group-addon"><a href="javascript:;" class="copy-btn" data-clipboard-text="<?php echo $conf['public_key']?>" title="点击复制"><i class="fa fa-copy"></i></a></div></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">商户公钥</label>
 					<div class="col-sm-9">
-						<div class="input-group"><textarea class="form-control" name="merchant_public_key" rows="3" readonly><?php echo $userrow['publickey']?></textarea><div class="input-group-addon"><a href="javascript:;" class="copy-btn" title="点击复制" onclick="alert('请仔细分清各种密钥区别，只需要复制平台公钥和商户私钥即可！如商户私钥遗失请重新生成。')"><i class="fa fa-copy"></i></a></div></div>
+						<div class="input-group"><textarea class="mx-input" name="merchant_public_key" rows="3" readonly><?php echo $userrow['publickey']?></textarea><div class="input-group-addon"><a href="javascript:;" class="copy-btn" title="点击复制" onclick="alert('请仔细分清各种密钥区别，只需要复制平台公钥和商户私钥即可！如商户私钥遗失请重新生成。')"><i class="fa fa-copy"></i></a></div></div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -115,11 +116,11 @@ if(!$conf['apiurl'])$conf['apiurl'] = $siteurl;
 				<div class="form-group">
 					<label class="col-sm-2 control-label">签名方式开关</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="keytype" default="<?php echo $userrow['keytype']?>"><option value="0">开启MD5+RSA签名（兼容模式）</option><option value="1">仅开启RSA签名（安全模式）</option></select>
+						<select class="mx-select" name="keytype" default="<?php echo $userrow['keytype']?>"><option value="0">开启MD5+RSA签名（兼容模式）</option><option value="1">仅开启RSA签名（安全模式）</option></select>
 					</div>
 				</div>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editKeyType" value="确定修改" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="editKeyType" value="确定修改" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 			</form>
@@ -130,24 +131,24 @@ if(!$conf['apiurl'])$conf['apiurl'] = $siteurl;
 				<div class="form-group">
 					<label class="col-sm-2 control-label">旧密码</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="password" name="oldpwd" value="">
+						<input class="mx-input" type="password" name="oldpwd" value="">
 					</div>
 				</div>
 				<?php }?>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">新密码</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="password" name="newpwd" value="">
+						<input class="mx-input" type="password" name="newpwd" value="">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">重复密码</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="password" name="newpwd2" value="">
+						<input class="mx-input" type="password" name="newpwd2" value="">
 					</div>
 				</div>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="changePwd" value="修改密码" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="changePwd" value="修改密码" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 			</form>

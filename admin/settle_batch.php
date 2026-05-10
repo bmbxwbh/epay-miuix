@@ -27,7 +27,7 @@ $title=$typename.'批量转账';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
 <?php
 if(!isset($_SESSION['paypwd']) || $_SESSION['paypwd']!==$conf['admin_paypwd'])showmsg('支付密码错误，请返回重新进入该页面');
 
@@ -177,3 +177,4 @@ $(document).ready(function(){
     </div>
 <?php }?>
   </div>
+<?php include './foot.php';?>

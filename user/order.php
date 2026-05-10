@@ -24,8 +24,9 @@ unset($rs);
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">订单记录</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">订单记录</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">查看和管理所有支付订单</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>
@@ -38,7 +39,7 @@ unset($rs);
 			<h3 class="panel-title">订单记录</h3>
 		</div>
 
-	    <form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
+	    <form onsubmit="return searchSubmit()" method="GET" class="form-inline mx-mb-16" id="searchToolbar">
 		<input type="hidden" name="channel" value="">
 		<input type="hidden" name="subchannel" value="">
 		<input type="hidden" name="applyid" value="">

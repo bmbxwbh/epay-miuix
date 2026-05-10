@@ -16,8 +16,9 @@ $money_get = round(100*$conf['invite_rate']/100,2);
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">邀请返现</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">邀请返现</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">通过推广链接邀请用户注册获得返现</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>

@@ -7,7 +7,7 @@ $title='公众号小程序';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-8 center-block" style="float: none;">
 <?php
 function display_type($type){
@@ -218,3 +218,4 @@ function testweixin(id) {
 	});
 }
 </script>
+<?php include './foot.php';?>

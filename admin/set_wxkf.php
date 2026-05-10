@@ -32,7 +32,7 @@ $wxapplet_channel = $DB->getAll("SELECT * FROM pre_weixin WHERE type=1");
 
 if(empty($conf['wxappkf_token'])) $conf['wxappkf_token'] = getSid();
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
 <div class="panel panel-primary">
 <div class="panel-heading"><h3 class="panel-title">H5跳转企业微信客服支付设置</h3></div>
@@ -159,3 +159,4 @@ function saveSetting(obj){
 	return false;
 }
 </script>
+<?php include './foot.php';?>

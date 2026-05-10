@@ -7,7 +7,7 @@ $title='企业微信账号列表';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-8 center-block" style="float: none;">
 <?php
 
@@ -232,3 +232,4 @@ function testwework(id) {
 	});
 }
 </script>
+<?php include './foot.php';?>

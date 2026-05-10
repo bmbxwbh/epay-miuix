@@ -125,8 +125,9 @@ if(isset($_GET['act']) && $_GET['act']=='do'){
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">申请提现</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">申请提现</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">申请将余额提现到收款账号</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>

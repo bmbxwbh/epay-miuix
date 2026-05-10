@@ -10,8 +10,9 @@ include './head.php';
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">结算记录</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">结算记录</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">查看提现和结算历史记录</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>
@@ -23,7 +24,7 @@ include './head.php';
 		<div class="panel-heading font-bold">
 			结算记录
 		</div>
-		<form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
+		<form onsubmit="return searchSubmit()" method="GET" class="form-inline mx-mb-16" id="searchToolbar">
 			<div class="form-group">
 				<select name="dstatus" class="form-control"><option value="-1">全部状态</option><option value="0">状态待结算</option><option value="1">状态已完成</option><option value="2">状态正在结算</option><option value="3">状态结算失败</option></select>
 			</div>

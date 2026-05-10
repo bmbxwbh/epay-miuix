@@ -92,6 +92,7 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
 <meta charset="utf-8"/>
 <title>管理员登录 | 支付管理中心</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<link rel="stylesheet" href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="../assets/css/miuix.css"/>
 <style>
 body {

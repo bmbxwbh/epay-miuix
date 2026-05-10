@@ -22,7 +22,7 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
     </div>
   </div>
 </div>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-xs-12 col-lg-10 center-block" style="float: none;">
 <?php
 function getkm($len = 18)
@@ -181,3 +181,4 @@ echo'</ul>';
 ?>
     </div>
   </div>
+<?php include './foot.php';?>

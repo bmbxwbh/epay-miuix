@@ -10,7 +10,7 @@ $loader_ext = $is_win ? 'dll' : 'so';
 $loader_path = ROOT.'assets/loader/swoole_loader_'.$php_v.'_nts.' . $loader_ext;
 $loader_path = str_replace('/', DIRECTORY_SEPARATOR, $loader_path);
 ?>
-<div class="container" style="padding-top:70px;">
+<div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
 <?php

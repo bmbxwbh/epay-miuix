@@ -19,7 +19,7 @@ unset($rs);
 #orderItem .orderContent{word-break:break-all;}
 </style>
 <link href="../assets/css/datepicker.css" rel="stylesheet">
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-12 center-block" style="float: none;">
 <div class="modal" id="modal-rmb">
 	<div class="modal-dialog" role="document">
@@ -545,3 +545,4 @@ function exportUser(){
 	return false;
 }
 </script>
+<?php include './foot.php';?>

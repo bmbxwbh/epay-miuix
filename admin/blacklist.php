@@ -7,7 +7,7 @@ $title='支付黑名单管理';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-12 center-block" style="float: none;">
 <form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
   <div class="form-group">
@@ -213,3 +213,4 @@ $(function () {
   $('[data-toggle="popover"]').popover()
 })
 </script>
+<?php include './foot.php';?>

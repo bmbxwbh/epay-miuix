@@ -24,8 +24,9 @@ $list=$DB->getAll("SELECT * FROM pre_domain WHERE uid={$uid} order by id desc");
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">授权支付域名</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">授权支付域名</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">管理已授权的支付域名</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>

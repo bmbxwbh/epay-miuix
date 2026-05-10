@@ -7,7 +7,7 @@ $title='结算列表';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
 	<div class="row">
     <div class="col-md-12 center-block" style="float: none;">
 
@@ -325,3 +325,4 @@ function showQrcode(url){
 	});
 }
 </script>
+<?php include './foot.php';?>

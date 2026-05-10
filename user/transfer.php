@@ -12,8 +12,9 @@ include './head.php';
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">代付管理</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">代付管理</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">管理代付转账记录</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>
@@ -26,7 +27,7 @@ include './head.php';
 		<div class="panel-heading font-bold">
 			代付记录
 		</div>
-		<form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
+		<form onsubmit="return searchSubmit()" method="GET" class="form-inline mx-mb-16" id="searchToolbar">
 			<div class="form-group">
 				<select name="type" class="form-control"><option value="1">交易号</option><option value="2">商户交易号</option><option value="3">接口交易号</option><option value="4">付款账号</option><option value="5">姓名</option><option value="6">付款金额</option></select>
 			</div>

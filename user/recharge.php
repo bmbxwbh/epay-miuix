@@ -14,8 +14,9 @@ $_SESSION['csrf_token'] = $csrf_token;
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">余额充值</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">余额充值</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">为您的账户充值余额</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>

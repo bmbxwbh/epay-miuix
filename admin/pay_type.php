@@ -10,7 +10,7 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
 <style>
 .type-logo{width: 18px;margin-top: -2px;padding-right: 4px;}
 </style>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-8 center-block" style="float: none;">
 <?php
 function display_device($device){
@@ -228,3 +228,4 @@ function getAll(type, typeid, obj){
 	});
 }
 </script>
+<?php include './foot.php';?>

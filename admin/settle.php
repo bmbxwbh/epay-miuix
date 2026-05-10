@@ -10,7 +10,7 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
 <style>
 img.logo{width:14px;height:14px;margin:0 5px 0 3px;}
 </style>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
       <div class="panel panel-primary">
         <div class="panel-heading"><h3 class="panel-title">批量结算操作<span class="pull-right"><a href="javascript:createBatch()" class="btn btn-default btn-xs"><i class="fa fa-plus"></i> 生成结算批次</a></span></h3></div>
@@ -192,3 +192,4 @@ function download_csv(batch){
 	});
 }
 </script>
+<?php include './foot.php';?>

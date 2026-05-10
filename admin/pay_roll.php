@@ -9,7 +9,7 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
 ?>
 <style>
 .form-inline .form-control{display: inline-block;width: auto;vertical-align: middle;}</style>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-10 center-block" style="float: none;">
 <?php
 
@@ -307,3 +307,4 @@ $(document).on("click", "dd .btn-remove", function () {
 	$(this).closest("dd").remove();
 });
 </script>
+<?php include './foot.php';?>

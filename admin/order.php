@@ -26,7 +26,7 @@ unset($rs);
 .type-logo{width: 18px;margin-top: -2px;padding-right: 4px;}
 </style>
 <link href="../assets/css/datepicker.css" rel="stylesheet">
-  <div class="container-fluid" style="padding-top:70px;">
+  <div class="container-fluid" style="">
     <div class="col-md-12 center-block" style="float: none;">
 
 <form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
@@ -1027,3 +1027,4 @@ $(document).ready(function(){
 	});
 })
 </script>
+<?php include './foot.php';?>

@@ -21,7 +21,9 @@ $is_active = function($pages) use ($current_page) {
 <title><?php echo $title?> | <?php echo $conf['sitename']?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<link rel="stylesheet" href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="../assets/css/miuix.css"/>
+<link rel="stylesheet" href="../assets/css/miuix-override.css"/>
 <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>

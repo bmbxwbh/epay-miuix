@@ -58,7 +58,7 @@ foreach($account_list as $row){
 	$account_select .= '<option value="'.$row['id'].'">'.$row['openkfid'].' - '.$row['name'].'</option>';
 }
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
 <div class="panel panel-primary">
 <div class="panel-heading"><h3 class="panel-title">TOTP二次验证</h3></div>
@@ -192,3 +192,4 @@ $(document).ready(function(){
 	});
 });
 </script>
+<?php include './foot.php';?>

@@ -7,7 +7,7 @@ $title='用户组设置';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
     <div class="col-md-10 center-block" style="float: none;">
 <?php
 
@@ -83,3 +83,4 @@ function delItem(id) {
 	});
 }
 </script>
+<?php include './foot.php';?>

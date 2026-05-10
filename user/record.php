@@ -10,8 +10,9 @@ include './head.php';
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
 
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">资金明细</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">资金明细</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">查看账户资金变动记录</p>
 </div>
 <div class="wrapper-md control">
 <?php if(isset($msg)){?>
@@ -23,7 +24,7 @@ include './head.php';
 		<div class="panel-heading font-bold">
 			<h3 class="panel-title">资金明细</h3>
 		</div>
-	    <form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
+	    <form onsubmit="return searchSubmit()" method="GET" class="form-inline mx-mb-16" id="searchToolbar">
 	      <div class="form-group">
 			<select class="form-control" name="type">
 			  <option value="1">操作类型</option>

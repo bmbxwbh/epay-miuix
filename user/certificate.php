@@ -44,8 +44,9 @@ if ($isqrcode && ($conf['cert_open']==1 || $conf['cert_open']==5 || $conf['cert_
 <link rel="stylesheet" href="./assets/css/certificate.css" type="text/css" />
  <div id="content" class="app-content" role="main">
     <div class="app-content-body ">
-<div class="bg-light lter b-b wrapper-md hidden-print">
-  <h1 class="m-n font-thin h3">个人资料</h1>
+<div class="mx-mb-24">
+  <h2 class="mx-font-bold" style="font-size:20px;margin-bottom:4px;">实名认证</h2>
+  <p class="mx-text-sm" style="color:var(--mx-text-tertiary)">完成实名认证以使用更多功能</p>
 </div>
 <div class="wrapper-md control">
 <?php if(!$conf['cert_open'])showmsg('未开启实名认证功能');?>
@@ -184,19 +185,19 @@ if($conf['cert_open']==2 && $userrow['cert']!=1){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">证件类型</label>
 					<div class="col-sm-9">
-						<select class="form-control" name="certcardtype"><option value="0">大陆居民身份证</option><?php if($conf['cert_open']==1){?><option value="1">港澳通行证</option><option value="2">台湾通行证</option><option value="3">港澳居住证</option><option value="4">台湾居住证</option><option value="5">外国人永居证</option><?php }?></select>
+						<select class="mx-select" name="certcardtype"><option value="0">大陆居民身份证</option><?php if($conf['cert_open']==1){?><option value="1">港澳通行证</option><option value="2">台湾通行证</option><option value="3">港澳居住证</option><option value="4">台湾居住证</option><option value="5">外国人永居证</option><?php }?></select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">证件号码</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="certno" value="">
+						<input class="mx-input" type="text" name="certno" value="">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">真实姓名</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="certname" value="">
+						<input class="mx-input" type="text" name="certname" value="">
 					</div>
 				</div>
 				<div class="form-group">
@@ -204,7 +205,7 @@ if($conf['cert_open']==2 && $userrow['cert']!=1){
 				 </div>
 				</div>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="certSubmit" value="提交认证" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="certSubmit" value="提交认证" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 			</form>
@@ -228,25 +229,25 @@ if($conf['cert_open']==2 && $userrow['cert']!=1){
 				<div class="form-group">
 					<label class="col-sm-2 control-label">公司名称</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="certcorpname" value="" placeholder="填写公司名称">
+						<input class="mx-input" type="text" name="certcorpname" value="" placeholder="填写公司名称">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">营业执照号码</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="certcorpno" value="" placeholder="填写统一社会信用代码">
+						<input class="mx-input" type="text" name="certcorpno" value="" placeholder="填写统一社会信用代码">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">法人姓名</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="certname" value="" placeholder="填写法人的姓名">
+						<input class="mx-input" type="text" name="certname" value="" placeholder="填写法人的姓名">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">法人身份证号</label>
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="certno" value="" placeholder="填写法人的身份证号">
+						<input class="mx-input" type="text" name="certno" value="" placeholder="填写法人的身份证号">
 					</div>
 				</div>
 				<div class="form-group">
@@ -254,7 +255,7 @@ if($conf['cert_open']==2 && $userrow['cert']!=1){
 				 </div>
 				</div>
 				<div class="form-group">
-				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="certSubmit" value="提交认证" class="btn btn-primary form-control"/><br/>
+				  <div class="col-sm-offset-2 col-sm-4"><input type="button" id="certSubmit" value="提交认证" class="mx-btn mx-btn-primary" style="width:100%"/><br/>
 				 </div>
 				</div>
 			</form>

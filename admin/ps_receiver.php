@@ -12,7 +12,7 @@ tbody tr>td:nth-child(4){overflow: hidden;text-overflow: ellipsis;white-space: n
 tbody tr>td:nth-child(5){overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width:320px;}
 #modal-store .table>tbody>tr>td{vertical-align: middle;}
 </style>
-  <div class="container" style="padding-top:70px;">
+  <div class="container" style="">
 	<div class="row">
     <div class="col-md-12">
 <?php
@@ -469,3 +469,5 @@ $(document).ready(function(){
     });
 })
 </script>
+
+<?php include './foot.php';?>

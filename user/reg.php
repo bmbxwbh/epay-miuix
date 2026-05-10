@@ -27,12 +27,59 @@ $_SESSION['csrf_token'] = $csrf_token;
 <meta charset="utf-8" />
 <title>申请商户 | <?php echo $conf['sitename']?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="<?php echo $cdnpublic?>animate.css/3.7.2/animate.min.css" type="text/css" />
-<link rel="stylesheet" href="<?php echo $cdnpublic?>font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-<link rel="stylesheet" href="./assets/css/font.css" type="text/css" />
-<link rel="stylesheet" href="./assets/css/app.css" type="text/css" />
-<style>input:-webkit-autofill{-webkit-box-shadow:0 0 0px 1000px white inset;-webkit-text-fill-color:#333;}img.logo{width:14px;height:14px;margin:0 5px 0 3px;}</style>
+<link rel="stylesheet" href="../assets/css/miuix.css" />
+<style>
+body {
+  background: var(--mx-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.login-card {
+  max-width: 420px;
+  width: 100%;
+  background: var(--mx-bg-card);
+  border-radius: var(--mx-radius-lg);
+  box-shadow: var(--mx-shadow-md);
+  border: 1px solid var(--mx-border);
+  padding: 40px 32px;
+}
+.login-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.login-logo-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--mx-radius);
+  background: var(--mx-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+.login-logo-icon svg { width: 28px; height: 28px; }
+.login-title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.login-subtitle {
+  font-size: 14px;
+  color: var(--mx-text-tertiary);
+  text-align: center;
+}
+.login-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+input:-webkit-autofill{-webkit-box-shadow:0 0 0px 1000px white inset;-webkit-text-fill-color:#333;}
+</style>
 </head>
 <body>
 
@@ -54,66 +101,73 @@ $_SESSION['csrf_token'] = $csrf_token;
 			</div>
 		</div>
 
-<div class="app app-header-fixed  ">
-<div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
-<span class="navbar-brand block m-t" id="sitename"><?php echo $conf['sitename']?></span>
-<div class="m-b-lg">
-<div class="wrapper text-center">
-<strong>自助申请商户</strong>
-</div>
-<form name="form" class="form-validation"><input type="hidden" name="csrf_token" value="<?php echo $csrf_token?>"><input type="hidden" name="verifytype" value="<?php echo $conf['verifytype']?>">
-<?php if($conf['reg_pay']){?><div class="wrapper">商户申请价格为：<b><?php echo $conf['reg_pay_price']?></b>元</div><?php }?>
-<div class="list-group list-group-sm swaplogin">
+<div class="login-card">
+  <div class="login-logo">
+    <div class="login-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+    </div>
+    <div class="login-title"><?php echo $conf['sitename']?></div>
+    <div class="login-subtitle">自助申请商户</div>
+  </div>
+
+  <form name="form" id="regForm"><input type="hidden" name="csrf_token" value="<?php echo $csrf_token?>"><input type="hidden" name="verifytype" value="<?php echo $conf['verifytype']?>">
+<?php if($conf['reg_pay']){?><div style="text-align:center;margin-bottom:16px;font-size:14px;color:var(--mx-text-secondary);">商户申请价格为：<b><?php echo $conf['reg_pay_price']?></b>元</div><?php }?>
+
 <?php if($conf['verifytype']==1){?>
-<div class="list-group-item">
-<input type="text" name="phone" placeholder="手机号码（同时作为登录账号）" class="form-control no-border" required>
+<div class="mx-input-group">
+  <label class="mx-label">手机号码</label>
+  <input type="text" name="phone" class="mx-input" placeholder="手机号码（同时作为登录账号）" required>
 </div>
-<div class="list-group-item">
-<div class="input-group">
-<input type="text" name="code" placeholder="短信验证码" class="form-control no-border" required>
-<a class="input-group-addon" id="sendcode">获取验证码</a>
-</div>
+<div class="mx-input-group">
+  <label class="mx-label">短信验证码</label>
+  <div style="display:flex;gap:8px;">
+    <input type="text" name="code" class="mx-input" placeholder="短信验证码" required style="flex:1;">
+    <a class="mx-btn mx-btn-outline" id="sendcode" style="white-space:nowrap;">获取验证码</a>
+  </div>
 </div>
 <?php }else{?>
-<div class="list-group-item">
-<input type="email" name="email" placeholder="邮箱（同时作为登录账号）" class="form-control no-border" required>
+<div class="mx-input-group">
+  <label class="mx-label">邮箱</label>
+  <input type="email" name="email" class="mx-input" placeholder="邮箱（同时作为登录账号）" required>
 </div>
-<div class="list-group-item">
-<div class="input-group">
-<input type="text" name="code" placeholder="邮箱验证码" class="form-control no-border" required>
-<a class="input-group-addon" id="sendcode">获取验证码</a>
-</div>
+<div class="mx-input-group">
+  <label class="mx-label">邮箱验证码</label>
+  <div style="display:flex;gap:8px;">
+    <input type="text" name="code" class="mx-input" placeholder="邮箱验证码" required style="flex:1;">
+    <a class="mx-btn mx-btn-outline" id="sendcode" style="white-space:nowrap;">获取验证码</a>
+  </div>
 </div>
 <?php }?>
-<div class="list-group-item">
-<input type="password" name="pwd" placeholder="请输入你的密码" class="form-control no-border" required>
+
+<div class="mx-input-group">
+  <label class="mx-label">密码</label>
+  <input type="password" name="pwd" class="mx-input" placeholder="请输入你的密码" required>
 </div>
-<div class="list-group-item">
-<input type="password" name="pwd2" placeholder="请再次输入密码" class="form-control no-border" required>
+<div class="mx-input-group">
+  <label class="mx-label">确认密码</label>
+  <input type="password" name="pwd2" class="mx-input" placeholder="请再次输入密码" required>
 </div>
-<?php if($conf['reg_open']==2){?><div class="list-group-item">
-<input type="text" name="invitecode" placeholder="邀请码" class="form-control no-border" required>
-</div><?php }?>
-<div class="checkbox m-b-md m-t-none">
-<label class="i-checks">
-  <input type="checkbox" ng-model="agree" checked required><i></i> 同意<a href="../agreement.html" target="_blank">我们的条款</a>
-</label>
+<?php if($conf['reg_open']==2){?>
+<div class="mx-input-group">
+  <label class="mx-label">邀请码</label>
+  <input type="text" name="invitecode" class="mx-input" placeholder="邀请码" required>
 </div>
+<?php }?>
+
+<div style="margin:16px 0;">
+  <label style="font-size:14px;color:var(--mx-text-secondary);cursor:pointer;">
+    <input type="checkbox" checked required style="margin-right:6px;">同意<a href="../agreement.html" target="_blank" style="color:var(--mx-accent);">我们的条款</a>
+  </label>
 </div>
-<button type="button" id="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()" ng-disabled='form.$invalid'>立即注册</button>
-<a href="login.php" ui-sref="access.signup" class="btn btn-lg btn-default btn-block">返回登录</a>
-</form>
+
+<button type="button" id="submit" class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg">立即注册</button>
+<div class="login-footer">
+  <a href="login.php" class="mx-btn mx-btn-outline mx-btn-sm">返回登录</a>
 </div>
-<div class="text-center">
-<p>
-<small class="text-muted"><a href="/"><?php echo $conf['sitename']?></a><br>&copy; 2016~<?php echo date("Y")?></small>
-</p>
+  </form>
 </div>
-</div>
-</div>
+
 <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
-<script src="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="<?php echo $cdnpublic?>jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="<?php echo $cdnpublic?>layer/3.1.1/layer.js"></script>
 <script src="<?php echo $cdnpublic?>jsencrypt/3.5.4/jsencrypt.min.js"></script>
 <script src="//static.geetest.com/static/tools/gt.js"></script>
