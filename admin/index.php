@@ -1,6 +1,6 @@
 <?php
 include("../includes/common.php");
-$title='支付管理中心';
+$title='NAILTEAM 管理中心';
 include './head.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>

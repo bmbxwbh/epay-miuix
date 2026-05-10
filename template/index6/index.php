@@ -37,7 +37,7 @@ if(!defined('IN_CRONLITE'))exit();
 <section id="home" class="mx-hero" style="background:var(--mx-accent);padding:120px 0 80px;">
 	<div class="mx-container" style="text-align:center;">
 		<h1 style="font-size:clamp(28px,5vw,44px);font-weight:700;line-height:1.2;margin-bottom:16px;color:#fff;">欢迎来到 <?php echo $conf['sitename']?></h1>
-		<p style="font-size:18px;color:rgba(255,255,255,0.85);margin-bottom:8px;">免签约支付平台 结算费率低至<?php echo $conf['settle_rate']?>%！</p>
+		<p style="font-size:18px;color:rgba(255,255,255,0.85);margin-bottom:8px;">NAILTEAM 结算费率低至<?php echo $conf['settle_rate']?>%！</p>
 		<p style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:32px;">支持多种支付方式：支付宝、QQ钱包、微信、财付通支付，可根据开发文档快速接入！</p>
 		<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
 			<a href="./user/reg.php" class="mx-btn" style="background:#fff;color:var(--mx-accent);">申请接入</a>

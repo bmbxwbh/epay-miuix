@@ -90,7 +90,7 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
-<title>管理员登录 | 支付管理中心</title>
+<title>管理员登录 | NAILTEAM 管理中心</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <link rel="stylesheet" href="../assets/css/miuix.css"/>
 <link rel="stylesheet" href="../assets/css/miuix-override.css"/>
@@ -150,7 +150,7 @@ body {
     <div class="login-logo-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
     </div>
-    <div class="login-title">支付管理中心</div>
+    <div class="login-title">NAILTEAM 管理中心</div>
     <div class="login-subtitle">管理员登录</div>
   </div>
 

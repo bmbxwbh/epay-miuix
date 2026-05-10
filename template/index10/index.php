@@ -75,7 +75,7 @@ if(!defined('IN_CRONLITE'))exit();
 			<div class="mx-card-body">
 				<p style="font-size:14px;color:var(--mx-text-secondary);line-height:1.8;margin-bottom:12px;"><?php echo $conf['orgname']?>成立于2018年，<?php echo $conf['sitename']?>（<?php echo $_SERVER['HTTP_HOST']?>）。</p>
 				<p style="font-size:14px;color:var(--mx-text-secondary);line-height:1.8;margin-bottom:12px;"><?php echo $conf['sitename']?>平台主要服务于互联网和移动互联网领域，为网页游戏、手机游戏、阅读、音乐、交友、教育等移动应用提供综合计费营销服务，创新、诚信、灵活多元。</p>
-				<p style="font-size:14px;color:var(--mx-text-secondary);line-height:1.8;">我们打破了传统聚合支付网站几年来一成不变的局面，建立了新一代聚合支付的行业方向，我们将引领聚合支付交易过程的个性化、自动化、工具化等。</p>
+				<p style="font-size:14px;color:var(--mx-text-secondary);line-height:1.8;">NAILTEAM 打破传统聚合支付的局限，引领新一代支付体验的个性化、自动化与工具化。</p>
 			</div>
 		</div>
 	</div>

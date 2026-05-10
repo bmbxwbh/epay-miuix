@@ -5,7 +5,7 @@
 
 <footer class="mx-footer" style="margin-left:240px;">
   <div class="mx-container">
-    <span class="mx-text-xs" style="color:var(--mx-text-tertiary)">&copy; <?php echo date("Y")?> <?php echo $conf['sitename']??'支付管理中心'?> &middot; Powered by Epay</span>
+    <span class="mx-text-xs" style="color:var(--mx-text-tertiary)">&copy; <?php echo date("Y")?> <?php echo $conf['sitename']??'支付管理中心'?> &middot; Powered by NAILTEAM</span>
   </div>
 </footer>
 <?php }?>

@@ -30,7 +30,7 @@ $is_active = function($pages) use ($current_page) {
   <meta charset="utf-8"/>
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title><?php echo $title ?> | 支付管理中心</title>
+  <title><?php echo $title ?> | NAILTEAM 管理中心</title>
   <link href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="<?php echo $cdnpublic?>font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="../assets/css/miuix.css"/>
@@ -46,7 +46,7 @@ $is_active = function($pages) use ($current_page) {
   </button>
   <a href="./" class="mx-topbar-logo">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--mx-accent)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    支付管理中心
+    NAILTEAM 管理中心
   </a>
   <nav class="mx-topbar-nav" style="margin-left:auto;">
     <a href="../" >前台首页</a>

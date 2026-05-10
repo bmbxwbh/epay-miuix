@@ -112,7 +112,7 @@ if($step==3){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>彩虹易支付 - 安装程序</title>
+    <title>NAILTEAM 支付系统 - 安装程序</title>
     <link rel="stylesheet" href="/assets/css/miuix.css">
     <style>
         body { background: var(--mx-bg); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
@@ -131,7 +131,7 @@ if($step==3){
 <body>
 <div class="install-card mx-animate">
     <div class="install-header">
-        <h1>彩虹易支付</h1>
+        <h1>NAILTEAM</h1>
         <p>安装程序</p>
     </div>
     <div class="install-step">
@@ -192,7 +192,7 @@ if($step==3){
             <?php else: ?>
                 <div class="mx-alert mx-alert-success">数据库配置文件保存成功！</div>
                 <?php if($DB->query("select * from ".$dbconfig['dbqz']."_config")): ?>
-                    <div class="mx-alert mx-alert-info">系统检测到你已安装过彩虹易支付</div>
+                    <div class="mx-alert mx-alert-info">系统检测到你已安装过 NAILTEAM 支付系统</div>
                     <div style="display:flex;gap:12px;margin-top:16px">
                         <a href="?step=4&jump=1" class="mx-btn mx-btn-secondary" style="flex:1">跳过安装数据表</a>
                         <a href="?step=4" onclick="if(!confirm('全新安装将会清空所有数据，是否继续？')){return false;}" class="mx-btn mx-btn-primary" style="flex:1">强制全新安装</a>
@@ -252,7 +252,7 @@ if($step==3){
             <?php endif; ?>
         <?php endif; ?>
     </div>
-    <div class="install-footer">Powered by 彩虹易支付</div>
+    <div class="install-footer">Powered by NAILTEAM</div>
 </div>
 </body>
 </html>

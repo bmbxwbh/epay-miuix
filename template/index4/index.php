@@ -36,7 +36,7 @@ if(!defined('IN_CRONLITE'))exit();
 	<div class="mx-container" style="display:flex;align-items:center;gap:48px;flex-wrap:wrap;">
 		<div style="flex:1;min-width:300px;">
 			<h1 style="font-size:clamp(28px,5vw,44px);font-weight:700;line-height:1.2;margin-bottom:16px;color:#fff;"><?php echo $conf['sitename']?></h1>
-			<p style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:24px;">我们专注的每一面，都是为了给你更好的体验。行业内最安全，简单易用，专业的技术团队，最放心的免签约支付平台。</p>
+			<p style="font-size:18px;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:24px;">我们专注的每一面，都是为了给你更好的体验。行业内最安全，简单易用，专业的技术团队，NAILTEAM — 最放心的聚合支付平台。</p>
 			<div style="display:flex;gap:12px;flex-wrap:wrap;">
 				<a href="/user/" class="mx-btn" style="background:#fff;color:var(--mx-accent);">商户中心</a>
 				<a href="/doc.html" class="mx-btn mx-btn-outline" style="border-color:#fff;color:#fff;">开发文档</a>
