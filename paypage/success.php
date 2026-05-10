@@ -10,59 +10,88 @@ if(!isset($_SESSION['paypage_trade_no']) || $_SESSION['paypage_trade_no']!=$trad
 $userrow=$DB->getRow("select codename,username from pre_user where uid='{$row['uid']}' limit 1");
 $codename = !empty($userrow['codename'])?$userrow['codename']:$userrow['username'];
 ?>
-<html class="weui-msg">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>支付成功页面</title>
-    <link href="/assets/css/weui.min.css" rel="stylesheet">
-    <style>.page{position:absolute;top:0;right:0;bottom:0;left:0;overflow-y:auto;-webkit-overflow-scrolling:touch;box-sizing:border-box}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>支付成功</title>
+<link rel="stylesheet" href="../assets/css/miuix.css">
+<style>
+body { background: var(--mx-bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.success-card {
+  max-width: 400px;
+  width: 90%;
+  background: var(--mx-bg-card);
+  border-radius: var(--mx-radius-lg);
+  box-shadow: var(--mx-shadow-md);
+  padding: 40px 24px;
+  text-align: center;
+}
+.success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--mx-success-light);
+  color: var(--mx-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.success-icon svg { width: 36px; height: 36px; }
+.success-amount {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--mx-text-primary);
+  margin-bottom: 4px;
+}
+.success-amount::before { content: '¥'; font-size: 20px; font-weight: 500; }
+.success-title { font-size: 18px; font-weight: 600; margin-bottom: 24px; color: var(--mx-text-primary); }
+.success-info { text-align: left; }
+.success-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--mx-border);
+}
+.success-row:last-child { border-bottom: none; }
+.success-row-label { color: var(--mx-text-tertiary); }
+.success-row-value { color: var(--mx-text-primary); font-weight: 500; }
+</style>
 </head>
 <body>
-<div class="container">
-<div class="page">
-<div class="weui-msg">
-    <div class="weui-msg__icon-area">
-        <i class="weui-icon-success weui-icon_msg"></i>
+<div class="success-card">
+  <div class="success-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <div class="success-title">支付成功</div>
+  <div class="success-amount"><?php echo $row['money']?></div>
+  <div class="mx-divider" style="margin:20px 0;"></div>
+  <div class="success-info">
+    <div class="success-row">
+      <span class="success-row-label">收款方</span>
+      <span class="success-row-value"><?php echo $codename?></span>
     </div>
-    <div class="weui-msg__text-area">
-        <h2 class="weui-msg__title">支付成功</h2>
-		<h2 class="weui-msg__title"><span style="font-size:38px;font-weight:700;color:#f40;">¥<?php echo $row['money']?></span></h2>
-		<div class="weui-msg__custom-area">
-			<div class="weui-cells">
-			  <div class="weui-cell weui-cell_example">
-				<span class="weui-cell__bd">收款方</span>
-				<span class="weui-cell__ft"><strong><?php echo $codename?></strong></span>
-			  </div>
-			  <div class="weui-cell weui-cell_example">
-				<span class="weui-cell__bd">完成时间</span>
-				<span class="weui-cell__ft"><?php echo $row['endtime']?></span>
-			  </div>
-			  <div class="weui-cell weui-cell_example">
-				<span class="weui-cell__bd">订单号</span>
-				<span class="weui-cell__ft"><?php echo $trade_no?></span>
-			  </div>
-			</div>
-		</div>
+    <div class="success-row">
+      <span class="success-row-label">完成时间</span>
+      <span class="success-row-value"><?php echo $row['endtime']?></span>
     </div>
-    <div class="weui-msg__opr-area">
-        <p class="weui-btn-area">
-            <a href="javascript:;" class="weui-btn weui-btn_default" id="Close">关闭</a>
-        </p>
+    <div class="success-row">
+      <span class="success-row-label">订单号</span>
+      <span class="success-row-value" style="font-size:13px;"><?php echo $trade_no?></span>
     </div>
-    <div class="weui-msg__extra-area">
-        <div class="weui-footer"><p class="weui-footer__links"></p><p class="weui-footer__text">Copyright © <?php echo date("Y")?> <?php echo $conf['sitename']?></p></div>
-    </div>
+  </div>
+  <button class="mx-btn mx-btn-secondary mx-btn-block" style="margin-top:24px;" id="closeBtn">关闭</button>
 </div>
-</div>
-</div>
-<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+
+<script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
 <script src="//open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
 <script src="js/close.js"></script>
 <script>
-document.body.addEventListener('touchmove', function (event) {
-	event.preventDefault();
-},{ passive: false });
+document.body.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive: false});
+document.getElementById('closeBtn').onclick = function(){ window.close(); };
 </script>
 </body>
 </html>

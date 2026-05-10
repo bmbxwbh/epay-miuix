@@ -1,22 +1,28 @@
-  <!-- / content -->
+<?php
+// Close sidebar overlay on mobile
+?>
+</main><!-- /.mx-main -->
+</div><!-- /.mx-layout -->
+</div><!-- /.mx-page -->
 
-  <!-- footer -->
-  <footer id="footer" class="app-footer" role="footer">
-        <div class="wrapper b-t bg-light">
-      <span class="pull-right">Powered by <a href="/" target="_blank"><?php echo $conf['sitename']?></a></span>
-    	&copy; 2016-<?php echo date("Y")?> Copyright.
-    </div>
-  </footer>
-  <!-- / footer -->
+<footer class="mx-footer" style="margin-left:240px;">
+  <div class="mx-container">
+    <span class="mx-text-xs" style="color:var(--mx-text-tertiary)">&copy; <?php echo date("Y")?> <?php echo $conf['sitename']?> &middot; Powered by Epay</span>
+  </div>
+</footer>
 
-</div>
-
-<script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
-<script src="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="./assets/js/ui-load.js"></script>
-<script src="./assets/js/ui-jp.config.js"></script>
-<script src="./assets/js/ui-jp.js"></script>
-<script src="./assets/js/ui-nav.js"></script>
-<script src="./assets/js/ui-toggle.js"></script>
+<script src="../assets/js/mx-icons.js"></script>
+<script>
+// Mobile sidebar toggle
+$('.mx-topbar-toggle').on('click', function(){
+  $('#sidebar').toggleClass('open');
+});
+// Close sidebar on outside click (mobile)
+$(document).on('click', function(e){
+  if($(window).width() <= 768 && !$(e.target).closest('.mx-sidebar, .mx-topbar-toggle').length){
+    $('#sidebar').removeClass('open');
+  }
+});
+</script>
 </body>
 </html>

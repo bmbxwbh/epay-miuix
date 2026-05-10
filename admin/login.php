@@ -1,9 +1,6 @@
 <?php
-/**
- * 登录
-**/
-$verifycode = 1;//验证码开关
-$login_limit_count = 5;//登录失败次数
+$verifycode = 1;
+$login_limit_count = 5;
 $login_limit_file = '@login.lock';
 
 if(!function_exists("imagecreate") || !file_exists('code.php'))$verifycode=0;
@@ -36,19 +33,15 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
   }
   if($username == $conf['admin_user'] && $password == $conf['admin_pwd']){
     if ($conf['totp_open'] == 1 && !empty($conf['totp_secret'])) {
-      if (file_exists($login_limit_file)) {
-          unlink($login_limit_file);
-      }
+      if (file_exists($login_limit_file)) { unlink($login_limit_file); }
       exit(json_encode(['code'=>-1, 'msg'=>'需要验证动态口令', 'vcode' => 2]));
     }
     $DB->insert('log', ['uid'=>0, 'type'=>'登录后台', 'date'=>'NOW()', 'ip'=>$clientip]);
-    if (file_exists($login_limit_file)) {
-      unlink($login_limit_file);
-    }
-		$session=md5($username.$password.$password_hash);
-		$expiretime=time() + 2592000;
-		$token=authcode("{$username}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
-		setcookie("admin_token", $token, $expiretime, null, null, null, true);
+    if (file_exists($login_limit_file)) { unlink($login_limit_file); }
+    $session=md5($username.$password.$password_hash);
+    $expiretime=time() + 2592000;
+    $token=authcode("{$username}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
+    setcookie("admin_token", $token, $expiretime, null, null, null, true);
     unset($_SESSION['vc_code']);
     exit(json_encode(['code'=>0]));
   }else{
@@ -92,96 +85,134 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
 }elseif($islogin==1){
 	exit("<script language='javascript'>alert('您已登录！');window.location.href='./';</script>");
 }
-$title='用户登录';
-include './head.php';
 ?>
-  <nav class="navbar navbar-fixed-top navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">导航按钮</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="./">支付管理中心</a>
-      </div><!-- /.navbar-header -->
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active">
-            <a href="./login.php"><span class="glyphicon glyphicon-user"></span> 登录</a>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container -->
-  </nav><!-- /.navbar -->
-  <div class="container" style="padding-top:70px;">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 center-block" style="float: none;">
-      <div class="panel panel-primary">
-        <div class="panel-heading"><h3 class="panel-title">管理员登录</h3></div>
-        <div class="panel-body">
-          <form class="form-horizontal" id="login-form" role="form" onsubmit="return submitlogin()">
-            <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-              <input type="text" name="user" value="" class="form-control input-lg" placeholder="用户名" required="required"/>
-            </div><br/>
-            <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-              <input type="password" name="pass" class="form-control input-lg" placeholder="密码" required="required"/>
-            </div><br/>
-            <?php if($verifycode==1){?>
-            <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-adjust"></span></span>
-              <input type="text" class="form-control input-lg" name="code" placeholder="输入验证码" autocomplete="off" required>
-              <span class="input-group-addon" style="padding: 0">
-                <img id="verifycode" src="./code.php?r=<?php echo time();?>"height="45"onclick="this.src='./code.php?r='+Math.random();" title="点击更换验证码">
-              </span>
-            </div><br/>
-            <?php }?>
-            <div class="form-group">
-              <div class="col-xs-12"><button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">立即登录</button></div>
-            </div>
-            <div class="form-group">
-              <div class="col-xs-12 text-center"><a href="javascript:void(0);" onclick="findpwd()">忘记密码</a></div>
-            </div>
-          </form>
-          <form class="form-horizontal" id="totp-form" onsubmit="return doTotp()" style="display:none;">
-            <div class="alert alert-info" role="alert">TOTP二次验证</div>
-            <div class="input-group">
-              <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></div>
-              <input type="number" class="form-control input-lg" placeholder="输入动态口令" name="totp_code" id="totp_code" autocomplete="off" required="required"/>
-            </div><br/>
-            <div class="form-group">
-              <div class="col-xs-12"><button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">立即登录</button></div>
-            </div>
-            <div class="form-group">
-              <div class="col-xs-12 text-center"><a href="javascript:void(0);" onclick="findpwd()">忘记密码</a></div>
-            </div>
-          </form>
-        </div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>管理员登录 | 支付管理中心</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<link rel="stylesheet" href="../assets/css/miuix.css"/>
+<style>
+body {
+  background: var(--mx-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.login-card {
+  max-width: 420px;
+  width: 100%;
+  background: var(--mx-bg-card);
+  border-radius: var(--mx-radius-lg);
+  box-shadow: var(--mx-shadow-md);
+  border: 1px solid var(--mx-border);
+  padding: 40px 32px;
+}
+.login-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.login-logo-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--mx-radius);
+  background: var(--mx-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+.login-logo-icon svg { width: 28px; height: 28px; }
+.login-title { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 4px; }
+.login-subtitle { font-size: 14px; color: var(--mx-text-tertiary); text-align: center; }
+.totp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--mx-accent-light);
+  color: var(--mx-accent);
+  border-radius: var(--mx-radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+</style>
+</head>
+<body>
+<div class="login-card">
+  <div class="login-logo">
+    <div class="login-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div class="login-title">支付管理中心</div>
+    <div class="login-subtitle">管理员登录</div>
+  </div>
+
+  <!-- Login Form -->
+  <form id="login-form" onsubmit="return submitlogin()">
+    <div class="mx-input-group">
+      <label class="mx-label">用户名</label>
+      <input type="text" name="user" class="mx-input" placeholder="请输入管理员用户名" autocomplete="username">
+    </div>
+    <div class="mx-input-group">
+      <label class="mx-label">密码</label>
+      <input type="password" name="pass" class="mx-input" placeholder="请输入密码" autocomplete="current-password">
+    </div>
+    <?php if($verifycode==1){?>
+    <div class="mx-input-group">
+      <label class="mx-label">验证码</label>
+      <div style="display:flex;gap:12px;">
+        <input type="text" name="code" class="mx-input" placeholder="输入验证码" autocomplete="off" style="flex:1;">
+        <img id="verifycode" src="./code.php?r=<?php echo time();?>" style="height:42px;border-radius:var(--mx-radius-sm);cursor:pointer;border:1px solid var(--mx-border);" onclick="this.src='./code.php?r='+Math.random();" title="点击更换验证码">
       </div>
     </div>
-  </div>
-<div class="modal fade" id="modal-findpwd" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title">找回管理员密码方法</h4>
-			</div>
-			<div class="modal-body">
-				<p>进入数据库管理器（phpMyAdmin），点击进入当前网站所在数据库，然后查看pay_config表即可找回管理员密码。</p>
-        <?php if($conf['totp_open'] == 1){?>如需关闭TOTP二次验证，请执行以下SQL：UPDATE pay_config SET v='0' WHERE k='totp_open';UPDATE pay_cache SET v='' WHERE k='config';<?php }?>
-			</div>
-		</div>
-	</div>
+    <?php }?>
+    <button type="submit" class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg" style="margin-top:8px;">立即登录</button>
+    <div style="text-align:center;margin-top:16px;">
+      <a href="javascript:void(0);" onclick="findpwd()" class="mx-text-sm" style="color:var(--mx-text-tertiary)">忘记密码？</a>
+    </div>
+  </form>
+
+  <!-- TOTP Form -->
+  <form id="totp-form" onsubmit="return doTotp()" style="display:none;">
+    <div class="totp-badge" style="display:flex;justify-content:center;">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      TOTP 二次验证
+    </div>
+    <div class="mx-input-group">
+      <label class="mx-label">动态口令</label>
+      <input type="number" name="totp_code" id="totp_code" class="mx-input" placeholder="输入 6 位动态口令" autocomplete="off" maxlength="6">
+    </div>
+    <button type="submit" class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg">验证并登录</button>
+  </form>
 </div>
+
+<!-- Find Password Modal -->
+<div class="mx-modal-overlay" id="findpwdModal">
+  <div class="mx-modal">
+    <div class="mx-modal-header">找回管理员密码</div>
+    <div class="mx-modal-body">
+      <p>进入数据库管理器（phpMyAdmin），点击进入当前网站所在数据库，然后查看 pay_config 表即可找回管理员密码。</p>
+      <?php if($conf['totp_open'] == 1){?>
+      <p style="margin-top:12px;font-size:13px;color:var(--mx-text-tertiary);">如需关闭 TOTP 二次验证，请执行：<br><code style="font-size:12px;background:var(--mx-bg-secondary);padding:2px 6px;border-radius:4px;">UPDATE pay_config SET v='0' WHERE k='totp_open';</code></p>
+      <?php }?>
+    </div>
+    <div class="mx-modal-footer">
+      <button class="mx-btn mx-btn-secondary" onclick="document.getElementById('findpwdModal').classList.remove('open')">关闭</button>
+    </div>
+  </div>
+</div>
+
 <script src="<?php echo $cdnpublic?>layer/3.1.1/layer.js"></script>
 <script src="<?php echo $cdnpublic?>jsencrypt/3.5.4/jsencrypt.min.js"></script>
 <script>
 const PUBLIC_KEY_PEM = `<?php echo base64ToPem($conf['public_key'], 'PUBLIC KEY')?>`;
+
 function submitlogin(){
   var enc_type = '0';
   var user = $("input[name='user']").val();
@@ -196,18 +227,17 @@ function submitlogin(){
   }
   var ii = layer.load(2);
   $.ajax({
-    type : 'POST',
-    url : '?act=login',
+    type: 'POST', url: '?act=login',
     data: {username:user, password:pass, code:code, enc:enc_type},
-    dataType : 'json',
-    success : function(data) {
+    dataType: 'json',
+    success: function(data) {
       layer.close(ii);
       if(data.code == 0){
-        layer.msg('登录成功，正在跳转', {icon: 1,shade: 0.01,time: 15000});
+        layer.msg('登录成功，正在跳转', {icon: 1, shade: 0.01, time: 15000});
         window.location.href='./';
       }else{
         if(data.vcode==1){
-          $("#verifycode").attr('src', './code.php?r='+Math.random())
+          $("#verifycode").attr('src', './code.php?r='+Math.random());
         }else if(data.vcode==2){
           $("#totp-form").show();
           $("#login-form").hide();
@@ -217,41 +247,33 @@ function submitlogin(){
         layer.alert(data.msg, {icon: 2});
       }
     },
-    error:function(data){
-      layer.close(ii);
-      layer.msg('服务器错误');
-    }
+    error: function(){ layer.close(ii); layer.msg('服务器错误'); }
   });
   return false;
 }
+
 function doTotp(){
   var code = $("#totp_code").val();
-  if(code.length != 6){
-		layer.msg('动态口令格式错误', {icon: 2});
-		return false;
-	}
-	var ii = layer.load(2, {shade:[0.1,'#fff']});
-	$.post('?act=totp', {code:code}, function(res){
-		layer.close(ii);
-		if(res.code == 0){
-			layer.msg('登录成功，正在跳转', {icon: 1,shade: 0.01,time: 15000});
+  if(code.length != 6){ layer.msg('动态口令格式错误', {icon: 2}); return false; }
+  var ii = layer.load(2, {shade:[0.1,'#fff']});
+  $.post('?act=totp', {code:code}, function(res){
+    layer.close(ii);
+    if(res.code == 0){
+      layer.msg('登录成功，正在跳转', {icon: 1, shade: 0.01, time: 15000});
       window.location.href = './';
-		}else{
-			layer.alert(res.msg, {icon: 2});
-		}
-	}, 'json');
-	return false;
+    }else{
+      layer.alert(res.msg, {icon: 2});
+    }
+  }, 'json');
+  return false;
 }
-function findpwd(){
-  $('#modal-findpwd').modal('show');
-}
+
+function findpwd(){ document.getElementById('findpwdModal').classList.add('open'); }
+
 $(document).ready(function(){
-	$("#totp_code").keyup(function(){
-		var code = $(this).val();
-		if(code.length == 6){
-			$("#totp-form").submit();
-		}
-	});
+  $("#totp_code").keyup(function(){
+    if($(this).val().length == 6) $("#totp-form").submit();
+  });
 });
 </script>
 </body>
