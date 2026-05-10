@@ -1,0 +1,262 @@
+/* ============================================
+   Doc Page MiUI Override
+   Replaces gradient/image backgrounds with solid MiUI colors
+   ============================================ */
+
+/* Navbar → MiUI Topbar */
+#navbar {
+    background: var(--mx-bg-card) !important;
+    background-image: none !important;
+    border-bottom: 1px solid var(--mx-border);
+    box-shadow: var(--mx-shadow);
+    height: 56px;
+}
+#navbar .bg-blur {
+    background: rgba(255,255,255,0.72) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    line-height: 56px;
+    height: 56px;
+}
+.dark-mode #navbar .bg-blur { background: rgba(28,28,30,0.72) !important; }
+#navbar .navbar-body { height: 56px; }
+.layui-nav .layui-nav-item { line-height: 56px; }
+#navbar .logo > img { height: 36px; }
+#navbar .layui-nav .layui-nav-item a,
+#navbar .layui-nav .layui-nav-item a:hover,
+#navbar .layui-nav .layui-this a { color: var(--mx-text-primary); }
+
+/* Left sidebar → MiUI sidebar */
+#leftbar {
+    background: var(--mx-bg-card) !important;
+    border-right: 1px solid var(--mx-border);
+    top: 56px;
+    width: 280px;
+}
+#leftbar .layui-tab {
+    background: transparent;
+}
+#leftbar .layui-tab-title {
+    background: var(--mx-bg-card);
+    border-bottom: 1px solid var(--mx-border);
+}
+#leftbar .layui-tab-title li {
+    color: var(--mx-text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+}
+#leftbar .layui-tab-title li.layui-this {
+    color: var(--mx-accent);
+}
+#leftbar .layui-tab-content {
+    background: transparent;
+}
+#leftbar .copyright {
+    color: var(--mx-text-tertiary) !important;
+    border-top: 1px solid var(--mx-border);
+    background: transparent !important;
+    font-size: 12px;
+}
+
+/* zTree → MiUI sidebar items */
+.ztree li { line-height: 36px; }
+.ztree li a {
+    color: var(--mx-text-secondary);
+    height: 36px;
+    line-height: 36px;
+    border-radius: 8px;
+    margin: 1px 8px;
+    padding: 0 12px;
+}
+.ztree li a:hover {
+    color: var(--mx-text-primary);
+    background: var(--mx-bg-secondary);
+    text-decoration: none;
+}
+.ztree li a:hover::before { background: transparent; }
+.ztree li a.curSelectedNode {
+    color: var(--mx-accent);
+    background: var(--mx-accent-light);
+    font-weight: 600;
+}
+.ztree li a.curSelectedNode::before { background: transparent; }
+.ztree li a.curSelectedNode::after {
+    background-color: var(--mx-accent);
+    width: 3px;
+    border-radius: 2px;
+}
+.ztree li ul { background: transparent; }
+
+/* Search */
+#searchForm {
+    border-bottom: 1px solid var(--mx-border);
+    padding: 12px;
+}
+#searchForm .layui-input {
+    background: var(--mx-bg-secondary);
+    border: 1.5px solid transparent;
+    border-radius: 10px;
+    padding: 8px 36px 8px 14px;
+    font-size: 13px;
+    color: var(--mx-text-primary);
+}
+#searchForm .layui-input:focus {
+    border-color: var(--mx-accent);
+    background: var(--mx-bg-card);
+    box-shadow: 0 0 0 3px var(--mx-accent-light);
+}
+#searchForm .input-icon { color: var(--mx-text-tertiary); }
+#treeSearch > li {
+    border-bottom: 1px solid var(--mx-border);
+    padding: 10px 12px;
+}
+#treeSearch h3 { color: var(--mx-text-primary); font-size: 14px; }
+#treeSearch strong { color: var(--mx-danger); }
+.searchResultNone { color: var(--mx-text-tertiary); }
+.searchResultNone .layui-icon { opacity: 0.3; }
+
+/* Body */
+#body {
+    padding-left: 280px;
+    padding-top: 56px;
+    background: var(--mx-bg);
+}
+
+/* Markdown content → MiUI */
+.markdown-body {
+    color: var(--mx-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    padding: 32px 40px;
+    max-width: 900px;
+    background: var(--mx-bg-card);
+    border-radius: var(--mx-radius);
+    margin: 24px;
+    box-shadow: var(--mx-shadow);
+    border: 1px solid var(--mx-border);
+}
+.markdown-body h1 {
+    color: var(--mx-text-primary);
+    font-size: 28px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--mx-border);
+    padding-bottom: 12px;
+    text-align: left;
+}
+.markdown-body h2 {
+    color: var(--mx-text-primary);
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--mx-border);
+    padding-bottom: 8px;
+}
+.markdown-body h3 {
+    color: var(--mx-text-primary);
+    font-size: 18px;
+    font-weight: 600;
+}
+.markdown-body h4 { color: var(--mx-text-primary); font-size: 16px; font-weight: 600; }
+.markdown-body a { color: var(--mx-accent); }
+.markdown-body a:hover { color: var(--mx-accent-hover); }
+.markdown-body code {
+    color: var(--mx-danger);
+    background: var(--mx-bg-secondary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.markdown-body code:before, .markdown-body code:after { content: ""; }
+.markdown-body pre {
+    background: var(--mx-bg-secondary);
+    border: 1px solid var(--mx-border);
+    border-radius: var(--mx-radius-sm);
+    padding: 16px;
+}
+.markdown-body pre code {
+    background: transparent;
+    padding: 0;
+    color: var(--mx-text-primary);
+}
+.markdown-body blockquote {
+    border-left: 4px solid var(--mx-accent);
+    background: var(--mx-accent-light);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 var(--mx-radius-sm) var(--mx-radius-sm) 0;
+    color: var(--mx-text-secondary);
+}
+.markdown-body table {
+    border: 1px solid var(--mx-border);
+    border-radius: var(--mx-radius-sm);
+    overflow: hidden;
+}
+.markdown-body th {
+    background: var(--mx-bg-secondary);
+    color: var(--mx-text-tertiary);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--mx-border);
+}
+.markdown-body td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--mx-border);
+}
+.markdown-body hr {
+    border: 0;
+    border-bottom: 1px solid var(--mx-border);
+    margin: 24px 0;
+}
+.markdown-body li { margin-bottom: 4px; }
+.markdown-body .pl-k { color: var(--mx-accent); }
+.markdown-body .pl-s { color: #34C759; }
+.markdown-body .pl-c1 { color: var(--mx-accent); }
+
+/* SyntaxHighlighter override */
+.syntaxhighlighter {
+    background-color: var(--mx-bg-secondary) !important;
+    border-radius: var(--mx-radius-sm) !important;
+    border: 1px solid var(--mx-border) !important;
+}
+.syntaxhighlighter .plain, .syntaxhighlighter .plain a { color: var(--mx-text-primary) !important; }
+.syntaxhighlighter .comments, .syntaxhighlighter .comments a { color: var(--mx-text-tertiary) !important; }
+.syntaxhighlighter .string, .syntaxhighlighter .string a { color: #34C759 !important; }
+.syntaxhighlighter .keyword { color: var(--mx-accent) !important; }
+.syntaxhighlighter .variable { color: var(--mx-accent) !important; }
+.syntaxhighlighter .functions { color: var(--mx-danger) !important; }
+.syntaxhighlighter .constants { color: #AF52DE !important; }
+.syntaxhighlighter .gutter { color: var(--mx-text-tertiary) !important; }
+
+/* Table of contents */
+#content-toc-wrap {
+    background: var(--mx-bg-card);
+    border: 1px solid var(--mx-border);
+    border-radius: var(--mx-radius);
+    box-shadow: var(--mx-shadow);
+}
+.content-toc-title {
+    border-bottom: 1px solid var(--mx-border);
+    color: var(--mx-text-primary);
+}
+#content-toc a { color: var(--mx-text-secondary); }
+#content-toc a:hover { color: var(--mx-accent); }
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    #body { padding-left: 0; }
+    .markdown-body { margin: 12px; padding: 20px; }
+    #leftbar { width: 280px; }
+    .layui-nav .layui-nav-item { line-height: 48px; }
+    #navbar { height: 48px; }
+    #navbar .bg-blur { line-height: 48px; height: 48px; }
+    #body { padding-top: 48px; }
+    #leftbar { top: 48px; }
+}
+
+/* Dark mode overrides */
+.dark-mode .markdown-body pre { background: var(--mx-bg-tertiary); }
+.dark-mode .markdown-body blockquote { background: rgba(52,130,255,0.08); }
+.dark-mode .markdown-body th { background: var(--mx-bg-tertiary); }
+.dark-mode .syntaxhighlighter { background-color: var(--mx-bg-tertiary) !important; }
+.dark-mode #leftbar .layui-tab-title { background: var(--mx-bg-card); }
