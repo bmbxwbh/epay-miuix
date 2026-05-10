@@ -8,7 +8,12 @@ include("../includes/common.php");
 
 if(isset($_GET['act']) && $_GET['act']=='login'){
   if(!checkRefererHost()){
-    error_log('[ADMIN_LOGIN_DEBUG] REFERER_FAIL referer='.( $_SERVER['HTTP_REFERER'] ?? 'NONE').' host='.$_SERVER['HTTP_HOST']);
+    @file_put_contents(dirname(__DIR__).'/debug_auth.log', json_encode([
+        'time' => date('Y-m-d H:i:s'),
+        'type' => 'REFERER_FAIL',
+        'referer' => $_SERVER['HTTP_REFERER'] ?? 'NONE',
+        'host' => $_SERVER['HTTP_HOST'],
+    ])."\n", FILE_APPEND);
     exit('{"code":403}');
   }
   $username = trim($_POST['username']);
@@ -46,7 +51,14 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
     $token=authcode("{$username}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
     $cookie_result = setcookie("admin_token", $token, $expiretime, '/');
     // DEBUG: 临时调试
-    error_log('[ADMIN_LOGIN_DEBUG] user='.$username.' token_len='.strlen($token).' cookie_ok='.($cookie_result?'YES':'NO').' syskey='.substr(SYS_KEY,0,8).'...');
+    @file_put_contents(dirname(__DIR__).'/debug_auth.log', json_encode([
+        'time' => date('Y-m-d H:i:s'),
+        'type' => 'LOGIN',
+        'user' => $username,
+        'token_len' => strlen($token),
+        'cookie_ok' => $cookie_result ? 'YES' : 'NO',
+        'syskey_prefix' => substr(SYS_KEY, 0, 8),
+    ])."\n", FILE_APPEND);
     unset($_SESSION['vc_code']);
     exit(json_encode(['code'=>0]));
   }else{
