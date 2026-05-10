@@ -2,31 +2,22 @@
 if(!defined('IN_CRONLITE'))exit();
 require INDEX_ROOT.'head.php';
 ?>
-<style type="text/css">
-body{color:#000;}header { position: relative; }
-.bann{ content:'';background-size:100%;background:#4280cb;background:-webkit-gradient(linear,0 0,0 100%,from(#4585d2),to(#4280cb));background:-moz-linear-gradient(top,#4585d2,#4280cb);background:linear-gradient(to bottom,#4585d2,#4280cb);top:0;left:0;z-index:-1;min-height:50px;width:100%}.fl .active{ color:#3F5061;background:#fff;border-color:#fff}
-p {
-    margin: 0 0 10px 0;
-    font-size: 15px;
-}
-h4 {
-    font-size: 20px;
-    line-height: 30px;
-}
+<style>
+body{color:var(--mx-text-primary);}
+.mx-page-header { background: var(--mx-bg-card); border-bottom: 1px solid var(--mx-border); padding: 32px 24px; text-align: center; }
+.mx-page-header h2 { font-size: 22px; font-weight: 700; color: var(--mx-text-primary); margin-bottom: 8px; }
+.mx-page-header p { font-size: 14px; color: var(--mx-text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+.mx-content { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+.mx-content p { margin: 0 0 12px; font-size: 15px; line-height: 1.8; color: var(--mx-text-secondary); }
+.mx-content h4 { font-size: 18px; font-weight: 600; color: var(--mx-text-primary); margin: 24px 0 12px; }
 </style>
 
-<div class="bann">
-
-
-<div class="col-xs-12"style="text-align:center;">
-<div class="h3" style="color:#fff;margin-top: 35px;margin-bottom: 30px;">服务条款</div>
-<div class="text-muted" style="color:#ddd;margin-top: 35px;margin-bottom: 30px;">请使用本支付系统前，先认真阅读商户服务条款，<?php echo $conf['sitename']?>系统有权力随时更新条款，请您严格遵守我们服务条款内的条约，注册商户后则默认代表您已同意我们的服务条款。</div>
-<div style="clear:both;"></div>
-</div><div style="clear:both;"></div>
+<div class="mx-page-header">
+<h2>服务条款</h2>
+<p>请使用本支付系统前，先认真阅读商户服务条款，<?php echo $conf['sitename']?>系统有权力随时更新条款，请您严格遵守我们服务条款内的条约，注册商户后则默认代表您已同意我们的服务条款。</p>
 </div>
 
-
-<div class="container">
+<div class="mx-content">
 
   <!-- Docs nav
   ================================================== -->

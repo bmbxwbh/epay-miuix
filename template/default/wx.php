@@ -1,32 +1,79 @@
-<?php
-if(!defined('IN_CRONLITE'))exit();
-?>
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>微信转QQ余额下单教程</title>
-        <link href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
-        <style type="text/css">
-html{background:#eee}body{background:#fff;color:#333;font-family:"微软雅黑","Microsoft YaHei",sans-serif;margin:2em auto;padding:1em 2em;max-width:700px;-webkit-box-shadow:10px 10px 10px rgba(0,0,0,.13);box-shadow:10px 10px 10px rgba(0,0,0,.13);opacity:.8}h1{border-bottom:1px solid #dadada;clear:both;color:#666;font:24px "微软雅黑","Microsoft YaHei",,sans-serif;margin:30px 0 0 0;padding:0;padding-bottom:7px}#error-page{margin-top:50px}h3{text-align:center}#error-page p{font-size:9px;line-height:1.5;margin:25px 0 20px}#error-page code{font-family:Consolas,Monaco,monospace}ul li{margin-bottom:10px;font-size:9px}a{color:#21759B;text-decoration:none;margin-top:-10px}a:hover{color:#D54E21}.button{background:#f7f7f7;border:1px solid #ccc;color:#555;display:inline-block;text-decoration:none;font-size:9px;line-height:26px;height:28px;margin:0;padding:0 10px 1px;cursor:pointer;-webkit-border-radius:3px;-webkit-appearance:none;border-radius:3px;white-space:nowrap;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-box-shadow:inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);box-shadow:inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);vertical-align:top}.button.button-large{height:29px;line-height:28px;padding:0 12px}.button:focus,.button:hover{background:#fafafa;border-color:#999;color:#222}.button:focus{-webkit-box-shadow:1px 1px 1px rgba(0,0,0,.2);box-shadow:1px 1px 1px rgba(0,0,0,.2)}.button:active{background:#eee;border-color:#999;color:#333;-webkit-box-shadow:inset 0 2px 5px -3px rgba(0,0,0,.5);box-shadow:inset 0 2px 5px -3px rgba(0,0,0,.5)}table{table-layout:auto;border:1px solid #333;empty-cells:show;border-collapse:collapse}th{padding:4px;border:1px solid #333;overflow:hidden;color:#333;background:#eee}td{padding:4px;border:1px solid #333;overflow:hidden;color:#333}
-        </style>
+<?php if(!defined('IN_CRONLITE'))exit();
+include_once(SYSTEM_ROOT.'lib/mxicons.php');
+?><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>微信支付引导</title>
+    <link rel="stylesheet" href="/assets/css/miuix.css">
+    <style>
+        body { background: var(--mx-bg); min-height: 100vh; }
+        .mx-guide { max-width: 480px; margin: 0 auto; padding: 24px 20px; }
+        .mx-guide-header { text-align: center; padding: 32px 0 24px; }
+        .mx-guide-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--mx-warning-light); color: var(--mx-warning); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+        .mx-guide-icon svg { width: 32px; height: 32px; }
+        .mx-guide-title { font-size: 20px; font-weight: 600; color: var(--mx-text-primary); margin-bottom: 8px; }
+        .mx-guide-subtitle { font-size: 14px; color: var(--mx-text-secondary); }
+        .mx-guide-card { background: var(--mx-bg-card); border-radius: var(--mx-radius); box-shadow: var(--mx-shadow); border: 1px solid var(--mx-border); margin-bottom: 16px; overflow: hidden; }
+        .mx-guide-card-header { padding: 16px 20px; border-bottom: 1px solid var(--mx-border); font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+        .mx-guide-card-header .step { width: 24px; height: 24px; border-radius: 50%; background: var(--mx-accent); color: #fff; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .mx-guide-card-body { padding: 16px 20px; font-size: 14px; color: var(--mx-text-secondary); line-height: 1.8; }
+        .mx-guide-card-body strong { color: var(--mx-accent); font-weight: 600; }
+        .mx-guide-alert { display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px; border-radius: var(--mx-radius-sm); background: var(--mx-danger-light); color: #c92a25; font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
+        .mx-guide-alert svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; }
+        .mx-guide-img { width: 100%; border-radius: var(--mx-radius-sm); margin: 12px 0; }
+        .mx-guide-actions { padding: 8px 0 24px; }
+    </style>
 </head>
 <body>
-<h3>微信付款不了解决方案</h3>
-<b style="color:red;"><b style="color:red;">当您遇到微信支付失败，说明支付通道维护了，请先使用QQ/支付宝付款！
+    <div class="mx-guide">
+        <div class="mx-guide-header mx-animate">
+            <div class="mx-guide-icon"><?php echo MxIcons::WARNING ?></div>
+            <div class="mx-guide-title">微信支付暂不可用</div>
+            <div class="mx-guide-subtitle">支付通道维护中，请使用QQ/支付宝付款</div>
+        </div>
 
-<hr>下面我教大家如何把<font color="blue">微信钱转到QQ！然后使用QQ支付即可</font>，看下方截图！
-<hr><font color="red" class="animation-pulse">   微信支付方法:</font>
-<br>
-<br><font color="#000000">①：在<font color="red">微信公众号</font>搜QQ钱包
-<br>
-<br>②：可把余额直接转入你的QQ里  
-<br>
-<br>③：使用QQ支付下单，就可以啦！</font></b>
-</b>
-<br>
-<br>
-<img src="./assets/img/wxtoqq.png" style="  width: 100%;">
- <hr><a onclick="Javascript:history.go(-1);" class="btn btn-success btn-block">点击返回支付页面</a>
+        <div class="mx-guide-alert mx-animate">
+            <?php echo MxIcons::INFO ?>
+            <span>遇到微信支付失败时，请先使用QQ或支付宝完成付款</span>
+        </div>
+
+        <div class="mx-guide-card mx-animate">
+            <div class="mx-guide-card-header">
+                <span class="step">1</span>
+                <span>微信公众号搜索 <strong>QQ钱包</strong></span>
+            </div>
+            <div class="mx-guide-card-body">
+                在微信中搜索并关注 <strong>QQ钱包</strong> 公众号
+            </div>
+        </div>
+
+        <div class="mx-guide-card mx-animate">
+            <div class="mx-guide-card-header">
+                <span class="step">2</span>
+                <span>将微信余额转入QQ</span>
+            </div>
+            <div class="mx-guide-card-body">
+                通过公众号将微信零钱余额直接转入您的QQ账户
+            </div>
+        </div>
+
+        <div class="mx-guide-card mx-animate">
+            <div class="mx-guide-card-header">
+                <span class="step">3</span>
+                <span>使用QQ支付下单</span>
+            </div>
+            <div class="mx-guide-card-body">
+                返回支付页面，选择 <strong>QQ支付</strong> 完成付款即可
+            </div>
+        </div>
+
+        <img src="./assets/img/wxtoqq.png" class="mx-guide-img mx-animate" alt="微信转QQ教程">
+
+        <div class="mx-guide-actions">
+            <button class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg" onclick="history.go(-1)">返回支付页面</button>
+        </div>
+    </div>
 </body>
 </html>

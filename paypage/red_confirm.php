@@ -1,100 +1,101 @@
 <?php
 if(!defined('IN_CRONLITE'))exit();
-?><html class="weui-msg">
+include_once(SYSTEM_ROOT.'lib/mxicons.php');
+?><!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
     <title>红包领取确认</title>
-    <link href="/assets/css/weui.min.css" rel="stylesheet">
-    <style>.page{position:absolute;top:0;right:0;bottom:0;left:0;overflow-y:auto;-webkit-overflow-scrolling:touch;box-sizing:border-box}</style>
+    <link rel="stylesheet" href="/assets/css/miuix.css">
+    <style>
+        body { background: var(--mx-bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+        .mx-result-card { max-width: 420px; width: 100%; background: var(--mx-bg-card); border-radius: var(--mx-radius-lg); box-shadow: var(--mx-shadow-md); border: 1px solid var(--mx-border); overflow: hidden; }
+        .mx-result-icon { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+        .mx-result-icon svg { width: 36px; height: 36px; }
+        .mx-result-icon.pending { background: var(--mx-accent-light); color: var(--mx-accent); }
+        .mx-result-body { padding: 32px 24px 24px; text-align: center; }
+        .mx-result-title { font-size: 15px; color: var(--mx-text-secondary); margin-bottom: 8px; }
+        .mx-result-amount { font-size: 40px; font-weight: 700; color: var(--mx-text-primary); letter-spacing: -0.02em; line-height: 1.2; }
+        .mx-result-amount::before { content: "¥"; font-size: 22px; font-weight: 500; vertical-align: super; margin-right: 2px; }
+        .mx-result-info { padding: 0 24px 24px; }
+        .mx-result-row { display: flex; justify-content: space-between; padding: 12px 0; font-size: 14px; border-bottom: 1px solid var(--mx-border); }
+        .mx-result-row:last-child { border-bottom: none; }
+        .mx-result-row .label { color: var(--mx-text-tertiary); }
+        .mx-result-row .value { color: var(--mx-text-primary); font-weight: 500; }
+        .mx-result-actions { padding: 0 24px 24px; }
+        .mx-result-tips { text-align: center; font-size: 13px; color: var(--mx-text-tertiary); padding: 0 24px 20px; }
+        .mx-result-footer { padding: 16px 24px; border-top: 1px solid var(--mx-border); text-align: center; font-size: 12px; color: var(--mx-text-tertiary); }
+        .mx-loading-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 2000; }
+        .mx-loading-overlay.show { display: flex; }
+        .mx-loading-box { background: var(--mx-bg-card); border-radius: var(--mx-radius); padding: 28px 36px; text-align: center; box-shadow: var(--mx-shadow-lg); }
+        .mx-loading-box svg { width: 32px; height: 32px; color: var(--mx-accent); margin-bottom: 12px; }
+        .mx-loading-box p { font-size: 14px; color: var(--mx-text-secondary); }
+    </style>
 </head>
 <body>
-<div class="container">
-<div class="page">
-<div class="weui-msg">
-    <div class="weui-msg__icon-area" style="margin-top:20px">
-        <i class="weui-icon-waiting weui-icon_msg"></i>
+    <div class="mx-result-card mx-animate">
+        <div class="mx-result-body">
+            <div class="mx-result-icon pending"><?php echo MxIcons::CLOCK ?></div>
+            <div class="mx-result-title" style="margin-top:16px">待你收款</div>
+            <div class="mx-result-amount"><?php echo $trans['money']?></div>
+        </div>
+        <div class="mx-result-info">
+            <div class="mx-result-row">
+                <span class="label">创建时间</span>
+                <span class="value"><?php echo $trans['addtime']?></span>
+            </div>
+        </div>
+        <div class="mx-result-actions">
+            <button class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg" id="Confirm">收款</button>
+        </div>
+        <div class="mx-result-tips">请在24小时内确认</div>
+        <div class="mx-result-footer">Copyright © <?php echo date("Y")?> <?php echo $conf['sitename']?></div>
     </div>
-    <div class="weui-msg__text-area">
-        <h2 class="weui-msg__title"><span style="font-size:18px;">待你收款</span></h2>
-		<p class="weui-msg__desc"><span style="font-size:34px;font-weight:700;line-height: 64px;">¥</span><span style="font-size:44px;font-weight:700;vertical-align:top;"><?php echo $trans['money']?></span></p>
-        <div class="weui-msg__custom-area">
-            <ul class="weui-form-preview__list">
-                <li role="option" class="weui-form-preview__item"><label class="weui-form-preview__label">创建时间</label><p class="weui-form-preview__value weui-cell__ft"><?php echo $trans['addtime']?></p></li>
-            </ul>
+
+    <div class="mx-loading-overlay" id="loadingOverlay">
+        <div class="mx-loading-box">
+            <?php echo MxIcons::LOADING ?>
+            <p>正在加载</p>
         </div>
     </div>
-    <div class="weui-msg__opr-area">
-        <p class="weui-btn-area">
-            <a href="javascript:;" class="weui-btn weui-btn_primary" id="Confirm">收款</a>
-        </p>
-    </div>
-    <div class="weui-msg__tips-area">
-        <p class="weui-msg__tips">请在24小时内确认</p>
-    </div>
-    <div class="weui-msg__extra-area">
-        <div class="weui-footer"><p class="weui-footer__links"></p><p class="weui-footer__text">Copyright © <?php echo date("Y")?> <?php echo $conf['sitename']?></p></div>
-    </div>
-</div>
-    <div role="alert" id="loadingToast" style="display: none;">
-        <div class="weui-mask_transparent"></div>
-        <div class="weui-toast__wrp">
-          <div class="weui-toast">
-              <span class="weui-primary-loading weui-icon_toast">
-                <span class="weui-primary-loading__dot"></span>
-              </span>
-              <p class="weui-toast__content">正在加载</p>
-          </div>
-        </div>
-    </div>
-    <div class="js_dialog" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="dialog_title" id="iosDialog" style="display: none;">
-        <div class="weui-mask"></div>
-        <div class="weui-dialog">
-            <div class="weui-dialog__hd"><strong class="weui-dialog__title" id="dialog_title">提示</strong></div>
-            <div class="weui-dialog__bd" id="dialog_content"></div>
-            <div class="weui-dialog__ft">
-                <a role="button" href="javascript:" id="dialogClose" class="weui-dialog__btn weui-dialog__btn_primary">关闭</a>
+
+    <div class="mx-modal-overlay" id="errorModal">
+        <div class="mx-modal">
+            <div class="mx-modal-header">提示</div>
+            <div class="mx-modal-body" id="errorContent"></div>
+            <div class="mx-modal-footer">
+                <button class="mx-btn mx-btn-secondary" onclick="document.getElementById('errorModal').classList.remove('open')">关闭</button>
             </div>
         </div>
     </div>
-</div>
-</div>
-<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
-<script>
-document.body.addEventListener('touchmove', function (event) {
-	event.preventDefault();
-},{ passive: false });
-function showDialog(title, content) {
-    $('#dialog_title').text(title);
-    $('#dialog_content').text(content);
-    $('#iosDialog').fadeIn(100);
-}
-$(document).ready(function(){
-  $("#dialogClose").click(function(){
-    $('#iosDialog').fadeOut(100);
-  });
-  $("#Confirm").click(function(){
-    $('#loadingToast').fadeIn(100);
-    $.ajax({
-      type: "POST",
-      url: "./red_ajax.php",
-      data: {n: "<?php echo $biz_no?>", t: "<?php echo $time?>", s: "<?php echo $sign?>", openid: "<?php echo $openid?>"},
-      dataType: "json",
-      success: function(response) {
-        $('#loadingToast').fadeOut(100);
-        if(response.code == 0) {
-          window.location.href = response.redirect_url;
-        } else {
-          showDialog('错误提示', response.msg);
-        }
-      },
-      error: function() {
-        $('#loadingToast').fadeOut(100);
-        showDialog('错误提示', '网络异常，请稍后再试！');
-      }
+
+    <script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    document.body.addEventListener('touchmove', function(e){ e.preventDefault(); }, {passive:false});
+    function showError(msg) {
+        document.getElementById('errorContent').textContent = msg;
+        document.getElementById('errorModal').classList.add('open');
+    }
+    $(function(){
+        $('#Confirm').click(function(){
+            $('#loadingOverlay').addClass('show');
+            $.ajax({
+                type: 'POST', url: './red_ajax.php',
+                data: {n:"<?php echo $biz_no?>", t:"<?php echo $time?>", s:"<?php echo $sign?>", openid:"<?php echo $openid?>"},
+                dataType: 'json',
+                success: function(r){
+                    $('#loadingOverlay').removeClass('show');
+                    if(r.code==0) window.location.href=r.redirect_url;
+                    else showError(r.msg);
+                },
+                error: function(){
+                    $('#loadingOverlay').removeClass('show');
+                    showError('网络异常，请稍后再试！');
+                }
+            });
+        });
     });
-  });
-})
-</script>
+    </script>
 </body>
 </html>

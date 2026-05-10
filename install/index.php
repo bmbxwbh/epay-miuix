@@ -2,23 +2,19 @@
 //程序安装文件
 error_reporting(0);
 date_default_timezone_set("PRC");
-$databaseFile = '../config.php';//数据库配额文件
+$databaseFile = '../config.php';
 
 @header('Content-Type: text/html; charset=UTF-8');
 $step=isset($_GET['step'])?$_GET['step']:1;
 if(file_exists('install.lock')){
-    exit('你已经成功安装，如需重新安装，请手动删除install目录下install.lock文件！');
+    exit('<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>已安装</title><link rel="stylesheet" href="/assets/css/miuix.css"><style>body{background:var(--mx-bg);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}.c{max-width:400px;text-align:center;background:var(--mx-bg-card);border-radius:var(--mx-radius-lg);padding:40px 24px;box-shadow:var(--mx-shadow-md);border:1px solid var(--mx-border)}.c svg{width:48px;height:48px;color:var(--mx-success);margin-bottom:16px}.c h2{font-size:18px;font-weight:600;margin-bottom:8px}.c p{font-size:14px;color:var(--mx-text-secondary)}</style></head><body><div class="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 3 5.5-6"/></svg><h2>已成功安装</h2><p>如需重新安装，请手动删除 install 目录下 install.lock 文件</p></div></body></html>');
 }
 
 function clearpack() {
 	$array=glob('../epay_release*');
-	foreach($array as $dir){
-		unlink($dir);
-	}
+	foreach($array as $dir){ unlink($dir); }
 	$array=glob('../epay_update*');
-	foreach($array as $dir){
-		unlink($dir);
-	}
+	foreach($array as $dir){ unlink($dir); }
 }
 
 function random($length, $numeric = 0) {
@@ -26,9 +22,7 @@ function random($length, $numeric = 0) {
 	$seed = $numeric ? (str_replace('0', '', $seed).'012340567890') : ($seed.'zZ'.strtoupper($seed));
 	$hash = '';
 	$max = strlen($seed) - 1;
-	for($i = 0; $i < $length; $i++) {
-		$hash .= $seed[mt_rand(0, $max)];
-	}
+	for($i = 0; $i < $length; $i++) { $hash .= $seed[mt_rand(0, $max)]; }
 	return $hash;
 }
 
@@ -45,42 +39,20 @@ if($step==3){
         $pwd=isset($_POST['pwd'])?$_POST['pwd']:null;
         $database=isset($_POST['database'])?$_POST['database']:null;
         $dbqz=isset($_POST['dbqz'])?$_POST['dbqz']:null;
-        if(empty($host) || empty($port) || empty($user) || empty($pwd) || empty($database) || empty($dbqz)){
+        if(empty($host)||empty($port)||empty($user)||empty($pwd)||empty($database)||empty($dbqz)){
             $errorMsg='请填写完整所有数据库信息！';
         }
-        $dbconfig=array(
-            'host' => $host,
-            'port' => $port,
-            'user' => $user,
-            'pwd' => $pwd,
-            'dbname' => $database,
-            'dbqz' => $dbqz
-        );
-        $config="<?php
-    /*数据库配置*/
-    \$dbconfig=array(
-        'host' => '{$host}', //数据库服务器
-        'port' => {$port}, //数据库端口
-        'user' => '{$user}', //数据库用户名
-        'pwd' => '{$pwd}', //数据库密码
-        'dbname' => '{$database}', //数据库名
-        'dbqz' => '{$dbqz}' //数据表前缀
-    );
-    ";
+        $dbconfig=array('host'=>$host,'port'=>$port,'user'=>$user,'pwd'=>$pwd,'dbname'=>$database,'dbqz'=>$dbqz);
+        $config="<?php\n    /*数据库配置*/\n    \$dbconfig=array(\n        'host' => '{$host}',\n        'port' => {$port},\n        'user' => '{$user}',\n        'pwd' => '{$pwd}',\n        'dbname' => '{$database}',\n        'dbqz' => '{$dbqz}'\n    );\n    ";
     }
     if(empty($errorMsg)){
         try{
             $DB=new PDO("mysql:host=".$dbconfig['host'].";dbname=".$dbconfig['dbname'].";port=".$dbconfig['port'],$dbconfig['user'],$dbconfig['pwd']);
         }catch(Exception $e){
-            if($e->getCode() == 2002){
-                $errorMsg='连接数据库失败：数据库地址填写错误！';
-            }elseif($e->getCode() == 1045){
-                $errorMsg='连接数据库失败：数据库用户名或密码填写错误！';
-            }elseif($e->getCode() == 1049){
-                $errorMsg='连接数据库失败：数据库名不存在！';
-            }else{
-                $errorMsg='连接数据库失败：'.$e->getMessage();
-            }
+            if($e->getCode()==2002) $errorMsg='连接数据库失败：数据库地址填写错误！';
+            elseif($e->getCode()==1045) $errorMsg='连接数据库失败：数据库用户名或密码填写错误！';
+            elseif($e->getCode()==1049) $errorMsg='连接数据库失败：数据库名不存在！';
+            else $errorMsg='连接数据库失败：'.$e->getMessage();
         }
         if(empty($errorMsg)){
             $DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
@@ -97,7 +69,7 @@ if($step==3){
     }
 }elseif($step==4){
     include '../config.php';
-    if(!$dbconfig['user']||!$dbconfig['pwd']||!$dbconfig['dbname']) {
+    if(!$dbconfig['user']||!$dbconfig['pwd']||!$dbconfig['dbname']){
         $errorMsg='请先填写好数据库并保存后再安装！';
     }else{
         try{
@@ -124,9 +96,7 @@ if($step==3){
                     $error++;
                     $dberror=$DB->errorInfo();
                     $errorMsg.=$dberror[2]."<br>";
-                }else{
-                    $success++;
-                }
+                }else{ $success++; }
             }
         }
         if(empty($errorMsg)){
@@ -136,172 +106,153 @@ if($step==3){
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>彩虹易支付 - 安装程序</title>
-    <link href="//lib.baomitu.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/miuix.css">
+    <style>
+        body { background: var(--mx-bg); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .install-card { max-width: 520px; width: 100%; background: var(--mx-bg-card); border-radius: var(--mx-radius-lg); box-shadow: var(--mx-shadow-md); border: 1px solid var(--mx-border); overflow: hidden; }
+        .install-header { padding: 32px 24px 24px; text-align: center; border-bottom: 1px solid var(--mx-border); }
+        .install-header h1 { font-size: 22px; font-weight: 700; color: var(--mx-text-primary); margin-bottom: 4px; }
+        .install-header p { font-size: 13px; color: var(--mx-text-tertiary); }
+        .install-step { display: flex; justify-content: center; gap: 8px; padding: 20px 24px 0; }
+        .install-step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mx-bg-tertiary); transition: all var(--mx-transition); }
+        .install-step-dot.active { background: var(--mx-accent); width: 24px; border-radius: 4px; }
+        .install-step-dot.done { background: var(--mx-success); }
+        .install-body { padding: 24px; }
+        .install-footer { padding: 16px 24px; border-top: 1px solid var(--mx-border); text-align: center; font-size: 12px; color: var(--mx-text-tertiary); }
+    </style>
 </head>
 <body>
-<div class="container"><br>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 center-block" style="float: none;">
-            <pre><h4>彩虹易支付 - 安装程序</h4></pre>
-            <div class="panel panel-warning">
-                <?php
-                if($step==2){
-                ?>
-                <div class="panel-heading text-center">MYSQL数据库信息配置</div>
-                <div class="panel-body">
-                    <div class="list-group text-success">
-                        <form class="form-horizontal" action="?step=3" method="post">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">数据库地址</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="host" class="form-control" value="localhost" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">数据库端口</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="port" class="form-control" value="3306" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">数据库用户名</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="user" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">数据库密码</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="pwd" class="form-control" required>
-                                </div>
-                            </div>
-							<div class="form-group">
-                                <label class="col-sm-2 control-label">数据库名称</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="database" class="form-control" required>
-                                </div>
-                            </div>
-							<div class="form-group">
-                                <label class="col-sm-2 control-label">数据表前缀</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="dbqz" class="form-control" value="pay" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success btn-block">确认无误，下一步</button>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                （如果已事先填写好config.php相关数据库配置，请 <a href="?step=3&jump=1">点击此处</a> 跳过这一步！）
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <?php }elseif($step==3){ ?>
-                <div class="panel-heading text-center">保存数据库配置</div>
-                <div class="panel-body">
-<?php
-if(!empty($errorMsg)){
-    echo '<div class="alert alert-danger text-center" role="alert">'.$errorMsg.'</div><div class="list-group-item"><a href="javascript:history.back(-1)" class="btn btn-block btn-info"><< 返回上一页</a></div>';
-}else{
-    echo '<div class="alert alert-success text-center" role="alert">数据库配置文件保存成功！</div>';
-    if($DB->query("select * from ".$dbconfig['dbqz']."_config")){
-?>
-                <div class="list-group-item list-group-item-info text-center">系统检测到你已安装过彩虹易支付</div>
-				<div class="list-group-item">
-					<a href="?step=4&jump=1" class="btn btn-block btn-info">跳过安装数据表</a>
-				</div>
-				<div class="list-group-item">
-					<a href="?step=4" onclick="if(!confirm('全新安装将会清空所有数据，是否继续？')){return false;}" class="btn btn-block btn-warning">强制全新安装</a>
-				</div>
-<?php }else{?>
-                <div class="list-group-item">
-					<a href="?step=4" class="btn btn-block btn-success">立即安装数据表 >></a>
-				</div>
-<?php }
-}
-?>
-                </div>
-                <?php }elseif($step==4){ ?>
-                <div class="panel-heading text-center">安装数据表</div>
-                <div class="panel-body">
-                    <div class="alert alert-danger" role="alert"><?php echo $errorMsg?></div>
-                    <div class="list-group-item"><a href="?step=4" class="btn btn-block btn-warning">点此进行重试</a></div>
-                    <div class="list-group-item"><a href="javascript:history.back(-1)" class="btn btn-block btn-info"><< 返回上一页</a></div>
-                </div>
-                <?php }elseif($step==5){ ?>
-                <div class="panel-heading text-center">安装完成</div>
-                <div class="panel-body">
-                    <?php if($success>0){?><div class="alert alert-success" role="alert">成功执行SQL语句<?php echo $success;?>条，失败<?php echo $error;?>条！</div><?php }?>
-                    <ul class="list-group">
-                        <li class="list-group-item">1、系统已成功安装完毕！</li>
-                        <li class="list-group-item">2、后台地址：<a href="/admin/" target="_blank">/admin/</a> 密码:123456</li>
-                        <li class="list-group-item">3、请及时修改后台管理员密码！</li>
-                        <?php if(!$lock_status){?><li class="list-group-item">4、<font color="#FF0033">你的空间不支持本地文件读写，请自行在 /install/ 目录建立 install.lock 文件！</font></li><?php }?>
-                        <li class="list-group-item"><a href="/" class="btn btn-block btn-default">进入网站首页</a></li>
-                    </ul>
-                </div>
-                <?php }else{ ?>
-                <div class="panel-heading text-center">安装环境检测</div>
-                <div class="panel-body">
-                    <?php
-                    $install=true;
-                    if(function_exists('curl_exec')){
-                        $check[2]='<span class="pull-right label label-success">支持</span>';
-                    }else{
-                        $check[2]='<span class="pull-right label label-danger">不支持</span>';
-                        $install=false;
-                    }
-                    if(class_exists("PDO")){
-                        $check[0]='<span class="pull-right label label-success">支持</span>';
-                    }else{
-                        $check[0]='<span class="pull-right label label-danger">不支持</span>';
-                        $install=false;
-                    }
-                    if(is_writable($databaseFile)) {
-                        $check[1]='<span class="pull-right label label-success">支持</span>';
-                    }else{
-                        $check[1]='<span class="pull-right label label-danger">不支持</span>';
-                    }
-                    if(version_compare(PHP_VERSION,'7.4.0','<')){
-                        $check[3]='<span class="pull-right label label-danger">不支持</span>';
-                        $install=false;
-                    }else{
-                        $check[3]='<span class="pull-right label label-success">支持</span>';
-                    }
-
-                    ?>
-                    <ul class="list-group">
-                        <li class="list-group-item">PHP版本>=7.4 <?php echo $check[3];?></li>
-                        <li class="list-group-item">PDO_MYSQL组件 <?php echo $check[0];?></li>
-                        <li class="list-group-item">CURL组件 <?php echo $check[2];?></li>
-                        <li class="list-group-item">主目录写入权限 <?php echo $check[1];?></li>
-                        <li class="list-group-item">成功安装后安装文件就会锁定，如需重新安装，请手动删除install目录下install.lock配置文件！</li>
-                        <?php
-                        if($install) echo'<li class="list-group-item"><a href="?step=2" class="btn btn-block btn-default">检测通过，下一步</a></li>';
-                        ?>
-                    </ul>
-                </div>
-                <?php } ?>
-            </div>
-            <footer class="footer">
-            <pre><center>Powered by <a href="#">彩虹</a> !</center></pre>
-            </footer>
-        </div>  
+<div class="install-card mx-animate">
+    <div class="install-header">
+        <h1>彩虹易支付</h1>
+        <p>安装程序</p>
     </div>
+    <div class="install-step">
+        <?php
+        $currentStep = $step;
+        if($step==1) $currentStep=1;
+        elseif($step==2) $currentStep=2;
+        elseif($step==3) $currentStep=3;
+        elseif($step==4) $currentStep=4;
+        elseif($step==5) $currentStep=5;
+        for($i=1;$i<=5;$i++):
+            $cls = '';
+            if($i < $currentStep) $cls = 'done';
+            elseif($i == $currentStep) $cls = 'active';
+        ?>
+        <div class="install-step-dot <?php echo $cls?>"></div>
+        <?php endfor; ?>
+    </div>
+    <div class="install-body">
+        <?php if($step==2): ?>
+        <form action="?step=3" method="post">
+            <div class="mx-input-group">
+                <label class="mx-label">数据库地址</label>
+                <input type="text" name="host" class="mx-input" value="localhost" required>
+            </div>
+            <div class="mx-input-group">
+                <label class="mx-label">数据库端口</label>
+                <input type="text" name="port" class="mx-input" value="3306" required>
+            </div>
+            <div class="mx-input-group">
+                <label class="mx-label">数据库用户名</label>
+                <input type="text" name="user" class="mx-input" required>
+            </div>
+            <div class="mx-input-group">
+                <label class="mx-label">数据库密码</label>
+                <input type="text" name="pwd" class="mx-input" required>
+            </div>
+            <div class="mx-input-group">
+                <label class="mx-label">数据库名称</label>
+                <input type="text" name="database" class="mx-input" required>
+            </div>
+            <div class="mx-input-group">
+                <label class="mx-label">数据表前缀</label>
+                <input type="text" name="dbqz" class="mx-input" value="pay" readonly>
+            </div>
+            <div style="margin-top:24px">
+                <button type="submit" class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg">确认无误，下一步</button>
+            </div>
+            <div style="text-align:center;margin-top:12px">
+                <a href="?step=3&jump=1" style="font-size:13px;color:var(--mx-text-tertiary)">已事先填写好 config.php？跳过此步</a>
+            </div>
+        </form>
+
+        <?php elseif($step==3): ?>
+            <?php if(!empty($errorMsg)): ?>
+                <div class="mx-alert mx-alert-danger"><?php echo $errorMsg?></div>
+                <a href="javascript:history.back(-1)" class="mx-btn mx-btn-secondary mx-btn-block" style="margin-top:16px">返回上一页</a>
+            <?php else: ?>
+                <div class="mx-alert mx-alert-success">数据库配置文件保存成功！</div>
+                <?php if($DB->query("select * from ".$dbconfig['dbqz']."_config")): ?>
+                    <div class="mx-alert mx-alert-info">系统检测到你已安装过彩虹易支付</div>
+                    <div style="display:flex;gap:12px;margin-top:16px">
+                        <a href="?step=4&jump=1" class="mx-btn mx-btn-secondary" style="flex:1">跳过安装数据表</a>
+                        <a href="?step=4" onclick="if(!confirm('全新安装将会清空所有数据，是否继续？')){return false;}" class="mx-btn mx-btn-primary" style="flex:1">强制全新安装</a>
+                    </div>
+                <?php else: ?>
+                    <a href="?step=4" class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg" style="margin-top:16px">立即安装数据表 →</a>
+                <?php endif; ?>
+            <?php endif; ?>
+
+        <?php elseif($step==4): ?>
+            <div class="mx-alert mx-alert-danger"><?php echo $errorMsg?></div>
+            <div style="display:flex;gap:12px;margin-top:16px">
+                <a href="javascript:history.back(-1)" class="mx-btn mx-btn-secondary" style="flex:1">返回上一页</a>
+                <a href="?step=4" class="mx-btn mx-btn-primary" style="flex:1">重试</a>
+            </div>
+
+        <?php elseif($step==5): ?>
+            <?php if($success>0): ?>
+                <div class="mx-alert mx-alert-success">成功执行 <?php echo $success?> 条 SQL 语句<?php if($error>0){ ?>，失败 <?php echo $error?> 条<?php } ?></div>
+            <?php endif; ?>
+            <div class="mx-list" style="margin-top:16px">
+                <div class="mx-list-item">✓ 系统已成功安装完毕</div>
+                <div class="mx-list-item">✓ 后台地址：<a href="/admin/" target="_blank">/admin/</a> 密码: 123456</div>
+                <div class="mx-list-item">✓ 请及时修改后台管理员密码</div>
+                <?php if(!$lock_status): ?>
+                <div class="mx-list-item" style="color:var(--mx-danger)">⚠ 空间不支持本地文件读写，请自行在 /install/ 目录建立 install.lock 文件</div>
+                <?php endif; ?>
+            </div>
+            <a href="/" class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg" style="margin-top:24px">进入网站首页</a>
+
+        <?php else: ?>
+            <?php
+            $install=true;
+            $checks = [];
+            if(function_exists('curl_exec')){$checks[]=['CURL组件',true];}else{$checks[]=['CURL组件',false];$install=false;}
+            if(class_exists("PDO")){$checks[]=['PDO_MYSQL组件',true];}else{$checks[]=['PDO_MYSQL组件',false];$install=false;}
+            if(is_writable($databaseFile)){$checks[]=['主目录写入权限',true];}else{$checks[]=['主目录写入权限',false];}
+            if(version_compare(PHP_VERSION,'7.4.0','<')){$checks[]=['PHP版本 ≥ 7.4',false];$install=false;}else{$checks[]=['PHP版本 ≥ 7.4',true];}
+            ?>
+            <div class="mx-list">
+                <?php foreach($checks as $c): ?>
+                <div class="mx-list-item">
+                    <?php if($c[1]): ?>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mx-success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.5 3 5.5-6"/></svg>
+                    <?php else: ?>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mx-danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    <?php endif; ?>
+                    <span style="margin-left:12px"><?php echo $c[0]?></span>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <div style="margin-top:8px;padding:0 4px;font-size:13px;color:var(--mx-text-tertiary);line-height:1.6">
+                成功安装后安装文件会自动锁定，如需重新安装请手动删除 install 目录下 install.lock 文件
+            </div>
+            <?php if($install): ?>
+                <a href="?step=2" class="mx-btn mx-btn-primary mx-btn-block mx-btn-lg" style="margin-top:20px">检测通过，下一步</a>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+    <div class="install-footer">Powered by 彩虹易支付</div>
 </div>
 </body>
 </html>

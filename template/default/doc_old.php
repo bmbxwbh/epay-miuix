@@ -2,24 +2,19 @@
 if(!defined('IN_CRONLITE'))exit();
 require INDEX_ROOT.'head.php';
 ?>
-<style type="text/css">
-body{color:#000;}header { position: relative; }
-.bann{ content:'';background-size:100%;background:#4280cb;background:-webkit-gradient(linear,0 0,0 100%,from(#4585d2),to(#4280cb));background:-moz-linear-gradient(top,#4585d2,#4280cb);background:linear-gradient(to bottom,#4585d2,#4280cb);top:0;left:0;z-index:-1;min-height:50px;width:100%}.fl .active{ color:#3F5061;background:#fff;border-color:#fff}
-.api_block{margin-bottom: 4em;}
+<style>
+body{color:var(--mx-text-primary);}
+.mx-page-header { background: var(--mx-bg-card); border-bottom: 1px solid var(--mx-border); padding: 32px 24px; text-align: center; }
+.mx-page-header h2 { font-size: 22px; font-weight: 700; color: var(--mx-text-primary); margin-bottom: 8px; }
+.mx-content { max-width: 1000px; margin: 0 auto; padding: 32px 24px; }
+.api_block{margin-bottom: 2em;}
 </style>
 
-<div class="bann">
-
-
-<div class="col-xs-12"style="text-align:center;">
-<div class="h3"style="color:#ffffff;margin-top: 35px;margin-bottom: 30px;">开发文档</div>
-                  
-<div style="clear:both;"></div>
-</div><div style="clear:both;"></div>
+<div class="mx-page-header">
+<h2>开发文档</h2>
 </div>
 
-
-<div class="container">
+<div class="mx-content">
 
   <!-- Docs nav
   ================================================== -->
