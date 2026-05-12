@@ -248,9 +248,10 @@ server {
 1. 修复全站登录 token cookie 传输损坏问题：`authcode` 编码输出含 `+` `/` 的 base64 字符串原样写入 cookie，在部分浏览器/反代环境下被损坏，统一添加 `rawurlencode` / `rawurldecode` 编解码
 2. 影响范围覆盖全部 11 处 cookie 写入（管理员登录、TOTP 登录、用户登录、密钥登录、微信登录、OAuth 登录、QQ 登录、SSO）及 2 处读取
 3. 新增 Docker 容器化部署支持（Nginx + PHP-FPM 单镜像）
-4. 新增 GitHub Actions 自动构建多平台 Docker 镜像（amd64/arm64）
-5. 新增 `docker-compose.yml` 一键部署（含 MySQL）
-6. README 补充 Nginx 伪静态、反向代理完整配置文档
+4. 新增 GitHub Actions 自动构建多平台 Docker 镜像（amd64/arm64），发布至 GHCR
+5. 新增 `docker-compose.yml` 一键部署（含 MySQL 8.0）
+6. 新增 `install.sh` 一键部署脚本，支持交互式配置端口与数据库，自动生成 compose 并启动
+7. README 补充 Nginx 伪静态、反向代理完整配置文档
 
 ### 2026/05/10 - MiUI 设计重构
 1. 全站界面迁移至 MiUI (HyperOS) 设计语言
