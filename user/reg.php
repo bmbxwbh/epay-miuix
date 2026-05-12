@@ -83,24 +83,6 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0px 1000px white inset;-webkit-tex
 </head>
 <body>
 
-		<div class="modal inmodal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
-						</button>
-						<h4 class="modal-title">注册须知</h4>
-					</div>
-					<div class="modal-body">
-<?php echo $conf['zhuce']?>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
 <div class="login-card mx-animate-scaleIn">
   <div class="login-logo">
     <div class="login-logo-icon">
@@ -165,6 +147,19 @@ input:-webkit-autofill{-webkit-box-shadow:0 0 0px 1000px white inset;-webkit-tex
   <a href="login.php" class="mx-btn mx-btn-outline mx-btn-sm">返回登录</a>
 </div>
   </form>
+</div>
+
+<!-- 注册须知弹窗 -->
+<div class="mx-modal-overlay" id="regNoticeModal">
+  <div class="mx-modal">
+    <div class="mx-modal-header">注册须知</div>
+    <div class="mx-modal-body">
+      <?php echo $conf['zhuce']?>
+    </div>
+    <div class="mx-modal-footer">
+      <button class="mx-btn mx-btn-primary" onclick="document.getElementById('regNoticeModal').classList.remove('open')">我知道了</button>
+    </div>
+  </div>
 </div>
 
 <script src="<?php echo $cdnpublic?>jquery/3.4.1/jquery.min.js"></script>
@@ -335,7 +330,7 @@ $(document).ready(function(){
 		}
 	});
 	<?php if(!empty($conf['zhuce'])){?>
-	$('#myModal').modal('show');
+	document.getElementById('regNoticeModal').classList.add('open');
 	<?php }?>
 });
 </script>
