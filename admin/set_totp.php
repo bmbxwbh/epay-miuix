@@ -96,7 +96,7 @@ foreach($account_list as $row){
 				<p>使用支持TOTP的认证软件扫描以下二维码</p>
 				<div class="qr-image mt-4" id="qrcode"></div>
 				<p><a href="javascript:;" data-clipboard-text="" id="copy-btn">复制密钥</a></p>
-				<form id="form-totp" style="text-align: left;" onsubmit="return bind_totp()">
+				<form id="form-totp" method="post" style="text-align: left;" onsubmit="return bind_totp()">
 					<div class="form-group mt-4">
 						<div class="input-group"><input type="number" class="form-control input-lg" name="code" id="code" value="" placeholder="填写动态口令" autocomplete="off" required><div class="input-group-btn"><input type="submit" name="submit" value="完成绑定" class="btn btn-success btn-lg btn-block"/></div></div>
 					</div>
