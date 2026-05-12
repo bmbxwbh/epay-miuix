@@ -49,7 +49,7 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
     $session=md5($username.$password.$password_hash);
     $expiretime=time() + 2592000;
     $token=authcode("{$username}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
-    $cookie_result = setcookie("admin_token", $token, $expiretime, '/');
+    $cookie_result = setcookie("admin_token", rawurlencode($token), $expiretime, '/');
     // DEBUG: 临时调试
     @file_put_contents(dirname(__DIR__).'/debug_auth.log', json_encode([
         'time' => date('Y-m-d H:i:s'),
@@ -93,7 +93,7 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
   $session=md5($conf['admin_user'].$conf['admin_pwd'].$password_hash);
   $expiretime=time() + 2592000;
   $token=authcode("{$conf['admin_user']}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
-  setcookie("admin_token", $token, $expiretime, '/');
+  setcookie("admin_token", rawurlencode($token), $expiretime, '/');
   exit(json_encode(['code'=>0]));
 }elseif(isset($_GET['logout'])){
 	if(!checkRefererHost())exit();

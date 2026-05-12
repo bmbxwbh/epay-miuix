@@ -17,6 +17,185 @@
 
 ---
 
+## 快速部署
+
+### Docker 一键部署（推荐）
+
+```bash
+# 克隆项目
+git clone https://github.com/bmbxwbh/epay-miuix.git
+cd epay-miuix
+
+# 启动服务（含 MySQL）
+docker compose up -d
+
+# 访问 http://localhost:8080/install/ 完成安装
+```
+
+容器内置 Nginx + PHP-FPM，端口 `8080` 映射到容器 `80`。数据库主机填写 `mysql`（Docker Compose 服务名）。
+
+### Docker 镜像
+
+项目通过 GitHub Actions 自动构建多平台镜像（`linux/amd64` + `linux/arm64`），发布至 GitHub Container Registry：
+
+```bash
+# 拉取最新镜像
+docker pull ghcr.io/bmbxwbh/epay-miuix:main
+
+# 或使用特定版本标签
+docker pull ghcr.io/bmbxwbh/epay-miuix:1.0.0
+```
+
+### 手动部署
+
+需要 PHP ≥ 7.4 + MySQL 5.7+ + Nginx/Apache。
+
+1. 将项目文件上传至 Web 根目录
+2. 导入 `install/install.sql` 到数据库
+3. 编辑 `config.php` 填写数据库信息
+4. 访问 `/install/` 完成安装
+5. 配置 Nginx 伪静态（见下方）
+
+---
+
+## Nginx 配置
+
+### 伪静态规则
+
+```nginx
+location / {
+    if (!-e $request_filename) {
+        rewrite ^/(.[a-zA-Z0-9\-\_]+)\.html$ /index.php?mod=$1 last;
+    }
+    rewrite ^/pay/(.*)$ /pay.php?s=$1 last;
+    rewrite ^/api/(.*)$ /api.php?s=$1 last;
+    rewrite ^/doc/(.[a-zA-Z0-9\-\_]+)\.html$ /index.php?doc=$1 last;
+}
+```
+
+### 安全目录拦截
+
+```nginx
+location ^~ /plugins/   { deny all; }
+location ^~ /includes/  { deny all; }
+location ^~ /install/   { deny all; }
+location ~* \.(sql|log|bak|lock)$ { deny all; }
+location ~ /\. { deny all; }
+```
+
+### 完整 Nginx 配置
+
+```nginx
+server {
+    listen 80;
+    server_name pay.example.com;
+    root /path/to/epay-miuix;
+    index index.php;
+
+    # 安全：禁止访问敏感目录
+    location ^~ /plugins/   { deny all; }
+    location ^~ /includes/  { deny all; }
+    location ^~ /install/   { deny all; }
+    location ~* \.(sql|log|bak|lock)$ { deny all; }
+    location ~ /\. { deny all; }
+
+    # 伪静态
+    location / {
+        if (!-e $request_filename) {
+            rewrite ^/(.[a-zA-Z0-9\-\_]+)\.html$ /index.php?mod=$1 last;
+        }
+        rewrite ^/pay/(.*)$ /pay.php?s=$1 last;
+        rewrite ^/api/(.*)$ /api.php?s=$1 last;
+        rewrite ^/doc/(.[a-zA-Z0-9\-\_]+)\.html$ /index.php?doc=$1 last;
+    }
+
+    # PHP-FPM
+    location ~ \.php$ {
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    # 静态资源缓存
+    location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg|woff2?|ttf|eot)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+        access_log off;
+    }
+
+    # 安全头
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    client_max_body_size 10m;
+}
+```
+
+---
+
+## 反向代理配置
+
+当 Nginx 作为前端反代（SSL 终结），后端跑在内网或 Docker 中：
+
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name pay.example.com;
+
+    ssl_certificate     /etc/nginx/ssl/pay.example.com.pem;
+    ssl_certificate_key /etc/nginx/ssl/pay.example.com.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    # 反代到后端
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host              $host;
+        proxy_set_header X-Real-IP         $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Referer           $http_referer;
+        proxy_connect_timeout 30s;
+        proxy_send_timeout    60s;
+        proxy_read_timeout    60s;
+    }
+
+    # 静态资源直接由 Nginx 服务
+    location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg|woff2?|ttf|eot)$ {
+        root /path/to/epay-miuix;
+        expires 30d;
+        access_log off;
+    }
+
+    # 安全：敏感目录拦截
+    location ^~ /plugins/   { return 403; }
+    location ^~ /includes/  { return 403; }
+    location ^~ /install/   { return 403; }
+    location ~* \.(sql|log|bak|lock)$ { return 403; }
+
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    client_max_body_size 10m;
+}
+
+# HTTP → HTTPS 强制跳转
+server {
+    listen 80;
+    server_name pay.example.com;
+    return 301 https://$host$request_uri;
+}
+```
+
+### 反代注意事项
+
+1. **真实 IP 传递**：确保 `X-Real-IP` / `X-Forwarded-For` 正确传递，否则风控、日志、IP 地理校验将失效
+2. **防止 IP 伪造**：在 Nginx 反代层配置 `set_real_ip_from` 定义可信代理 IP
+3. **支付回调 URL**：后台「系统设置 → 网站 URL」必须填公网地址（如 `https://pay.example.com/`），不能填内网地址
+4. **Referer 校验**：反代需透传 `Referer` 头，否则部分安全校验会失败
+5. **HTTPS 协议头**：反代需传递 `X-Forwarded-Proto: https`，否则 PHP 的 `is_https()` 判断错误
+
+---
+
 ## MiUI 设计重构
 
 本分支对全站界面进行了 MiUI (HyperOS) 设计语言重构：
@@ -50,6 +229,14 @@
 ---
 
 ## 更新日志
+
+### 2026/05/12 - Cookie 安全修复 + Docker 支持
+1. 修复全站登录 token cookie 传输损坏问题：`authcode` 编码输出含 `+` `/` 的 base64 字符串原样写入 cookie，在部分浏览器/反代环境下被损坏，统一添加 `rawurlencode` / `rawurldecode` 编解码
+2. 影响范围覆盖全部 11 处 cookie 写入（管理员登录、TOTP 登录、用户登录、密钥登录、微信登录、OAuth 登录、QQ 登录、SSO）及 2 处读取
+3. 新增 Docker 容器化部署支持（Nginx + PHP-FPM 单镜像）
+4. 新增 GitHub Actions 自动构建多平台 Docker 镜像（amd64/arm64）
+5. 新增 `docker-compose.yml` 一键部署（含 MySQL）
+6. README 补充 Nginx 伪静态、反向代理完整配置文档
 
 ### 2026/05/10 - MiUI 设计重构
 1. 全站界面迁移至 MiUI (HyperOS) 设计语言

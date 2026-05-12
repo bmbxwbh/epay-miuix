@@ -1,0 +1,28 @@
+services:
+  epay:
+    build: .
+    container_name: epay-miuix
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - epay-data:/var/www/html/includes
+    environment:
+      - TZ=Asia/Shanghai
+
+  mysql:
+    image: mysql:8.0
+    container_name: epay-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: change_me_root_pwd
+      MYSQL_DATABASE: epay
+      MYSQL_USER: epay
+      MYSQL_PASSWORD: change_me_epay_pwd
+    volumes:
+      - mysql-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+volumes:
+  epay-data:
+  mysql-data:
