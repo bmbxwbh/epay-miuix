@@ -14,6 +14,7 @@
 <!-- Sidebar overlay for mobile -->
 <div class="mx-sidebar-overlay" id="sidebarOverlay" onclick="document.getElementById('sidebar').classList.remove('open');this.classList.remove('open');"></div>
 
+<script src="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="../assets/js/mx-icons.js"></script>
 <script>
 // Mobile sidebar toggle
