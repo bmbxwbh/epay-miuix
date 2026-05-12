@@ -19,20 +19,34 @@
 
 ## 快速部署
 
-### Docker 一键部署（推荐）
+### 🚀 一键部署（推荐）
 
 ```bash
-# 克隆项目
+curl -fsSL https://raw.githubusercontent.com/bmbxwbh/epay-miuix/main/install.sh | bash
+```
+
+或手动执行：
+
+```bash
+git clone https://github.com/bmbxwbh/epay-miuix.git
+cd epay-miuix
+bash install.sh
+```
+
+脚本会自动检测 Docker 环境，交互式配置端口和数据库，生成 `docker-compose.yml` 并启动服务。
+
+### Docker Compose 部署
+
+```bash
 git clone https://github.com/bmbxwbh/epay-miuix.git
 cd epay-miuix
 
-# 启动服务（含 MySQL）
+# 编辑 docker-compose.yml 修改数据库密码
+# 启动服务
 docker compose up -d
 
 # 访问 http://localhost:8080/install/ 完成安装
 ```
-
-容器内置 Nginx + PHP-FPM，端口 `8080` 映射到容器 `80`。数据库主机填写 `mysql`（Docker Compose 服务名）。
 
 ### Docker 镜像
 
