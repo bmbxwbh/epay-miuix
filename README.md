@@ -244,6 +244,11 @@ server {
 
 ## 更新日志
 
+### 2026/05/12 - 管理员登录修复 + 自动发布
+1. 修复管理员登录页面点击登录后表单以 GET 方式提交、页面无变化的问题：页面缺少 jQuery 引用导致 `submitlogin()` 中 `$` 未定义抛异常，表单回退到默认 GET 提交
+2. 给登录表单和 TOTP 表单补充 `method="post"` 作为安全兜底，防止 JS 异常时密码泄露到 URL
+3. 新增 GitHub Actions 自动发布 workflow，推送 `v*` 标签时自动创建 Release 并附带 changelog
+
 ### 2026/05/12 - Cookie 安全修复 + Docker 支持
 1. 修复全站登录 token cookie 传输损坏问题：`authcode` 编码输出含 `+` `/` 的 base64 字符串原样写入 cookie，在部分浏览器/反代环境下被损坏，统一添加 `rawurlencode` / `rawurldecode` 编解码
 2. 影响范围覆盖全部 11 处 cookie 写入（管理员登录、TOTP 登录、用户登录、密钥登录、微信登录、OAuth 登录、QQ 登录、SSO）及 2 处读取
