@@ -172,7 +172,7 @@ body {
   </div>
 
   <!-- Login Form -->
-  <form id="login-form" onsubmit="return submitlogin()">
+  <form id="login-form" method="post" onsubmit="return submitlogin()">
     <div class="mx-input-group">
       <label class="mx-label">用户名</label>
       <input type="text" name="user" class="mx-input" placeholder="请输入管理员用户名" autocomplete="username">
@@ -197,7 +197,7 @@ body {
   </form>
 
   <!-- TOTP Form -->
-  <form id="totp-form" onsubmit="return doTotp()" style="display:none;">
+  <form id="totp-form" method="post" onsubmit="return doTotp()" style="display:none;">
     <div class="totp-badge" style="display:flex;justify-content:center;">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
       TOTP 二次验证
@@ -226,6 +226,7 @@ body {
   </div>
 </div>
 
+<script src="<?php echo $cdnpublic?>jquery/1.12.4/jquery.min.js"></script>
 <script src="<?php echo $cdnpublic?>layer/3.1.1/layer.js"></script>
 <script src="<?php echo $cdnpublic?>jsencrypt/3.5.4/jsencrypt.min.js"></script>
 <script>
