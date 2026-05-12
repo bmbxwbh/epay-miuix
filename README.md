@@ -244,10 +244,12 @@ server {
 
 ## 更新日志
 
-### 2026/05/12 - 管理员登录修复 + 自动发布
-1. 修复管理员登录页面点击登录后表单以 GET 方式提交、页面无变化的问题：页面缺少 jQuery 引用导致 `submitlogin()` 中 `$` 未定义抛异常，表单回退到默认 GET 提交
-2. 给登录表单和 TOTP 表单补充 `method="post"` 作为安全兜底，防止 JS 异常时密码泄露到 URL
-3. 新增 GitHub Actions 自动发布 workflow，推送 `v*` 标签时自动创建 Release 并附带 changelog
+### 2026/05/13 - 安全修复与兼容性补丁
+1. 修复管理员登录页面表单提交失败：补充缺失的 jQuery 引用，添加 `method="post"` 防止密码泄露到 URL
+2. 修复 TOTP 绑定表单缺少 `method="post"`
+3. 修复注册页面"注册须知"显示异常：Bootstrap modal 未加载导致内容直接暴露，改用 MiUI 风格弹窗
+4. 修复用户中心 modal 弹窗不工作：`user/foot.php` 缺少 Bootstrap JS 引用
+5. 修复 `ps_receiver.php` 搜索表单 XSS 漏洞：`$_GET` 参数输出未转义
 
 ### 2026/05/12 - Cookie 安全修复 + Docker 支持
 1. 修复全站登录 token cookie 传输损坏问题：`authcode` 编码输出含 `+` `/` 的 base64 字符串原样写入 cookie，在部分浏览器/反代环境下被损坏，统一添加 `rawurlencode` / `rawurldecode` 编解码
