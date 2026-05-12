@@ -49,7 +49,8 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
     $session=md5($username.$password.$password_hash);
     $expiretime=time() + 2592000;
     $token=authcode("{$username}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
-    $cookie_result = setcookie("admin_token", rawurlencode($token), $expiretime, '/');
+    $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+    $cookie_result = setcookie("admin_token", rawurlencode($token), $expiretime, '/', '', $is_https, true);
     // DEBUG: 临时调试
     @file_put_contents(dirname(__DIR__).'/debug_auth.log', json_encode([
         'time' => date('Y-m-d H:i:s'),
@@ -93,11 +94,13 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
   $session=md5($conf['admin_user'].$conf['admin_pwd'].$password_hash);
   $expiretime=time() + 2592000;
   $token=authcode("{$conf['admin_user']}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
-  setcookie("admin_token", rawurlencode($token), $expiretime, '/');
+  $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+  setcookie("admin_token", rawurlencode($token), $expiretime, '/', '', $is_https, true);
   exit(json_encode(['code'=>0]));
 }elseif(isset($_GET['logout'])){
 	if(!checkRefererHost())exit();
-	setcookie("admin_token", "", time() - 2592000, '/');
+	$is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+	setcookie("admin_token", "", time() - 2592000, '/', '', $is_https, true);
 	exit("<script language='javascript'>window.location.href='./login.php';</script>");
 }elseif($islogin==1){
 	exit("<script language='javascript'>alert('您已登录！');window.location.href='./';</script>");
