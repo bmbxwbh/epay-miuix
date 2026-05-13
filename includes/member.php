@@ -3,7 +3,7 @@ $clientip=real_ip($conf['ip_type']?$conf['ip_type']:0);
 
 if(isset($_COOKIE["admin_token"]))
 {
-	$raw_token = rawurldecode($_COOKIE['admin_token']);
+	$raw_token = $_COOKIE['admin_token'];
 	$token=authcode(daddslashes($raw_token), 'DECODE', SYS_KEY);
 	list($user, $sid, $expiretime) = explode("\t", $token);
 	$session=md5($conf['admin_user'].$conf['admin_pwd'].$password_hash);
@@ -13,7 +13,7 @@ if(isset($_COOKIE["admin_token"]))
 }
 if(isset($_COOKIE["user_token"]))
 {
-	$token=authcode(daddslashes(rawurldecode($_COOKIE['user_token'])), 'DECODE', SYS_KEY);
+	$token=authcode(daddslashes($_COOKIE['user_token']), 'DECODE', SYS_KEY);
 	list($uid, $sid, $expiretime) = explode("\t", $token);
 	$uid = intval($uid);
 	$userrow=$DB->getRow("SELECT * FROM pre_user WHERE uid=:uid limit 1", [':uid'=>$uid]);
