@@ -12,6 +12,7 @@ if(!defined('IN_PLUGIN'))exit();
 <meta name="renderer" content="webkit">
 <title>银联云闪付扫码支付</title>
 <link href="/assets/css/bank_pay.css?v=3" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
 <div class="body">

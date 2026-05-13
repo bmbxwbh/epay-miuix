@@ -16,6 +16,7 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
         .mx-result-body { padding: 40px 24px 24px; text-align: center; }
         .mx-result-title { font-size: 18px; font-weight: 600; color: var(--mx-text-primary); }
     </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
     <div class="mx-result-card mx-animate">

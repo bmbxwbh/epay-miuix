@@ -482,3 +482,202 @@ select.form-control {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ============================================
+   Layer.js MiUI Style Override
+   ============================================ */
+
+/* --- Overlay / Shade --- */
+.layui-layer-shade {
+  background: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* --- Main Container --- */
+.layui-layer {
+  border: 1px solid var(--mx-border) !important;
+  border-radius: var(--mx-radius-lg) !important;
+  box-shadow: var(--mx-shadow-lg) !important;
+  overflow: hidden !important;
+  background: var(--mx-bg-card) !important;
+}
+
+/* --- Title --- */
+.layui-layer-title {
+  background: var(--mx-bg-card) !important;
+  color: var(--mx-text-primary) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  padding: 20px 24px 0 !important;
+  border: none !important;
+  border-radius: var(--mx-radius-lg) var(--mx-radius-lg) 0 0 !important;
+}
+
+/* --- Content Area --- */
+.layui-layer-content {
+  color: var(--mx-text-secondary) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  padding: 16px 24px !important;
+}
+
+.layui-layer-content .layui-layer-ico {
+  display: none !important;
+}
+
+/* --- Dialog Type --- */
+.layui-layer-dialog .layui-layer-content {
+  padding: 20px 24px !important;
+  min-height: 40px !important;
+}
+
+/* --- Message Toast (layer.msg) --- */
+.layui-layer-msg {
+  background: var(--mx-bg-elevated) !important;
+  border-radius: var(--mx-radius-sm) !important;
+  box-shadow: var(--mx-shadow-md) !important;
+  border: 1px solid var(--mx-border) !important;
+  padding: 12px 20px !important;
+  min-width: 120px !important;
+  text-align: center !important;
+}
+
+.layui-layer-msg .layui-layer-content {
+  padding: 0 !important;
+  font-size: 14px !important;
+  color: var(--mx-text-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+/* msg icons — replace with MiUI colors */
+.layui-layer-msg .layui-layer-ico {
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: none !important;
+  margin-right: 4px !important;
+}
+
+/* --- Button Container --- */
+.layui-layer-btn {
+  padding: 12px 24px 20px !important;
+  text-align: right !important;
+  border: none !important;
+  background: var(--mx-bg-card) !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+}
+
+/* --- Buttons --- */
+.layui-layer-btn a {
+  background: var(--mx-bg-secondary) !important;
+  color: var(--mx-text-primary) !important;
+  border: 1px solid var(--mx-border) !important;
+  border-radius: var(--mx-radius-sm) !important;
+  padding: 8px 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all var(--mx-transition) !important;
+  text-decoration: none !important;
+  line-height: 1.4 !important;
+  min-width: 72px !important;
+  text-align: center !important;
+}
+
+.layui-layer-btn a:hover {
+  background: var(--mx-bg-tertiary) !important;
+}
+
+/* Primary button (first/confirm) */
+.layui-layer-btn0 {
+  background: var(--mx-accent) !important;
+  color: #fff !important;
+  border-color: var(--mx-accent) !important;
+}
+
+.layui-layer-btn0:hover {
+  background: var(--mx-accent-hover) !important;
+  border-color: var(--mx-accent-hover) !important;
+}
+
+/* --- Close Button --- */
+.layui-layer-setwin {
+  top: 16px !important;
+  right: 16px !important;
+}
+
+.layui-layer-setwin a {
+  color: var(--mx-text-tertiary) !important;
+  font-size: 18px !important;
+  opacity: 0.6 !important;
+  transition: opacity var(--mx-transition) !important;
+}
+
+.layui-layer-setwin a:hover {
+  opacity: 1 !important;
+}
+
+.layui-layer-close1,
+.layui-layer-close2 {
+  background: none !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+}
+
+.layui-layer-close1:hover,
+.layui-layer-close2:hover {
+  background: var(--mx-bg-secondary) !important;
+}
+
+/* --- Loading --- */
+.layui-layer-loading {
+  border-radius: var(--mx-radius-sm) !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.layui-layer-loading .layui-layer-content {
+  padding: 0 !important;
+}
+
+/* --- Confirm Type --- */
+.layui-layer-confirm .layui-layer-content {
+  padding: 20px 24px !important;
+}
+
+/* --- Tips --- */
+.layui-layer-tips {
+  border-radius: var(--mx-radius-sm) !important;
+  background: var(--mx-bg-elevated) !important;
+  box-shadow: var(--mx-shadow-md) !important;
+  border: 1px solid var(--mx-border) !important;
+}
+
+.layui-layer-tips .layui-layer-content {
+  padding: 8px 14px !important;
+  font-size: 13px !important;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 480px) {
+  .layui-layer {
+    width: 90% !important;
+    left: 5% !important;
+  }
+  .layui-layer-btn {
+    flex-direction: column !important;
+  }
+  .layui-layer-btn a {
+    width: 100% !important;
+  }
+}

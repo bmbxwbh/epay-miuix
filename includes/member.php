@@ -10,23 +10,6 @@ if(isset($_COOKIE["admin_token"]))
 	if($session==$sid && $expiretime>time()) {
 		$islogin=1;
 	}
-	// DEBUG: 临时调试，确认后删除
-	if(!$islogin && basename($_SERVER['PHP_SELF']) !== 'login.php'){
-		$debug_info = [
-			'time' => date('Y-m-d H:i:s'),
-			'file' => basename($_SERVER['PHP_SELF']),
-			'has_cookie' => isset($_COOKIE["admin_token"]) ? 'YES' : 'NO',
-			'cookie_len' => strlen($raw_token),
-			'decoded_ok' => !empty($token) ? 'YES' : 'NO',
-			'token_user' => $user ?? 'NULL',
-			'token_sid' => $sid ?? 'NULL',
-			'token_exp' => $expiretime ?? 'NULL',
-			'expect_sid' => $session,
-			'syskey_ok' => !empty(SYS_KEY) ? 'YES' : 'NO',
-			'time_ok' => (isset($expiretime) && $expiretime>time()) ? 'YES' : 'NO',
-		];
-		@file_put_contents(ROOT.'debug_auth.log', json_encode($debug_info)."\n", FILE_APPEND);
-	}
 }
 if(isset($_COOKIE["user_token"]))
 {

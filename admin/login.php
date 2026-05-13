@@ -8,12 +8,6 @@ include("../includes/common.php");
 
 if(isset($_GET['act']) && $_GET['act']=='login'){
   if(!checkRefererHost()){
-    @file_put_contents(dirname(__DIR__).'/debug_auth.log', json_encode([
-        'time' => date('Y-m-d H:i:s'),
-        'type' => 'REFERER_FAIL',
-        'referer' => $_SERVER['HTTP_REFERER'] ?? 'NONE',
-        'host' => $_SERVER['HTTP_HOST'],
-    ])."\n", FILE_APPEND);
     exit('{"code":403}');
   }
   $username = trim($_POST['username']);
@@ -49,17 +43,7 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
     $session=md5($username.$password.$password_hash);
     $expiretime=time() + 2592000;
     $token=authcode("{$username}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
-    $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-    $cookie_result = setcookie("admin_token", rawurlencode($token), $expiretime, '/', '', $is_https, true);
-    // DEBUG: 临时调试
-    @file_put_contents(dirname(__DIR__).'/debug_auth.log', json_encode([
-        'time' => date('Y-m-d H:i:s'),
-        'type' => 'LOGIN',
-        'user' => $username,
-        'token_len' => strlen($token),
-        'cookie_ok' => $cookie_result ? 'YES' : 'NO',
-        'syskey_prefix' => substr(SYS_KEY, 0, 8),
-    ])."\n", FILE_APPEND);
+    setcookie("admin_token", rawurlencode($token), $expiretime, '/', '', is_https(), true);
     unset($_SESSION['vc_code']);
     exit(json_encode(['code'=>0]));
   }else{
@@ -94,13 +78,11 @@ if(isset($_GET['act']) && $_GET['act']=='login'){
   $session=md5($conf['admin_user'].$conf['admin_pwd'].$password_hash);
   $expiretime=time() + 2592000;
   $token=authcode("{$conf['admin_user']}\t{$session}\t{$expiretime}", 'ENCODE', SYS_KEY);
-  $is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-  setcookie("admin_token", rawurlencode($token), $expiretime, '/', '', $is_https, true);
+  setcookie("admin_token", rawurlencode($token), $expiretime, '/', '', is_https(), true);
   exit(json_encode(['code'=>0]));
 }elseif(isset($_GET['logout'])){
 	if(!checkRefererHost())exit();
-	$is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-	setcookie("admin_token", "", time() - 2592000, '/', '', $is_https, true);
+	setcookie("admin_token", "", time() - 2592000, '/', '', is_https(), true);
 	exit("<script language='javascript'>window.location.href='./login.php';</script>");
 }elseif($islogin==1){
 	exit("<script language='javascript'>alert('您已登录！');window.location.href='./';</script>");
@@ -255,8 +237,10 @@ function submitlogin(){
     success: function(data) {
       layer.close(ii);
       if(data.code == 0){
-        layer.msg('登录成功，正在跳转', {icon: 1, shade: 0.01, time: 15000});
-        window.location.href='./';
+        layer.msg('登录成功，正在跳转', {icon: 1, time: 1500}, function(){
+          window.location.href='./';
+        });
+        setTimeout(function(){ window.location.href='./'; }, 2000);
       }else{
         if(data.vcode==1){
           $("#verifycode").attr('src', './code.php?r='+Math.random());
@@ -281,8 +265,10 @@ function doTotp(){
   $.post('?act=totp', {code:code}, function(res){
     layer.close(ii);
     if(res.code == 0){
-      layer.msg('登录成功，正在跳转', {icon: 1, shade: 0.01, time: 15000});
-      window.location.href = './';
+      layer.msg('登录成功，正在跳转', {icon: 1, time: 1500}, function(){
+        window.location.href = './';
+      });
+      setTimeout(function(){ window.location.href='./'; }, 2000);
     }else{
       layer.alert(res.msg, {icon: 2});
     }

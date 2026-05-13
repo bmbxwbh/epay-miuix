@@ -118,6 +118,7 @@ body {
 }
 .login-social-btn:hover { background: var(--mx-accent-light); color: var(--mx-accent); }
 </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
 <div class="login-card mx-animate-scaleIn">

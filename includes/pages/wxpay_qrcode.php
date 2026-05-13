@@ -12,6 +12,7 @@ if(!defined('IN_PLUGIN'))exit();
 <meta name="renderer" content="webkit">
 <title>微信扫码支付</title>
 <link href="/assets/css/wechat_pay.css?v=2" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
 <div class="body">

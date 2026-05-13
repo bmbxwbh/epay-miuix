@@ -15,6 +15,7 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
         .mx-loading-title { font-size: 18px; font-weight: 600; color: var(--mx-text-primary); margin-bottom: 8px; }
         .mx-loading-desc { font-size: 14px; color: var(--mx-text-secondary); }
     </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
     <div class="mx-loading-card">

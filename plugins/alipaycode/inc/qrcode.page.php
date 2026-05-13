@@ -83,6 +83,7 @@ if (!defined('IN_PLUGIN')) exit();
             margin: 0 auto;
         }
     </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 
 <body>

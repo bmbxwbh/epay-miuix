@@ -33,6 +33,7 @@ body{background:#F4F4F8}
 .weixin-tip-img{padding:110px 0 0}
 .weixin-tip-img::after{display:block;margin:15px auto;content:' ';background-size:cover;width:150px;height:150px;background-image:url('<?php echo $background_img?>')}
     </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
 <div class="J-weixin-tip weixin-tip">

@@ -14,7 +14,8 @@ if (!defined('IN_PLUGIN'))
         <title>微信支付手机版</title>
         <link href="<?php echo $cdnpublic ?>twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
         <link href="/assets/pay/css/mobile-style.css?v=7" rel="stylesheet" />
-    </head>
+    <link rel="stylesheet" href="/assets/css/miuix-override.css"/>
+</head>
 
     <body>
         <div class="main">

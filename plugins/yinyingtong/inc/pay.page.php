@@ -132,6 +132,7 @@
             }
         }
     </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
     <div class="payment-container">

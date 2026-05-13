@@ -23,6 +23,7 @@ include_once(SYSTEM_ROOT.'lib/mxicons.php');
         .mx-result-actions .mx-btn { flex: 1; }
         .mx-result-footer { padding: 16px 24px; border-top: 1px solid var(--mx-border); text-align: center; font-size: 12px; color: var(--mx-text-tertiary); }
     </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
     <div class="mx-result-card mx-animate">

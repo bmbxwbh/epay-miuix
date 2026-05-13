@@ -16,6 +16,7 @@ if(!defined('IN_PLUGIN'))exit();?>
 .alipay-logo{width:100px}
 .alipay-logo:hover{box-shadow:1px 3px 10px #888}
 </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body>
 <div class="body">

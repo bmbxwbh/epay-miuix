@@ -14,6 +14,7 @@ if(!defined('IN_PLUGIN'))exit();
         margin: 0px !important;
     }
 </style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <body style="background-color:#f6f6f6">
 <div style="display: flex;justify-content: center; padding-top: 20px;border-radius: 15px;height: 100px;text-align: center;align-items: center;">

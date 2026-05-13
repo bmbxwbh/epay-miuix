@@ -28,6 +28,7 @@ if(isset($_GET['ok']) && isset($_GET['trade_no'])){
     <link href="<?php echo $cdnpublic?>twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="./assets/css/captcha.css" type="text/css" />
 	<style>.form-group{margin-bottom:18px} #captcha{margin: auto;margin-bottom:16px}</style>
+<link rel="stylesheet" href="/assets/css/miuix-override.css"/>
 </head>
 <div class="container">
 <div class="col-xs-12 col-sm-10 col-lg-8 center-block" style="float: none;">
