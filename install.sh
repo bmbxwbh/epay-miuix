@@ -68,6 +68,8 @@ services:
     restart: unless-stopped
     ports:
       - "${PORT}:80"
+    volumes:
+      - epay-data:/var/www/html/includes
     environment:
       - TZ=Asia/Shanghai
     depends_on:
@@ -87,12 +89,13 @@ services:
       - mysql-data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PWD}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p\${MYSQL_ROOT_PWD}"]
       interval: 5s
       timeout: 3s
       retries: 10
 
 volumes:
+  epay-data:
   mysql-data:
 EOF
     ok "已生成 docker-compose.yml"

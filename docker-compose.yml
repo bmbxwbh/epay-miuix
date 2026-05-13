@@ -9,6 +9,9 @@ services:
       - epay-data:/var/www/html/includes
     environment:
       - TZ=Asia/Shanghai
+    depends_on:
+      mysql:
+        condition: service_healthy
 
   mysql:
     image: mysql:8.0
@@ -22,6 +25,11 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pchange_me_root_pwd"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
 volumes:
   epay-data:
